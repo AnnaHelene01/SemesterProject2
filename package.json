@@ -1,0 +1,20 @@
+{
+  "name": "semesterproject2",
+  "version": "1.0.0",
+  "description": "Semester Project secong year of Noroff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnaHelene01/SemesterProject2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnaHelene01/SemesterProject2/issues"
+  },
+  "homepage": "https://github.com/AnnaHelene01/SemesterProject2#readme"
+}
