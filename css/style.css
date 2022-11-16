@@ -1,6 +1,4 @@
-.navbar {
-    color: #2C5F2D;
-}
+
 
 h1, h2 {
     font-family: 'Playfair Display', serif;
@@ -10,6 +8,7 @@ h3, p, nav {
     font-family: 'Roboto', sans-serif;
 }
 
+/* Home page - section: "How it works" */
 .step .wrap-icon{
      width: 90px;
     height: 90px;
@@ -23,5 +22,11 @@ h3, p, nav {
     margin-bottom: 20px;
 
 }
+
+/* Making sure there is no border radius on my btns! */
+.btn {
+    border-radius: 0;
+}
+
 
 /*# sourceMappingURL=style.css.map */

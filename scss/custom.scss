@@ -2,5 +2,7 @@ $primary: #2C5F2D;
 $secondary: #97BC62;
 $success: #E3B448;
 $info: #D9D9D9;
-$warning: #D22679;
+$warning: red;
 $danger: #FFF854;
+
+@import "../node_modules/bootstrap/scss"
