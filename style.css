@@ -1,3 +1,15 @@
+.navbar {
+    color: #2C5F2D;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+h3, p, nav {
+    font-family: 'Roboto', sans-serif;
+}
+
 .step .wrap-icon{
      width: 90px;
     height: 90px;
@@ -5,7 +17,7 @@
     line-height: 90px;
     text-align: center;
     display: inline-block;
-    background: #f37121;
+    background: #97BC62;
     color: #fff;
     font-size: 40px;
     margin-bottom: 20px;
