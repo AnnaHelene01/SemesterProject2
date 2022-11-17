@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/AnnaHelene01/SemesterProject2/issues"
   },
-  "homepage": "https://github.com/AnnaHelene01/SemesterProject2#readme",
-  "dependencies": {
-    "bootstrap": "^5.2.2"
-  }
+  "homepage": "https://github.com/AnnaHelene01/SemesterProject2#readme"
 }
