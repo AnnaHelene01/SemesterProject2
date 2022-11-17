@@ -1,0 +1,26 @@
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+/* Home page - section: "How it works" */
+.step .wrap-icon{
+    width: 90px;
+   height: 90px;
+   border-radius: 50%;
+   line-height: 90px;
+   text-align: center;
+   display: inline-block;
+   background: #97BC62;
+   color: #fff;
+   font-size: 40px;
+   margin-bottom: 20px;
+
+}
