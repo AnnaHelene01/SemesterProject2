@@ -10,6 +10,8 @@
       crossorigin="anonymous">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Bootstrap Font Icon CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
@@ -28,7 +30,7 @@
         <nav class="navbar navbar-expand-sm bg-primary">
             <a class="navbar-brand" href="#"><img id="logo" src="./Img/White-s-logo.png" width="40px"></a>
             <span class="v-line"></span>
-            <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler mr-3 bg-secondary" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -64,8 +66,12 @@
             <div class="row">
                 <div class="col-lg-6 m-auto text-center">
                     <h1>The best place to buy and sell!</h1>
-                        <h3>Credit:</h3>
-                        <h3>1000</h3>
+                    <!--THIS DIV MUST BE DISPLAY:NONE FOR UNREGISTERED USERS-->
+                      <div class="d-flex justify-content-center">
+                        <h3 class="p-2">Credit:</h3>
+                        <h3 class="p-2">1000</h3>
+                      </div>
+                      <!--------->
                         <a href="register.html"><input type="submit" value="SIGN UP" class="btn btn-secondary btn-lg px-5"></a>
                     </div>
                 <div class="col-lg-6">
@@ -86,28 +92,28 @@
                         <div class="step">
                             <span class="wrap-icon rounded-circle icon-user bg-secondary"></span>
                             <h3>Register</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consewuatur wuaret magnam sequi nobis ut et iure.</p>
+                            <p class="display-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consewuatur wuaret magnam sequi nobis ut et iure.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-12">
                         <div class="step">
                             <span class="wrap-icon icon-money"></span>
                             <h3>Buy or Bid</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consewuatur wuaret magnam sequi nobis ut et iure.</p>
+                            <p class="display-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consewuatur wuaret magnam sequi nobis ut et iure.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-12">
                         <div class="step">
                             <span class="wrap-icon icon-glass"></span>
                             <h3>Submit a bid</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consewuatur wuaret magnam sequi nobis ut et iure.</p>
+                            <p class="display-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consewuatur wuaret magnam sequi nobis ut et iure.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-12">
                         <div class="step">
                             <span class="wrap-icon icon-trophy"></span>
                             <h3>Win</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consewuatur wuaret magnam sequi nobis ut et iure.</p>
+                            <p class="display-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consewuatur wuaret magnam sequi nobis ut et iure.</p>
                         </div>
                     </div>
                 </div>
@@ -117,7 +123,7 @@
         <!--Testimonials section-->
         <div class="container-fluid bg-info mt-5">
             <h2 class="text-center mt-5">TESTIMONIALS</h2>
-            <p class="text-center">Here are some of of the testimonials from satisfied users across the world. 
+            <p class="text-center display-5">Here are some of of the testimonials from satisfied users across the world. 
                 Go through the listing today and find out how usefull our platform is!</p>
             <div class="row">
                 <div class="col-lg-4 m-auto p-5">
@@ -127,19 +133,19 @@
                               <img src="">
                             </div>
                             <div class="custoer-p-info">
-                              <h5>Anna Sæthre</h5>
-                              <p>Frontend Developer</p>
+                              <h4><strong>Anna Sæthre</strong></h4>
+                              <p class="display-6">Frontend Developer</p>
                             </div>
                          </div>
                          <div class="review"></div>
-                         <p>Lorem ipsum iuehriuehr erh iuerhiuerh iu eriuher ihreiuer </p>
+                         <p class="display-6">Lorem ipsum iuehriuehr erh iuerhiuerh iu eriuher ihreiuer </p>
                          <div class="rating">
                              <ul class="rating-ul d-flex">
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
                               </ul>
                          </div>
                      </div>
@@ -151,19 +157,19 @@
                               <img src="">
                             </div>
                             <div class="custoer-p-info">
-                              <h5>Anna Sæthre</h5>
-                              <p>Frontend Developer</p>
+                              <h4><strong>Marthe Bull</strong></h4>
+                              <p class="display-6">Frontend Developer / Designer</p>
                             </div>
                          </div>
                          <div class="review"></div>
-                         <p>Lorem ipsum iuehriuehr erh iuerhiuerh iu eriuher ihreiuer </p>
+                         <p class="display-6">Lorem ipsum iuehriuehr erh iuerhiuerh iu eriuher ihreiuer </p>
                          <div class="rating">
                              <ul class="rating-ul d-flex">
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
                               </ul>
                          </div>
                      </div>
@@ -175,24 +181,45 @@
                               <img src="">
                             </div>
                             <div class="custoer-p-info">
-                              <h5>Anna Sæthre</h5>
-                              <p>Frontend Developer</p>
+                              <h4><strong>Tonje Nilssen</strong></h4>
+                              <p class="display-6">Backend Developer</p>
                             </div>
                          </div>
                          <div class="review"></div>
-                         <p>Lorem ipsum iuehriuehr erh iuerhiuerh iu eriuher ihreiuer </p>
+                         <p class="display-6">Lorem ipsum iuehriuehr erh iuerhiuerh iu eriuher ihreiuer </p>
                          <div class="rating">
                              <ul class="rating-ul d-flex">
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
-                                 <li><img src="icons8-christmas-star-48.png"></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
+                                <li class="display-2 p-2"><i class="bi bi-star-fill"></i></li>
                               </ul>
                          </div>
                      </div>
                 </div>
             </div>
+        </div>
+
+        <!--SUBSCRIBE SECTION-->
+
+       <!-- <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-8 col-centered">
+                    <div class="fill">
+                        <div class="col-md-6 form-group display-6 align-items-center">
+                            <label for="useremail">Email</label>
+                            <input type="email" class="form-control form-control-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="fill">
+                <div class="col-md-5 form-group display-6 text-white">
+                    <label for="useremail">Email</label>
+                    <input type="email" placeholder="Put your email here..." class="form-control form-control-lg">
+                </div>
         </div>
 
     </main>

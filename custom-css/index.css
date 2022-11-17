@@ -4,7 +4,14 @@ h1, h2, h3, h4 {
 
 p {
     font-family: 'Roboto', sans-serif;
+    /*font-size: 1.5rem;*/
 }
+
+nav {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7rem;
+}
+
 
 .btn {
     border-radius: 0;
@@ -24,3 +31,20 @@ p {
    margin-bottom: 20px;
 
 }
+
+/* Home page - section: Subcribe to newletter*/
+.fill {
+    background-image: url('/Img/index-img.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: bottom;
+    min-height: 40vh;
+}
+
+@media (min-width: 1041px) {
+    .fill {
+        min-height: 70vh;
+    }
+}
+
