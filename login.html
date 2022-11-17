@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- CSS only -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" 
+      crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <!--Link to my fonts:-->
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>Homepage for WWS</title>
+</head>
+<body>
+       <!--Header-->
+       <div class="container-fluid px-0">
+        <nav class="navbar navbar-expand-sm bg-primary">
+            <a class="navbar-brand" href="#"><img id="logo" src="./Img/Component 6.png" width="40px"></a>
+            <span class="v-line"></span>
+            <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">PROFILE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.html">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">USERS</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">LOG IN</a>
+                    </li>
+                  
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <main>
+       <div class="site-section">
+          <div class="container w-50">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="mb-5"><strong>LOG IN</strong></h2>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="useremail">Email</label>
+                            <input type="email" id="loginEmail" class="form-control form-control-lg">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="passlogin">Password</label>
+                            <input type="password" id="loginPassword" class="form-control form-control-lg">
+                        </div>
+                    </div>
+                    <p>Dont have a user yet?</p><a href="register.html"><p>Register here!</p></a> 
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="submit" value="Login" class="btn btn-primary btn-lg px-5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+       </div>
+    </main>
+    <footer class="text-center mt-5 mb-5">
+        <img src="./Img/Logo.png">
+    </footer>
+</body>
+</html>
