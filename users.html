@@ -24,40 +24,27 @@
 </head>
 <body>
        <!--Header-->
-       <div class="container-fluid px-0">
-        <nav class="navbar navbar-expand-sm bg-primary">
-            <a class="navbar-brand" href="#"><img id="logo" src="./Img/Component 6.png" width="40px"></a>
-            <span class="v-line"></span>
-            <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="index.html">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="about.html">ABOUT US</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="profile.html">PROFILE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="shop.html">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="users.html">USERS</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="login.html">LOG IN</a>
-                    </li>
-                  
-                </ul>
+       <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-primary pt-4 pb-4 box-shadow-pink">
+            <div class="container-fluid col-11 col-sm-10 p-0">
+                <a href="./index.html" class="navbar-brand text-white">World Wide Shop</a>
+                <button type="button" class="navbar-toggler border-0 p-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <i class="fas fa-bars" style="color:#fff; font-size:2rem;"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                    <div class="navbar-nav font-weight-semibold">
+                        <a href="index.html" class="nav-item nav-link text-white mt-4 mt-lg-0">HOME</a>
+                        <a href="profile.html" class="nav-item nav-link text-white">PROFILE</a>
+                        <a href="users.html" class="nav-item nav-link text-white active">USERS</a>
+                        <a href="about.html" class="nav-item nav-link text-white">ABOUT US</a>
+                        <a href="login.html" class="nav-item nav-link text-white">SIGN IN</a>
+                        <a href="index.html" class="nav-item nav-link text-white">LOG OUT</a>
+                    </div>
+                </div>
             </div>
         </nav>
-    </div>
+    </header>
     <main>
        <h1 class="text-center">USERS</h1>
        <!--Search for users-->

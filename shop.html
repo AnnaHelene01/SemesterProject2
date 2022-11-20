@@ -26,40 +26,28 @@
 </head>
 <body>
        <!--Header-->
-       <div class="container-fluid px-0">
-        <nav class="navbar navbar-expand-sm bg-primary">
-            <a class="navbar-brand" href="#"><img id="logo" src="./Img/White-s-logo.png" width="40px"></a>
-            <span class="v-line"></span>
-            <button class="navbar-toggler mr-3 bg-secondary" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="index.html">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="about.html">ABOUT US</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="profile.html">PROFILE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="shop.html">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="users.html">USERS</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="login.html">LOG IN</a>
-                    </li>
-                  
-                </ul>
+       <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-primary pt-4 pb-4 box-shadow-pink">
+            <div class="container-fluid col-11 col-sm-10 p-0">
+                <a href="./index.html" class="navbar-brand text-white">World Wide Shop</a>
+                <button type="button" class="navbar-toggler border-0 p-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <i class="fas fa-bars" style="color:#fff; font-size:2rem;"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                    <div class="navbar-nav font-weight-semibold">
+                        <a href="index.html" class="nav-item nav-link text-white mt-4 mt-lg-0">HOME</a>
+                        <a href="shop.html" class="nav-item nav-link text-white active">SHOP</a>
+                        <a href="profile.html" class="nav-item nav-link text-white">PROFILE</a>
+                        <a href="users.html" class="nav-item nav-link text-white">USERS</a>
+                        <a href="about.html" class="nav-item nav-link text-white">ABOUT US</a>
+                        <a href="login.html" class="nav-item nav-link text-white">SIGN IN</a>
+                        <a href="index.html" class="nav-item nav-link text-white">LOG OUT</a>
+                    </div>
+                </div>
             </div>
         </nav>
-    </div>
+    </header>
     <main>
         <!--SHOP PAGE - LISTING -->
         <h1 class="text-center">AUCTION</h1>
@@ -87,7 +75,7 @@
                               <p id="mediaMsg"></p>
                               <label for="media">Media URL</label>
                               <textarea class="form-control form-control-lg" id="postMedia" placeholder="Place a image URL"></textarea>
-                            </div>
+                          </div>
                       </div>
                       <div class="row">
                           <div class="col-md-12 form-group display-6">
@@ -105,8 +93,8 @@
                     </div>
                       <div class="row">
                           <div class="col-12 text-center">
-                              <input type="submit" value="POST" class="btn btn-primary btn-lg px-5">
-                          </div>
+                            <a href="register.html"><button class="btn btn-secondary px-5 mt-5">POST</button></a>
+                        </div>
                       </div>
                   </div>
               </div>
@@ -115,8 +103,8 @@
 
          <!--Search for user, product etc-->
          <div class="col-4 mb-5 mt-5 m-auto">
-            <input class="ms-3 col-6 mx-auto p-2 form-control" id="queryString" placeholder="Search for user, title or content!"/>
-          </div> 
+            <input id="search-focus" type="search" id="form1" class="form-control bg-white border-1" placeholder="Search for user, products and so!"/>
+        </div> 
 
 
 

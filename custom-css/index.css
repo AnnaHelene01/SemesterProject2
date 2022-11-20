@@ -14,7 +14,13 @@ nav {
 
 
 .btn {
-    border-radius: 0;
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    text-decoration: none;
+    font-size: 1.7rem;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
 /* Home page - section: "How it works" */
@@ -63,6 +69,17 @@ nav {
 
 .feature-1-content {
     padding: 50px 20px 20px 20px;
+}
+
+input , textarea {
+    color: white;
+    text-decoration: none;
+    font-size: 1.7rem;
+}
+
+input::placeholder {
+    opacity: .5;
+    font-size: 1.3rem;
 }
   
 
