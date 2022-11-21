@@ -17,8 +17,12 @@
 &nbsp;
 
 ### Gant Chart
+<img width="1428" alt="Skjermbilde 2022-11-21 kl  15 54 15" src="https://user-images.githubusercontent.com/91527942/203085886-a45ba01d-cf65-4f12-b297-64349f18b52d.png">
 
 &nbsp;
+
+### Trello (Planning Application)
+-[Trello](https://trello.com/b/vR7ykera/semester-project-2)
 
 ### Links to design / wireframes:
 - [Wireframe desktop/mobile](https://www.figma.com/file/Nkwl7HFvN0NGFYaifFg7KH/Semester-Project-2---Style-Guide?node-id=2%3A55&t=gTnywTVPSHomsbPf-1)
