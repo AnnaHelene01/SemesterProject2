@@ -137,6 +137,7 @@ async function createNewAuction (url, data) {
         credit: credit,
         endsAt: endsAt,
        };
+    //console.log(auctionData);
 
     try {
         const accessToken = localStorage.getItem('accessToken'); 
@@ -148,12 +149,12 @@ async function createNewAuction (url, data) {
             },
             body: JSON.stringify(auctionData),
         };
-        console.log(url, data, options);
+        console.log("Url:", url,"Data:", auctionData,"Options:", options);
 
         const response = await fetch(url, options); 
-        console.log(response);
+        //console.log(response);
         const auction = await response.json();
-        console.log(auction);
+        //console.log(auction);
     if (response.status === 200) window.location='./index.html';
     } catch(error) {
         console.warn(error);

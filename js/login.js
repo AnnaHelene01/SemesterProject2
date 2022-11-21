@@ -46,10 +46,10 @@ function validateForm() {
 
 //Endpoints:
 // Endpoints
-const APIurl = " https://api.noroff.dev/api/v1";
+const API = " https://api.noroff.dev/api/v1";
 const loginEndpoint = "/auction/auth/login"; // POST
 
-const loginUrl = `${APIurl}${loginEndpoint}`;
+const loginUrl = `${API}${loginEndpoint}`;
 
 
 
@@ -108,4 +108,11 @@ async function loginUser(url, data) {
 const errorMsg = document.querySelector("#errorMsg");
 
 
+//Logge ut?
+const logOut = document.getElementById("log-out");
+console.log(logOut);
 
+logOut.addEventListener("click", () => {
+    localStorage.clear('accessToken');
+    window.location='./index.html';
+})

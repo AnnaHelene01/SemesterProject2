@@ -60,7 +60,7 @@ async function registerNewUser(url, data) {
         console.log(answer);
         if (response.status === 201) {
             window.location = "/login.html";
-        } else if (answer.message === "Profile already exists") {
+        } else if (answer.message === "Profile already exists, try to login!") {
             errorMsg.innerHTML = answer.message;
         }
     } catch(error) {
@@ -100,10 +100,9 @@ function validateForm() {
      //console.log('Email: ' + submittedEmail);
      let emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
      if (!emailPattern.test(submittedEmail)) {
-     emailMsg.innerHTML += "Please enter a valid email ";
+     emailMsg.innerHTML += "Please enter a valid email with only characters, number, dot and underscore ";
      }
      //validere sjekk etter @noroff.no & @stud.noroff.no
-
      if (
         !(
             submittedEmail.includes("@stud.noroff.no") ||
@@ -116,14 +115,30 @@ function validateForm() {
     passwordMsg.innerHTML = "";
     const submittedPassword = password;
     if (submittedPassword.length < 8) {
-        passwordMsg.innerHTML += 'The password must be at least 5 characters long!';
+        passwordMsg.innerHTML += 'The password must be at least 8 characters long!';
     }
 
-      if (usernameMsg.innerHTML === "" && emailMsg.innerHTML === "" && passwordMsg.innerHTML === "") {
+    const submittedAvatar = avatar;
+    avatarMsg.innerHTML = "";
+    let avatarPattern = /\.(jpeg|jpg|gif|png|svg)$/;
+    if (!avatarPattern.test(submittedAvatar)) {
+      avatarMsg.innerHTML =
+        "Invalid image URL";
+    }
+    if (submittedAvatar === "") {
+      avatarInput.innerHTML =
+        "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg";
+        //console.log(`Avatar URL: https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg`);
+    }
+
+    if (usernameMsg.innerHTML === "" && emailMsg.innerHTML === "" && passwordMsg.innerHTML === "") {
         //console.log("Form is submitted!");
         //form.submit(); ///for å submitte skjema 
      }
      else {
         console.log("You still have validation errors");
     }
-}
+  }
+
+     
+
