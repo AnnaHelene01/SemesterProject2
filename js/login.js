@@ -91,10 +91,12 @@ async function loginUser(url, data) {
         console.log(response);
         const answer = await response.json();
         console.log(answer);
+
         if (response.status === 200) {
             localStorage.setItem('username', answer.name);
             localStorage.setItem('accessToken', answer.accessToken);
             window.location = "/index.html";
+
         } else if (answer.message === "This profile does not exist! Go and register") {
             errorMsg.innerHTML = answer.message;
         }
@@ -104,15 +106,6 @@ async function loginUser(url, data) {
 }
 
 //loginUser(loginUrl, loginData);
+//const errorMsg = document.querySelector("#errorMsg");
 
-const errorMsg = document.querySelector("#errorMsg");
 
-
-//Logge ut?
-const logOut = document.getElementById("log-out");
-console.log(logOut);
-
-logOut.addEventListener("click", () => {
-    localStorage.clear('accessToken');
-    window.location='./index.html';
-})

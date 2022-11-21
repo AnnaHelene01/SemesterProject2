@@ -38,42 +38,59 @@ const outElement = document.getElementById("post-container");
 
 //Liste ut alle poster på html siden
 function listData(list, out){
-    //console.log ("List:", list);
+   // console.log ("List:", list);
     out.innerHTML = "";
     let newDivs = "";
 
     for (let auction of list) {
 
-        
         let date = new Date(auction.endsAt);
-        let ourDate = date.toLocaleString("default", {
-            day: "numeric", 
-            month: "long", 
-            hour: "2-digit", 
-            minute: "2-digit"
-        });
+        let auctionEnd = setInterval(function () {
+
+        let now = new Date().getTime();
+
+        let distance = date - now;
+  
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+        const timer = document.querySelector(".timer");
+        timer.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        timer.classList.add("not-expired");
+        
+        if (distance < 0) {
+          clearInterval(auctionEnd);
+          timer.innerHTML = "EXPIRED";
+        }
+      }, 1000);
 
         newDivs += `
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6 col-sm-12">
              <a href="shop-specific.html?id=${auction.id}" class="text-decoration-none">
-               <div class="card">
-                 <img src="${auction.media}" class="card-img-top" alt="..">
+               <div class="card mt-5">
+                 <img src="${auction.media}" class="card-img-top card-img" alt="..">
+        
                  <div class="card-body">
-                     <h4 class="card-title">${auction.title}</h4>
-                     <div class="d-flex">
-                        <h4>Bids: </h4>
-                        <h4> ${auction._count.bids}</h4>
-                     </div>
-                     <p class="card-text display-6">${auction.description}</p>
+                 <h4 class="card-title">${auction.title}</h4>
+                 <div class="d-flex">
+                    <img src="${auction.seller.avatar}" class="rounded-circle p-2"
+                    height="30" alt="Avatar" loading="lazy" />
+                    <h4 class="p-2"> ${auction.seller.name}</h4>
                  </div>
-                 <div class="card-body">
-                    <p class="display-6">${auction.seller.name}</p>
+                   <div class="d-flex mt-5 pt-2 justify-content-between">
+                       <div>
+                          <p class="display-4">Bids:</p>
+                          <p class="display-4">${auction._count.bids}</p>
+                        </div>
+                        <div>
+                          <p class="display-4">Auction ends: </p>
+                          <p class="display-4 text-success timer expired">AUCTION ENDED</p>
+                         </div>
+                    </div>
                  </div>
-                 <div class="card-body d-flex">
-                    <p class="display-6">Auction ends: </p>
-                    <p class="display-6">${ourDate}</p>
-                 </div>
-                </div>
+               </div>
             </a>
           </div>`;
     }
@@ -137,7 +154,7 @@ async function createNewAuction (url, data) {
         credit: credit,
         endsAt: endsAt,
        };
-    //console.log(auctionData);
+    console.log(auctionData);
 
     try {
         const accessToken = localStorage.getItem('accessToken'); 
@@ -152,7 +169,7 @@ async function createNewAuction (url, data) {
         console.log("Url:", url,"Data:", auctionData,"Options:", options);
 
         const response = await fetch(url, options); 
-        //console.log(response);
+        console.log(response);
         const auction = await response.json();
         //console.log(auction);
     if (response.status === 200) window.location='./index.html';
@@ -164,3 +181,46 @@ async function createNewAuction (url, data) {
 submitPost.addEventListener("click", () => {
        createNewAuction(createAuction);
 });
+
+
+//Hente p taggene for å skrive ut beskjed ved validering
+const titleMsg = document.getElementById("titleMsg");
+const bodyMsg = document.getElementById("bodyMsg");
+const mediaMsg = document.getElementById("mediaMsg");
+const creditMsg = document.getElementById("creditMsg");
+
+//console.log(titleMsg, bodyMsg, mediaMsg);
+
+//Validate form 
+submitPost.addEventListener('click', validateForm);
+function validateForm() {
+    const title = postTitle.value.trim();
+    const body = postContent.value.trim();
+    const media = postMedia.value.trim();
+
+    const submittedTitle = title;
+    titleMsg.innerHTML = "";
+     if (submittedTitle.length < 1) {
+     titleMsg.innerHTML = 'Your title has to be at least 1 or more characters.';
+     }
+     
+     bodyMsg.innerHTML = "";
+    const submittedBody = body;
+    if (submittedBody.length < 1) {
+        bodyMsg.innerHTML = 'Your title has to be at least 1 or more characters.';
+    }
+
+    mediaMsg.innerHTML = "";
+    const submittedMedia = media;
+    if (submittedMedia === "") {
+        mediaMsg.innerHTML = 'You must add a real URL';
+    }
+
+      if (titleMsg.innerHTML === "" && bodyMsg.innerHTML === "" && mediaMsg.innerHTML === "") {
+        //console.log("Form is submitted!");
+        //form.submit(); ///for å submitte skjema 
+     }
+     else {
+        console.log("You still have validation errors");
+    }
+}

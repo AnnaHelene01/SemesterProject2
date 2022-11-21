@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./js/script.js" defer></script>
-    <script src="./js/login.js" defer></script>
+    <script src="./js/logout.js" defer></script>
       <!-- CSS only -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" 
@@ -111,6 +111,7 @@
 
        <!--AUCTION SECTION-->
        <!--SHOP PAGE - LISTING -->
+    <section class="logged-in">
        <h2 class="text-center mt-5">CREATE A NEW SALE</h2>
        <div class="site-section">
            <div class="container w-50">
@@ -139,6 +140,7 @@
                      </div>
                      <div class="row">
                          <div class="col-md-12 form-group display-6">
+                             <p id="creditMsg"></p>
                              <label for="credit">Enter Credit value (max 1000)</label>
                              <input type="number" class="form-control form-control-lg" id="creditValue" placeholder="Max 1000 Credits" name="credit" min="1" max="1000">
                          </div>
@@ -160,6 +162,7 @@
              </div>
            </div>
         </div>
+    </section>
 
         <!--Search for user, product etc-->
         <div class="col-4 mb-5 mt-5 m-auto">
@@ -174,6 +177,8 @@
          <div class="container">
             <div class="row">
                 <div class="col-12 mx-auto" id="post-container">
+                    <img class="" src="./Img/loader.gif" alt="Loading content" style="width:100px;">
+                </div>
             </div>
          </div>
 

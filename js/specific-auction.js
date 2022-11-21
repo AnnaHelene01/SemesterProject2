@@ -49,13 +49,27 @@ function listData(auctions, out){
 
     //console.log("Logger autcion", auctions);
 
-        let date = new Date(auctions.endsAt);
-        let ourDate = date.toLocaleString("default", {
-            day: "numeric", 
-            month: "long", 
-            hour: "2-digit", 
-            minute: "2-digit"
-        });
+    let date = new Date(auctions.endsAt);
+    let auctionEnd = setInterval(function () {
+
+    let now = new Date().getTime();
+
+    let distance = date - now;
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const timer = document.querySelector(".timer");
+    timer.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    timer.classList.add("not-expired");
+    
+    if (distance < 0) {
+      clearInterval(auctionEnd);
+      timer.innerHTML = "EXPIRED";
+    }
+  }, 1000);
 
         let newDivs = "";
         newDivs += `
@@ -78,7 +92,7 @@ function listData(auctions, out){
                               </p>
                           </form>
                       </div>
-                      <div class="box-side text-center">
+                      <div class="box-side text-center mb-4">
                           <img src="${auctions.seller.avatar}" alt="user" class="img-fluid w-50 rounded-circle mb-4">
                           <h3>${auctions.seller.name}</h3>
   
@@ -91,8 +105,8 @@ function listData(auctions, out){
                       <h2 class="my-4">${auctions.title}</h2>
                       <p class="display-6">${auctions.description}</p>
                       <div class="card-body d-flex">
-                      <p class="display-6">Auction ends: </p>
-                      <p class="display-6">${ourDate}</p>
+                      <p class="display-4">Auction ends: </p>
+                      <p class="display-4 text-succrss timer expired">AUCTION ENDED</p>
                    </div>
                    <h2 class="my-4">Bidders (${auctions._count.bids})</h2>
                       <ul class="list-unstyled bidder">
@@ -101,7 +115,7 @@ function listData(auctions, out){
                                   <span class="display-6">1.</span>
                                   <div class="d-flex align-items-center">
                                       <img src="">
-                                      <span class="display-6">Username</span>
+                                      <span class="display-6">${auctions.bids.sellername}</span>
                                   </div>
                               </div>
                               <span class="price display-6">100 Credits</span>
