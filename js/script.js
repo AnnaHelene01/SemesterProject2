@@ -1,8 +1,9 @@
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings"; // POST
+const extraFlag = "?_seller=true&_bids=true"
 
-const auctionUrl = `${APIurl}${auctionEndpoint}`;
+const auctionUrl = `${APIurl}${auctionEndpoint}${extraFlag}`;
 
 
 //let AUCTION = [];
@@ -37,7 +38,7 @@ const outElement = document.getElementById("post-container");
 
 //Liste ut alle poster på html siden
 function listData(list, out){
-    console.log ("List:", list);
+    //console.log ("List:", list);
     out.innerHTML = "";
     let newDivs = "";
 
@@ -66,7 +67,7 @@ function listData(list, out){
                      <p class="card-text display-6">${auction.description}</p>
                  </div>
                  <div class="card-body">
-                    <p class="display-6">Username?</p>
+                    <p class="display-6">${auction.seller.name}</p>
                  </div>
                  <div class="card-body d-flex">
                     <p class="display-6">Auction ends: </p>
@@ -77,4 +78,88 @@ function listData(list, out){
           </div>`;
     }
     out.innerHTML = newDivs;
+
+      //Filtrere posts / search input
+      const inputField = document.getElementById("filter-auction");
+      //console.log(inputField);
+      inputField.addEventListener("keyup", filterAuctions);
+  
+      function filterAuctions () {
+          const filterAuctions = inputField.value.toLowerCase();
+          //console.log(filterAuctions);
+  
+          const filtered = collection.filter((auction)=> {
+              //console.log(post.author.name, filterPosts);
+              //console.log(post.author.name.toUpperCase().indexOf(filterPosts.toUpperCase()) > -1);
+              //console.log(collection.length);
+              const author = auction.seller.name.toLowerCase();
+              const title = auction.title.toLowerCase();
+              const published = auction.created.toString();
+              //console.log(author, title, published);
+              if (author.indexOf(filterAuctions) > -1) return true;
+              if (title.indexOf(filterAuctions) > -1) return true;
+              if (published.indexOf(filterAuctions) > -1) return true;
+              return false;
+          })
+  
+          listData(filtered, outElement);
+      }
+  
 }
+
+  
+//Hente create post verdier:
+const postTitle = document.getElementById("postTitle");
+const postContent = document.getElementById("postContent");
+const postMedia = document.getElementById("postMedia");
+const creditValue = document.getElementById("creditValue");
+const endsBid = document.getElementById("endBid");
+const submitPost = document.getElementById("submitPost");
+console.log(postTitle, postContent, postMedia, creditValue, endsBid, submitPost);
+
+
+//Create a new post - method: POST
+const createAuction = `${APIurl}${auctionEndpoint}`;
+
+
+async function createNewAuction (url, data) {
+    const title = postTitle.value.trim();
+    const description = postContent.value.trim();
+    let media = postMedia.value.trim();
+    const credit = creditValue.value.trim();
+    const endsAt = endsBid.value.trim();
+    if (media === "") media = "https://www.pngkey.com/maxpic/u2w7r5y3a9o0w7t4/";
+
+    const auctionData = {
+        title: title,
+        description: description,
+        media: media,
+        credit: credit,
+        endsAt: endsAt,
+       };
+
+    try {
+        const accessToken = localStorage.getItem('accessToken'); 
+        const options = {
+            method: 'POST', 
+            headers : {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(auctionData),
+        };
+        console.log(url, data, options);
+
+        const response = await fetch(url, options); 
+        console.log(response);
+        const auction = await response.json();
+        console.log(auction);
+    if (response.status === 200) window.location='./index.html';
+    } catch(error) {
+        console.warn(error);
+    }
+}
+
+submitPost.addEventListener("click", () => {
+       createNewAuction(createAuction);
+});

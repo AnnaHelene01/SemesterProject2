@@ -146,13 +146,13 @@
                        <div class="col-md-12 form-group display-6">
                            <label for="auction">Select time and date</label>
                            <form action="/action_page.php">
-                               <input type="datetime-local" class="form-control form-control-lg" id="birthdaytime" name="birthdaytime">
+                               <input type="datetime-local" class="form-control form-control-lg" id="endBid" name="birthdaytime">
                              </form>
                        </div>
                    </div>
                      <div class="row">
                          <div class="col-12 text-center">
-                           <a href="register.html"><button class="btn btn-secondary px-5 mt-5">POST</button></a>
+                           <button class="btn btn-secondary px-5 mt-5" id="submitPost">POST</button>
                        </div>
                      </div>
                  </div>
@@ -162,7 +162,7 @@
 
         <!--Search for user, product etc-->
         <div class="col-4 mb-5 mt-5 m-auto">
-           <input id="search-focus" type="search" id="form1" class="form-control bg-white border-1" placeholder="Search for user, products and so!"/>
+           <input type="search" id="filter-auction" class="form-control bg-white border-1" placeholder="Search for user, products and so!"/>
        </div> 
 
 
