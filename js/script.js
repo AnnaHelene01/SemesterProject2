@@ -23,7 +23,7 @@ async function getAllAuctions (url) {
         const response = await fetch(url, options); 
         //console.log(response);
         const auction = await response.json();
-        //console.log("Posts:", posts);
+        console.log("Posts:", auction);
         collection = auction;
         //console.log("Collection:", collection);
         listData(auction, outElement)
@@ -44,12 +44,12 @@ function listData(list, out){
 
     for (let auction of list) {
 
-        let date = new Date(auction.endsAt);
+        let deadline = new Date(auction.endsAt).getTime();
         let auctionEnd = setInterval(function () {
 
         let now = new Date().getTime();
 
-        let distance = date - now;
+        let distance = deadline - now;
   
         let days = Math.floor(distance / (1000 * 60 * 60 * 24));
         let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -62,7 +62,7 @@ function listData(list, out){
         
         if (distance < 0) {
           clearInterval(auctionEnd);
-          timer.innerHTML = "EXPIRED";
+          timer.innerHTML = "AUCTION ENDED";
         }
       }, 1000);
 
@@ -86,7 +86,7 @@ function listData(list, out){
                         </div>
                         <div>
                           <p class="display-4">Auction ends: </p>
-                          <p class="display-4 text-success timer expired">AUCTION ENDED</p>
+                          <p class="display-4 text-success timer expired"></p>
                          </div>
                     </div>
                  </div>
@@ -136,7 +136,7 @@ console.log(postTitle, postContent, postMedia, creditValue, endsBid, submitPost)
 
 
 //Create a new post - method: POST
-const createAuction = `${APIurl}${auctionEndpoint}`;
+const createAuction = `${APIurl}${auctionEndpoint}${extraFlag}`;
 
 
 async function createNewAuction (url, data) {

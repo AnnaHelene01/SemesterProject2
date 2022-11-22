@@ -50,3 +50,8 @@ npm i
 ````
 
 I
+
+## Sources 
+
+Countdown for auction bid time: https://www.w3schools.com/howto/howto_js_countdown.asp
+
