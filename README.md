@@ -48,10 +48,14 @@ Added node with:
 ```
 npm i
 ````
+Added bootstrap with: 
+```
+npm i bootstrap
+```
 
-I
 
 ## Sources 
-
+Card inspiration for design: https://getbootstrap.com/docs/5.2/components/card/
 Countdown for auction bid time: https://www.w3schools.com/howto/howto_js_countdown.asp
+
 
