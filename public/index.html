@@ -111,58 +111,65 @@
 
        <!--AUCTION SECTION-->
        <!--SHOP PAGE - LISTING -->
-    <section class="logged-in">
-       <h2 class="text-center mt-5">CREATE A NEW SALE</h2>
-       <div class="site-section">
-           <div class="container w-50">
-             <div class="row justify-content-center">
-                 <div class="col-lg-10">
-                     <div class="row">
-                         <div class="col-md-12 form-group display-6">
-                             <p id="titleMsg"></p>
-                             <label for="title">Title</label>
-                             <input type="text" id="postTitle" placeholder="What are you selling?" class="form-control form-control-lg">
-                         </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <section class="logged-in">
+                    <h2 class="text-center mt-5">CREATE A NEW SALE</h2>
+                    <div class="site-section">
+                        <div class="container w-50">
+                          <div class="row justify-content-center">
+                              <div class="col-lg-10">
+                                  <div class="row">
+                                      <div class="col-md-12 form-group display-6">
+                                          <p id="titleMsg"></p>
+                                          <label for="title">Title</label>
+                                          <input type="text" id="postTitle" placeholder="What are you selling?" class="form-control form-control-lg">
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-md-12 form-group display-6">
+                                          <p id="bodyMsg"></p>
+                                          <label for="description">Description</label>
+                                          <textarea class="form-control form-control-lg" id="postContent" placeholder="Describe your product"></textarea>
+                                        </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-md-12 form-group display-6">
+                                          <p id="mediaMsg"></p>
+                                          <label for="media">Media URL</label>
+                                          <textarea class="form-control form-control-lg" id="postMedia" placeholder="Place a image URL"></textarea>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12 form-group display-6">
+                                        <p id="endbidMsg"></p>
+                                        <label for="auction">Select time and date:</label>
+                                        <form action="/action_page.php">
+                                            <input type="datetime-local" class="form-control form-control-lg" id="endBid" name="birthdaytime">
+                                          </form>
+                                    </div>
+                                </div>
+                                  <div class="row">
+                                      <div class="col-12 text-center">
+                                        <button class="btn btn-secondary px-5 mt-5" id="submitPost">POST</button>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
                      </div>
-                     <div class="row">
-                         <div class="col-md-12 form-group display-6">
-                             <p id="bodyMsg"></p>
-                             <label for="description">Description</label>
-                             <textarea class="form-control form-control-lg" id="postContent" placeholder="Describe your product"></textarea>
-                           </div>
-                     </div>
-                     <div class="row">
-                         <div class="col-md-12 form-group display-6">
-                             <p id="mediaMsg"></p>
-                             <label for="media">Media URL</label>
-                             <textarea class="form-control form-control-lg" id="postMedia" placeholder="Place a image URL"></textarea>
-                         </div>
-                     </div>
-                     <div class="row">
-                         <div class="col-md-12 form-group display-6">
-                             <p id="creditMsg"></p>
-                             <label for="credit">Enter Credit value (max 1000)</label>
-                             <input type="number" class="form-control form-control-lg" id="creditValue" placeholder="Max 1000 Credits" name="credit" min="1" max="1000">
-                         </div>
-                     </div>
-                     <div class="row">
-                       <div class="col-md-12 form-group display-6">
-                           <label for="auction">Select time and date</label>
-                           <form action="/action_page.php">
-                               <input type="datetime-local" class="form-control form-control-lg" id="endBid" name="birthdaytime">
-                             </form>
-                       </div>
-                   </div>
-                     <div class="row">
-                         <div class="col-12 text-center">
-                           <button class="btn btn-secondary px-5 mt-5" id="submitPost">POST</button>
-                       </div>
-                     </div>
-                 </div>
-             </div>
-           </div>
+                 </section>
+            </div>
+            <div class="col-lg-6">
+                <section class="logged-in">
+                    <h2 class="text-center mt-5">NEW LISTING</h2>
+                    <div id="preview-container"></div>       
+                 </section>
+            </div>
         </div>
-    </section>
+    </div>
+    
 
         <!--Search for user, product etc-->
         <div class="col-4 mb-5 mt-5 m-auto">

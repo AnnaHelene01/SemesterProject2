@@ -129,33 +129,16 @@ function listData(list, out){
 const postTitle = document.getElementById("postTitle");
 const postContent = document.getElementById("postContent");
 const postMedia = document.getElementById("postMedia");
-const creditValue = document.getElementById("creditValue");
 const endsBid = document.getElementById("endBid");
 const submitPost = document.getElementById("submitPost");
-console.log(postTitle, postContent, postMedia, creditValue, endsBid, submitPost);
+console.log(postTitle, postContent, postMedia, endsBid, submitPost);
 
 
 //Create a new post - method: POST
-const createAuction = `${APIurl}${auctionEndpoint}${extraFlag}`;
+const createAuction = `${APIurl}${auctionEndpoint}`;
 
 
 async function createNewAuction (url, data) {
-    const title = postTitle.value.trim();
-    const description = postContent.value.trim();
-    let media = postMedia.value.trim();
-    const credit = creditValue.value.trim();
-    const endsAt = endsBid.value.trim();
-    if (media === "") media = "https://www.pngkey.com/maxpic/u2w7r5y3a9o0w7t4/";
-
-    const auctionData = {
-        title: title,
-        description: description,
-        media: media,
-        credit: credit,
-        endsAt: endsAt,
-       };
-    console.log(auctionData);
-
     try {
         const accessToken = localStorage.getItem('accessToken'); 
         const options = {
@@ -164,39 +147,57 @@ async function createNewAuction (url, data) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${accessToken}`,
             },
-            body: JSON.stringify(auctionData),
+            body: JSON.stringify(data),
         };
-        console.log("Url:", url,"Data:", auctionData,"Options:", options);
+        console.log("Url:", url,"Data:", data,"Options:", options);
 
         const response = await fetch(url, options); 
         console.log(response);
-        const auction = await response.json();
-        //console.log(auction);
+        const answer = await response.json();
+        console.log("Answer", answer);
     if (response.status === 200) window.location='./index.html';
     } catch(error) {
         console.warn(error);
     }
 }
 
-submitPost.addEventListener("click", () => {
-       createNewAuction(createAuction);
-});
-
 
 //Hente p taggene for å skrive ut beskjed ved validering
 const titleMsg = document.getElementById("titleMsg");
 const bodyMsg = document.getElementById("bodyMsg");
 const mediaMsg = document.getElementById("mediaMsg");
-const creditMsg = document.getElementById("creditMsg");
+const endbidMsg = document.getElementById("endbidMsg");
+
 
 //console.log(titleMsg, bodyMsg, mediaMsg);
 
 //Validate form 
-submitPost.addEventListener('click', validateForm);
-function validateForm() {
+submitPost.addEventListener('click', validateFormAndProcess);
+function validateFormAndProcess(event) {
+    event.preventDefault();
     const title = postTitle.value.trim();
-    const body = postContent.value.trim();
-    const media = postMedia.value.trim();
+    const description = postContent.value.trim();
+    let media = [`${postMedia.value.trim()}`]
+    const endsAt = [`${endsBid.value.trim()}`];
+
+    //var dateParts = listingDate.value.trim().split("-");
+    //var deadline = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+    //var endsAt = deadline.toISOString();
+    //console.log(endsAt);
+
+    if (media === []) 
+    media = 
+    "https://www.pngkey.com/maxpic/u2w7r5y3a9o0w7t4/";
+
+    const auctionData = {
+        title: title,
+        description: description,
+        media: media,
+        endsAt: endsAt,   
+       };
+    console.log(auctionData);
+
+    
 
     const submittedTitle = title;
     titleMsg.innerHTML = "";
@@ -205,15 +206,21 @@ function validateForm() {
      }
      
      bodyMsg.innerHTML = "";
-    const submittedBody = body;
+    const submittedBody = description;
     if (submittedBody.length < 1) {
-        bodyMsg.innerHTML = 'Your title has to be at least 1 or more characters.';
+        bodyMsg.innerHTML = 'Your description has to be at least 1 or more characters.';
     }
 
     mediaMsg.innerHTML = "";
     const submittedMedia = media;
     if (submittedMedia === "") {
         mediaMsg.innerHTML = 'You must add a real URL';
+    }
+
+    endbidMsg.innerHTML = "";
+    const submittedEndbid = endsAt;
+    if (submittedEndbid === "") {
+        endbidMsg.innerHTML = 'You have to add a date and time to end your auction!'
     }
 
       if (titleMsg.innerHTML === "" && bodyMsg.innerHTML === "" && mediaMsg.innerHTML === "") {
@@ -223,4 +230,35 @@ function validateForm() {
      else {
         console.log("You still have validation errors");
     }
+    createNewAuction(createAuction, auctionData);
+}
+
+// Preview elements
+let previewContainer = document.getElementById("preview-container");
+const previewTitle = document.getElementById("preview-title");
+const previewImg = document.getElementById("preview-img");
+const previewDescription = document.getElementById("preview-description");
+
+// show preview
+postTitle.addEventListener("keyup", preview);
+postMedia.addEventListener("keyup", preview);
+postContent.addEventListener("keyup", preview)
+
+async function preview() {
+  previewContainer.innerHTML = "";
+  previewContainer.innerHTML = `
+                <div class="card border-0">
+                    <img id="preview-img" src="${
+                      postMedia.value !== ""
+                        ? postMedia.value
+                        : "../placeholder.png"
+                    }" class="card-img-top" alt="Product picture placeholder"/>
+                    <div class="card-body p-4">
+                        <h4 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
+                          postTitle.value
+                        }</a></h4>
+                        <p id="preview-description" class="display-6">${postContent.value}</p>
+                    </div>
+                </div>
+  `;
 }
