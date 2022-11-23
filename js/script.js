@@ -233,13 +233,13 @@ function validateFormAndProcess(event) {
     createNewAuction(createAuction, auctionData);
 }
 
-// Preview elements
+// Preview elements:
 let previewContainer = document.getElementById("preview-container");
 const previewTitle = document.getElementById("preview-title");
 const previewImg = document.getElementById("preview-img");
 const previewDescription = document.getElementById("preview-description");
 
-// show preview
+// Preview of creating auction:
 postTitle.addEventListener("keyup", preview);
 postMedia.addEventListener("keyup", preview);
 postContent.addEventListener("keyup", preview)
@@ -247,18 +247,25 @@ postContent.addEventListener("keyup", preview)
 async function preview() {
   previewContainer.innerHTML = "";
   previewContainer.innerHTML = `
-                <div class="card border-0">
-                    <img id="preview-img" src="${
-                      postMedia.value !== ""
-                        ? postMedia.value
-                        : "../placeholder.png"
-                    }" class="card-img-top" alt="Product picture placeholder"/>
-                    <div class="card-body p-4">
-                        <h4 id="preview-title" class="card-title"><a href="#" class="text-black text-decoration-none stretched-link">${
-                          postTitle.value
-                        }</a></h4>
-                        <p id="preview-description" class="display-6">${postContent.value}</p>
+                <div class="col-md-6 col-sm-12">
+                  <div class="card mt-5">
+                    <img src="${
+                        postMedia.value !== ""
+                          ? postMedia.value
+                          : "../placeholder.png"
+                      }" class="card-img-top card-img" alt="..">
+           
+                      <div class="card-body">
+                          <h4 class="card-title">${postTitle.value}</h4>
+                          <p id="preview-description" class="display-6">${postContent.value}</p>
+                      </div>
+                      <div class="d-flex">
+                          <img src="/Img/60111.jpg" class="rounded-circle p-2"
+                          height="30" alt="Avatar" loading="lazy" />
+                          <h4 class="p-2"> Seller</h4>
+                      </div>
                     </div>
-                </div>
+                  </div>
+             </div>
   `;
 }

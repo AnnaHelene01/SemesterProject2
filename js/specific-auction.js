@@ -86,9 +86,9 @@ function listData(auctions, out){
                                   <a href="register.html"><input type="submit" value="SUBMIT A BID" class="btn btn-secondary btn-lg px-5"></a>
                               </div>
                               <p class="display-6 mb-0">
-                                  <a href="">Sign in</a>
+                                  <a href="/public/login.html">Sign in</a>
                                   /
-                                  <a href="">Register</a>
+                                  <a href="/public/register.html">Register</a>
                               </p>
                           </form>
                       </div>

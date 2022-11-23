@@ -59,7 +59,7 @@ async function registerNewUser(url, data) {
         const answer = await response.json();
         console.log(answer);
         if (response.status === 201) {
-            window.location = "/login.html";
+            window.location = "/public/login.html";
         } else if (answer.message === "Profile already exists, try to login!") {
             errorMsg.innerHTML = answer.message;
         }
@@ -128,7 +128,6 @@ function validateForm() {
     if (submittedAvatar === "") {
       avatarInput.innerHTML =
         "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg";
-        //console.log(`Avatar URL: https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg`);
     }
 
     if (usernameMsg.innerHTML === "" && emailMsg.innerHTML === "" && passwordMsg.innerHTML === "") {
