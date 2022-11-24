@@ -45,17 +45,17 @@ function listData(list, out){
     for (let auction of list) {
     console.log ("Auction Media: ", auction.media[0], auction.media.length);
 
+   //Ternyary for listing media
    const productImg =
-   auction.media.lenght === 0 
+   auction.media.length === 0 || auction.media == "undefined"
    ? 
-    "https://upload.wikimedia.org/wikipedia/commons/6/67/Learning_Curve_--_Coming_Soon_Placeholder.png"
+    "../placeholder.png"
     : `${auction.media[0]}`;
    //console.log(productImg)
 
    console.log ("Fikset Action Media: ", productImg);
 
-
-
+   //Ternyary for avatar img
     const profileImg =
     auction.seller.avatar !== ""
     ? auction.seller.avatar
