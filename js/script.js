@@ -43,7 +43,7 @@ function listData(list, out){
     let newDivs = "";
 
     for (let auction of list) {
-    console.log ("Auction Media: ", auction.media[0], auction.media.length);
+    //console.log ("Auction Media: ", auction.media[0], auction.media.length);
 
    //Ternyary for listing media
    const productImg =
@@ -51,17 +51,15 @@ function listData(list, out){
    ? 
     "../placeholder.png"
     : `${auction.media[0]}`;
-   //console.log(productImg)
-
-   console.log ("Fikset Action Media: ", productImg);
+   //console.log ("Fikset Action Media: ", productImg);
 
    //Ternyary for avatar img
     const profileImg =
-    auction.seller.avatar !== ""
-    ? auction.seller.avatar
-    : [
+    auction.seller.avatar === "" || auction.seller.avatar === null
+    ? [
         "../Img/60111.jpg"
-    ];
+    ]
+    :auction.seller.avatar;
 
       let date = new Date(auction.endsAt);
       let ourDate = date.toLocaleString("default", {
@@ -73,7 +71,7 @@ function listData(list, out){
 
         newDivs += `
         <div class="col-lg-4 col-md-6 col-sm-12">
-             <a href="shop-specific.html?id=${auction.id}" class="text-decoration-none">
+             <a href="./public/shop-specific.html?id=${auction.id}" class="text-decoration-none">
                <div class="card mt-5">
                  <img src="${productImg}" class="card-img-top card-img" alt="..">
         
@@ -162,7 +160,7 @@ async function createNewAuction (url, data) {
         console.log(response);
         const answer = await response.json();
         console.log("Answer", answer);
-    if (response.status === 200) window.location='../index.html';
+    if (answer.id) window.location.href = '../index.html';
     } catch(error) {
         console.warn(error);
     }

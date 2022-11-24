@@ -12,7 +12,7 @@ const profileUrl = `${APIurl}${profileEndpoint}`;
 
 let collection = [];
 
-async function getMyProfile (url) {
+async function getMyProfileInfo (url) {
     try {
         const accessToken = localStorage.getItem('accessToken'); 
         const options = {
@@ -37,7 +37,7 @@ async function getMyProfile (url) {
     }
 }   
 
-getMyProfile(profileUrl);
+getMyProfileInfo(profileUrl);
 
 
 const outElement = document.getElementById("post-container");
@@ -93,3 +93,65 @@ function listData(list, out){
          //   const noPostMsg = document.getElementById("noPostMsg");
            // noPostMsg.innerHTML = "You have no posts yet!";
         //}
+
+
+
+//HENTE MINE POSTER
+async function getMyListings (url) {
+    try {
+        const accessToken = localStorage.getItem('accessToken'); 
+        const options = {
+            method: 'GET', 
+            headers : {
+                Authorization: `Bearer ${accessToken}`,
+            }
+        }
+        //console.log(url, options);
+
+        const response = await fetch(url, options); 
+        console.log(response);
+        const listings = await response.json()
+        //console.log("Profil: ", listings)
+        const myOwnPosts = listings.listings
+
+        listListings(myOwnPosts, secondElement)
+    } catch(error) {
+        console.warn(error);
+    }
+}   
+
+getMyListings(profileUrl);
+
+const secondElement = document.getElementById("listing-container")
+
+function listListings(list, second) {
+    second.innerHTML = "";
+    let newDivs = "";
+
+    for (let post of list) {
+        let date = new Date(post.endsAt);
+        let ourDate = date.toLocaleString("default", {
+            day: "numeric", 
+            month: "long", 
+            hour: "2-digit", 
+            minute: "2-digit"
+        });
+
+        newDivs += `
+        <div class="col-lg-4 col-md-6 col-sm-12">
+             <a href="shop-specific.html?id=${post.id}" class="text-decoration-none">
+                          <div class="card ">
+                            <img src="${post.media}" class="card-img-top card-img" alt="...">
+                            <div class="card-body">
+                              <h4 class="card-title">${post.title}</h4>
+                              <p class="card-text display-6">${post.description}</p>
+                            </div>
+                            <div class="card-body">
+                                <p class="display-6 text-success">${ourDate}</p>
+                            </div>
+                          </div>
+             </a>
+           </div>`
+    } 
+    second.innerHTML = newDivs;
+}

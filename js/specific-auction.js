@@ -106,41 +106,9 @@ function listData(auctions, out){
                       <p class="display-6">${auctions.description}</p>
                       <div class="card-body d-flex">
                       <p class="display-4">Auction ends: </p>
-                      <p class="display-4 text-succrss timer expired">AUCTION ENDED</p>
+                      <p class="display-4 text-succrss timer expired"></p>
                    </div>
-                   <h2 class="my-4">Bidders (${auctions._count.bids})</h2>
-                      <ul class="list-unstyled bidder">
-                          <li class="d-flex justify-content-between align-items-center">
-                              <div class="d-flex align-items-center">
-                                  <span class="display-6">1.</span>
-                                  <div class="d-flex align-items-center">
-                                      <img src="">
-                                      <span class="display-6">${auctions.bids.bidderName}</span>
-                                  </div>
-                              </div>
-                              <span class="price display-6">100 Credits</span>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center">
-                              <div class="d-flex align-items-center">
-                                  <span class="display-6">1.</span>
-                                  <div class="d-flex align-items-center">
-                                      <img src="">
-                                      <span class="display-6">Username</span>
-                                  </div>
-                              </div>
-                              <span class="price display-6">100 Credits</span>
-                          </li>
-                          <li class="d-flex justify-content-between align-items-center">
-                              <div class="d-flex align-items-center">
-                                  <span class="mr-2 display-6">1.</span>
-                                  <div class="d-flex align-items-center">
-                                      <img src="">
-                                      <span class="display-6">Username</span>
-                                  </div>
-                              </div>
-                              <span class="price display-6">100 Credits</span>
-                          </li>
-                      </ul>
+                   <h2 class="mt-4">Bidders: (${auctions._count.bids})</h2>
                   </div>
               </div>
           </div>
@@ -151,4 +119,57 @@ function listData(auctions, out){
           //singleMedia.innerHTML = singleMedia
     
     out.innerHTML = newDivs;
+}
+
+
+
+//GET BIDS AND LIST OUT
+async function getSingleBids (url) {
+    try {
+        const accessToken = localStorage.getItem('accessToken'); 
+        const options = {
+            method: 'GET', 
+            headers : {
+                Authorization: `Bearer ${accessToken}`,
+            }
+        }
+        //console.log(url, options);
+
+        const response = await fetch(url, options); 
+        //console.log(response);
+        const bids = await response.json();
+       // console.log("Auctions:", auctions);
+        const answer = bids.bids
+        console.log("listBids:", answer);
+        listBids(answer, secondElement)
+    } catch(error) {
+        console.warn(error);
+    }
+}   
+
+getSingleBids(getSingleAuctionURL);
+
+const secondElement = document.getElementById("bid-container")
+
+function listBids(list, second) {
+    second.innerHTML = "";
+    let newDivs = "";
+
+    for (let bid of list) {
+
+        newDivs += `
+        <ul class="list-unstyled bidder mt-3">
+                          <li class="d-flex justify-content-between align-items-center">
+                              <div class="d-flex align-items-center">
+                                  <span class="display-6">-</span>
+                                  <div class="d-flex align-items-center">
+                                      <img src="">
+                                      <span class="display-6">${bid.bidderName}</span>
+                                  </div>
+                              </div>
+                              <span class="price display-6">${bid.amount}</span>
+                          </li>
+                      </ul>`
+    } 
+    second.innerHTML = newDivs;
 }
