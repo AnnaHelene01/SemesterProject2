@@ -1,7 +1,7 @@
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings"; // POST
-const extraFlag = "?_seller=true&_bids=true"
+const extraFlag = "?_seller=true&_bids=true&sort=created&sortOrder=desc"
 
 const auctionUrl = `${APIurl}${auctionEndpoint}${extraFlag}`;
 
@@ -23,7 +23,7 @@ async function getAllAuctions (url) {
         const response = await fetch(url, options); 
         //console.log(response);
         const auction = await response.json();
-        console.log("Posts:", auction);
+        //console.log("Posts:", auction);
         collection = auction;
         //console.log("Collection:", collection);
         listData(auction, outElement)
@@ -43,56 +43,63 @@ function listData(list, out){
     let newDivs = "";
 
     for (let auction of list) {
+    console.log ("Auction Media: ", auction.media[0], auction.media.length);
 
-        let deadline = new Date(auction.endsAt).getTime();
-        let auctionEnd = setInterval(function () {
+   const productImg =
+   auction.media.lenght === 0 
+   ? 
+    "https://upload.wikimedia.org/wikipedia/commons/6/67/Learning_Curve_--_Coming_Soon_Placeholder.png"
+    : `${auction.media[0]}`;
+   //console.log(productImg)
 
-        let now = new Date().getTime();
+   console.log ("Fikset Action Media: ", productImg);
 
-        let distance = deadline - now;
-  
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-        const timer = document.querySelector(".timer");
-        timer.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-        timer.classList.add("not-expired");
-        
-        if (distance < 0) {
-          clearInterval(auctionEnd);
-          timer.innerHTML = "AUCTION ENDED";
-        }
-      }, 1000);
+
+
+    const profileImg =
+    auction.seller.avatar !== ""
+    ? auction.seller.avatar
+    : [
+        "../Img/60111.jpg"
+    ];
+
+      let date = new Date(auction.endsAt);
+      let ourDate = date.toLocaleString("default", {
+          day: "numeric", 
+          month: "long", 
+          hour: "2-digit", 
+          minute: "2-digit"
+      });
 
         newDivs += `
         <div class="col-lg-4 col-md-6 col-sm-12">
              <a href="shop-specific.html?id=${auction.id}" class="text-decoration-none">
                <div class="card mt-5">
-                 <img src="${auction.media}" class="card-img-top card-img" alt="..">
+                 <img src="${productImg}" class="card-img-top card-img" alt="..">
         
                  <div class="card-body">
                  <h4 class="card-title">${auction.title}</h4>
                  <div class="d-flex">
-                    <img src="${auction.seller.avatar}" class="rounded-circle p-2"
-                    height="30" alt="Avatar" loading="lazy" />
+                    <img src="${profileImg}" class="rounded-circle p-2"
+                    height="40" alt="Avatar" loading="lazy" />
                     <h4 class="p-2"> ${auction.seller.name}</h4>
                  </div>
                    <div class="d-flex mt-5 pt-2 justify-content-between">
                        <div>
-                          <p class="display-4">Bids:</p>
-                          <p class="display-4">${auction._count.bids}</p>
+                          <p class="display-5">Bids:</p>
+                          <p class="display-5">${auction._count.bids}</p>
                         </div>
                         <div>
-                          <p class="display-4">Auction ends: </p>
-                          <p class="display-4 text-success timer expired"></p>
+                          <p class="display-5">Auction ends: </p>
+                          <p class="display-5 text-success">${ourDate}</p>
                          </div>
                     </div>
                  </div>
                </div>
             </a>
           </div>`;
+          //console.log("Auction media:", auction.media[0]);
+          //console.log(auction.seller.avatar);
     }
     out.innerHTML = newDivs;
 
@@ -131,7 +138,7 @@ const postContent = document.getElementById("postContent");
 const postMedia = document.getElementById("postMedia");
 const endsBid = document.getElementById("endBid");
 const submitPost = document.getElementById("submitPost");
-console.log(postTitle, postContent, postMedia, endsBid, submitPost);
+//console.log(postTitle, postContent, postMedia, endsBid, submitPost);
 
 
 //Create a new post - method: POST
@@ -155,7 +162,7 @@ async function createNewAuction (url, data) {
         console.log(response);
         const answer = await response.json();
         console.log("Answer", answer);
-    if (response.status === 200) window.location='./index.html';
+    if (response.status === 200) window.location='../index.html';
     } catch(error) {
         console.warn(error);
     }
@@ -178,16 +185,16 @@ function validateFormAndProcess(event) {
     const title = postTitle.value.trim();
     const description = postContent.value.trim();
     let media = [`${postMedia.value.trim()}`]
-    const endsAt = [`${endsBid.value.trim()}`];
+    const endsAt = `${endsBid.value.trim()}:00.000Z`;
 
     //var dateParts = listingDate.value.trim().split("-");
     //var deadline = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
     //var endsAt = deadline.toISOString();
     //console.log(endsAt);
 
-    if (media === []) 
+    if (media.value === []) 
     media = 
-    "https://www.pngkey.com/maxpic/u2w7r5y3a9o0w7t4/";
+    ["https://upload.wikimedia.org/wikipedia/commons/6/67/Learning_Curve_--_Coming_Soon_Placeholder.png"];
 
     const auctionData = {
         title: title,

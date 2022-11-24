@@ -5,6 +5,7 @@ const logOut = document.getElementById("log-out");
    logOut.addEventListener("click", () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("username");
-    window.location='./index.html';
+    window.location='../index.html';
+
    })
 

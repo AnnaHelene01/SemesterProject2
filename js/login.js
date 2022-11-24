@@ -95,7 +95,7 @@ async function loginUser(url, data) {
         if (response.status === 200) {
             localStorage.setItem('username', answer.name);
             localStorage.setItem('accessToken', answer.accessToken);
-            window.location = "/public/index.html";
+            window.location = "../index.html";
 
         } else if (answer.message === "This profile does not exist! Go and register") {
             errorMsg.innerHTML = answer.message;

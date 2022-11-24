@@ -41,12 +41,20 @@ function listData(list, out){
     out.innerHTML = "";
     let newDivs = "";
 
+  
+
     for (let user of list) {
+        const profileImg =
+        user.avatar === "" || user.avatar === null
+        ? [
+            "../Img/60111.jpg"
+        ]
+        :user.avatar;
 
         newDivs += `
         <div class="col-lg-4 col-md-6 mb-5 mb-lg-5">
         <div class="feature-1 border person text-center">
-            <img src="${user.avatar}" alt="Portrait" class="img-fluid">
+            <img src="${profileImg}" alt="Portrait" class="img-fluid">
             <div class="feature-1-content">
                 <h2>${user.name}</h2>
                 <span class="position mb-3 d-block display-6">Credits: ${user.credits}</span>

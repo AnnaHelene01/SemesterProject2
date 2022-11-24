@@ -115,7 +115,7 @@ function listData(auctions, out){
                                   <span class="display-6">1.</span>
                                   <div class="d-flex align-items-center">
                                       <img src="">
-                                      <span class="display-6">${auctions.bids.sellername}</span>
+                                      <span class="display-6">${auctions.bids.bidderName}</span>
                                   </div>
                               </div>
                               <span class="price display-6">100 Credits</span>
