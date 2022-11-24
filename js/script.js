@@ -69,9 +69,11 @@ function listData(list, out){
           minute: "2-digit"
       });
 
+      const delBtn = `<button class="btnDelete btn btn-outline-primary" data-delete="${auction.id}">DELETE</button>`;
+
         newDivs += `
         <div class="col-lg-4 col-md-6 col-sm-12">
-             <a href="./public/shop-specific.html?id=${auction.id}" class="text-decoration-none">
+            <a href="./public/shop-specific.html?id=${auction.id}" class="text-decoration-none"> 
                <div class="card mt-5">
                  <img src="${productImg}" class="card-img-top card-img" alt="..">
         
@@ -92,14 +94,30 @@ function listData(list, out){
                           <p class="display-5 text-success">${ourDate}</p>
                          </div>
                     </div>
+                    <!-- ${localStorage.getItem('username') === auction.seller.name ? delBtn : ""} -->
                  </div>
                </div>
-            </a>
+             </a> 
           </div>`;
           //console.log("Auction media:", auction.media[0]);
           //console.log(auction.seller.avatar);
     }
     out.innerHTML = newDivs;
+
+        //Delete posts
+        const btns = document.querySelectorAll("button.btnDelete");
+        //console.log(btns);
+        for (let btnDelete of btns){
+             btnDelete.addEventListener("click", () => {
+                //console.log(btnDelete.getAttribute('data-delete'));
+                if ( confirm('Are you totally sure?')){
+                    deletePost(btnDelete.getAttribute('data-delete'));
+                }
+          }) 
+        }
+       
+}
+
 
       //Filtrere posts / search input
       const inputField = document.getElementById("filter-auction");
@@ -127,9 +145,38 @@ function listData(list, out){
           listData(filtered, outElement);
       }
   
+
+
+// DELETE POST
+const deleteEndPoint = ' /auction/listings/'; 
+const deleteURL = `${APIurl}${deleteEndPoint}`;
+
+async function deletePost (id) {
+    //console.log(id);
+    const url = `${deleteURL}${id}`;
+     try {
+        const accessToken = localStorage.getItem('accessToken'); 
+        const options = {
+            method: 'DELETE', 
+            headers : {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+            },
+        };
+        //console.log("Delete url options:", url, options);
+
+        const response = await fetch(url, options); 
+        //console.log(response);
+        const answer = await response.json();
+        //console.log(answer);
+        if (answer.id) window.location.href = '../index.html';    
+    } catch(error) {
+         console.warn(error);
+    }
 }
 
-  
+
+//-----------------------------------------------------  
 //Hente create post verdier:
 const postTitle = document.getElementById("postTitle");
 const postContent = document.getElementById("postContent");
