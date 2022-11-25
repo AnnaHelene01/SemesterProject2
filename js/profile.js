@@ -138,7 +138,7 @@ function listListings(list, second) {
         });
 
         newDivs += `
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
              <a href="shop-specific.html?id=${post.id}" class="text-decoration-none">
                           <div class="card ">
                             <img src="${post.media}" class="card-img-top card-img" alt="...">

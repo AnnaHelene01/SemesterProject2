@@ -11,7 +11,7 @@ let id = params.get("id");
 
 const getSingleAuctionURL = `${auctionUrl}${id}${extraFlag}`;
 //let posts = [];
-console.log(id);
+//console.log(id);
 
 //let AUCTION = [];
 let collection = [];
@@ -32,7 +32,7 @@ async function getSingleAuction (url) {
         const auctions = await response.json();
        // console.log("Auctions:", auctions);
         collection = auctions;
-        console.log("Collection:", collection);
+        //console.log("Collection:", collection);
         listData(auctions, outElement)
     } catch(error) {
         console.warn(error);
@@ -142,21 +142,31 @@ async function getSingleBids (url) {
         const answer = bids.bids
         console.log("listBids:", answer);
         listBids(answer, secondElement)
+
+         
     } catch(error) {
         console.warn(error);
     }
+
+    
 }   
 
 getSingleBids(getSingleAuctionURL);
 
 const secondElement = document.getElementById("bid-container")
 
+
+
 function listBids(list, second) {
     second.innerHTML = "";
     let newDivs = "";
 
-    for (let bid of list) {
+    list.sort(function(a, b){
+        return b.amount - a.amount
+    })
+    //console.log("Sortert:", list); 
 
+    for (let bid of list) {
         newDivs += `
         <ul class="list-unstyled bidder mt-3">
                           <li class="d-flex justify-content-between align-items-center">
