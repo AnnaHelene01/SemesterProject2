@@ -9,6 +9,7 @@ const APIurl = " https://api.noroff.dev/api/v1";
 const profileEndpoint = `/auction/profiles/${username}?_listings=true`; // POST
 
 const profileUrl = `${APIurl}${profileEndpoint}`;
+const avatarUrl = `${APIurl}/auction/profiles/${username}/media`;
 
 let collection = [];
 
@@ -24,13 +25,13 @@ async function getMyProfileInfo (url) {
         //console.log(url, options);
 
         const response = await fetch(url, options); 
-        console.log(response);
+        //console.log(response);
         const profile = await response.json()
         collection = profile
-        console.log("Profil: ", profile)
-        console.log("Profil > navn: ", profile.name)
-        console.log("Profil > epost: ", profile.email)
-        console.log("Collection:", collection);
+        //console.log("Profil: ", profile)
+        //console.log("Profil > navn: ", profile.name)
+        //console.log("Profil > epost: ", profile.email)
+        //console.log("Collection:", collection);
         listData(collection , outElement)
     } catch(error) {
         console.warn(error);
@@ -45,7 +46,7 @@ const outElement = document.getElementById("post-container");
 
 //Liste ut mine poster på html siden
 function listData(list, out){
-    console.log("List: ", list)
+    //console.log("List: ", list)
     //console.log("Out: ", out)
     out.innerHTML = "";
     let newDivs = "";
@@ -57,9 +58,10 @@ function listData(list, out){
                 <div class="col-md-12 form-group display-6 text-start">
                     <p id="avatarMsg"></p>
                     <label for="avatar">Avatar URL</label>
-                    <textarea class="form-control form-control-lg" id="updateAvatar" placeholder="Place a avatar URL"></textarea>
+                    <textarea class="form-control form-control-lg" id="updateAvatarInput" placeholder="Place a avatar URL"></textarea>
+                    <p class="display-6" id="updateAvatarMsg"></p>
                     <div class="text-center">
-                        <a href="#"><input type="submit" value="CHANGE AVATAR" class="btn btn-secondary btn-lg px-4 mt-3"></a>
+                        <a href="#"><input type="submit" id="updateAvatarBtn" value="CHANGE AVATAR" class="btn btn-secondary btn-lg px-4 mt-3"></a>
                     </div>
                 </div>   
             </div>
@@ -109,7 +111,7 @@ async function getMyListings (url) {
         //console.log(url, options);
 
         const response = await fetch(url, options); 
-        console.log(response);
+        //console.log(response);
         const listings = await response.json()
         //console.log("Profil: ", listings)
         const myOwnPosts = listings.listings
@@ -121,6 +123,8 @@ async function getMyListings (url) {
 }   
 
 getMyListings(profileUrl);
+
+
 
 const secondElement = document.getElementById("listing-container")
 
@@ -154,4 +158,53 @@ function listListings(list, second) {
            </div>`
     } 
     second.innerHTML = newDivs;
+}
+
+// Oppdatere avatar
+const updateAvatarMsg = document.getElementById("updateAvatarMsg");
+const updateAvatarInput = document.getElementById("updateAvatarInput");
+const updateAvatarBtn = document.getElementById("updateAvatarBtn");
+console.log(updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
+
+async function updateAvatar(url, data) {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      //console.log(accessToken);
+      const options = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(data),
+      };
+      //console.log(url, data, options);
+      // opp i api
+      const response = await fetch(url, options);
+      //console.log(response);
+      const answer = await response.json();
+      console.log(answer);
+      if (answer.statusCode) {
+        updateAvatarMsg.innerHTML =
+          "Invalid image URL, make sure is fully formatted!";
+      }
+      if (answer.name) {
+        window.location.reload();
+      }
+      //console.log(answer);
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+  
+updateAvatarBtn.addEventListener("click", newAvatar);
+function newAvatar(event) {
+  event.preventDefault();
+  const avatarUrl = updateAvatarInput.value.trim();
+
+  let avatarData = {
+    avatar: avatarUrl,
+  };
+
+  updateAvatar(avatarUrl, listData);
 }
