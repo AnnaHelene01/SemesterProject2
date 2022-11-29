@@ -1,3 +1,16 @@
+// Checking if user is logged in
+function isLoggedin() {
+   const accessToken = localStorage.getItem("accessToken");
+   if (!accessToken) {
+       logoutNav.style.display="none";
+   }
+   else {
+       loginNav.style.display="none";
+   }
+   }
+   
+   isLoggedin();
+
 //Hente ut elementer
 const usernameInput = document.querySelector("input#registerUsername");
 const emailInput = document.querySelector("input#registerEmail");

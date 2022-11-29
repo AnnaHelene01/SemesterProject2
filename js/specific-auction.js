@@ -1,3 +1,21 @@
+const loginNav = document.getElementById("login-nav");
+const logoutNav = document.getElementById("logout-nav") 
+// Checking if user is logged in
+   function isLoggedin() {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+        profileDiv.style.display="none";
+        logoutNav.style.display="none";
+    }
+    else {
+        profileSecondDiv.style.display="none";
+        loginNav.style.display="none";
+
+    }
+  }
+  
+    isLoggedin();
+
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings/"; // POST
@@ -10,6 +28,7 @@ let params = new URLSearchParams(document.location.search);
 let id = params.get("id"); 
 
 const getSingleAuctionURL = `${auctionUrl}${id}${extraFlag}`;
+const makeBidUrl = `${auctionUrl}${id}/bids`
 //let posts = [];
 //console.log(id);
 
@@ -71,36 +90,35 @@ function listData(auctions, out){
     }
   }, 1000);
 
+
+   //Ternyary / placeholder for listing media
+   const productImg =
+   auctions.media.length === 0 || auctions.media == "undefined"
+   ? 
+    "../placeholder.png"
+    : `${auctions.media[0]}`;
+
+   //Ternyary / placeholder for avatar
+   const profileImg =
+   auctions.seller.avatar === "" || auctions.seller.avatar === null
+   ? [
+      "../Img/60111.jpg"
+    ]
+  :auctions.seller.avatar;
+
+  //Putting some stuff in elements
+    const numberOfBids = document.getElementById("number-of-bids")
+    numberOfBids.innerHTML = `Number of bids: ${auctions._count.bids}`;
+    const auctionAvatar = document.getElementById("auction-avatar");
+    auctionAvatar.src = `${profileImg}`
+    const auctionSeller = document.getElementById("auction-seller");
+    auctionSeller.innerHTML = `${auctions.seller.name}`;
+
+
         let newDivs = "";
         newDivs += `
-      <div class="site-section">
-          <div class="container">
-              <div class="row">
-                  <div class="col-lg-3 order-lg-2">
-                      <div class="box-side mb-4">
-                          <p class="display-6">Price: 100</p>
-                          <p class="display-6">Number of bids: ${auctions._count.bids}</p>
-                          <form action="#">
-                              <div class="mb-4">
-                                  <input type="text" class="form-control mb-2" placeholder="0 Credits">
-                                  <a href="register.html"><input type="submit" value="SUBMIT A BID" class="btn btn-secondary btn-lg px-5"></a>
-                              </div>
-                              <p class="display-6 mb-0">
-                                  <a href="/public/login.html">Sign in</a>
-                                  /
-                                  <a href="/public/register.html">Register</a>
-                              </p>
-                          </form>
-                      </div>
-                      <div class="box-side text-center mb-4">
-                          <img src="${auctions.seller.avatar}" alt="user" class="img-fluid w-50 rounded-circle mb-4">
-                          <h3>${auctions.seller.name}</h3>
-  
-                      </div>
-                  </div>
-                  <div class="col-lg-8 pr-lg-5">
                       <div class="mb-5" id="singleMedia">
-                          <img src="${auctions.media}" alt="product img" class="img-fluid"> 
+                          <img src="${productImg}" alt="product img" class="img-fluid"> 
                       </div>
                       <h2 class="my-4">${auctions.title}</h2>
                       <p class="display-6">${auctions.description}</p>
@@ -109,10 +127,10 @@ function listData(auctions, out){
                       <p class="display-4 text-succrss timer expired"></p>
                    </div>
                    <h2 class="mt-4">Bidders: (${auctions._count.bids})</h2>
-                  </div>
-              </div>
-          </div>
-      </div>`;
+            `;
+      const sendBidBtn = document.getElementById("create-bid-btn");
+      sendBidBtn.addEventListener("click", validateAndProcess);
+
 
           //const singleMedia = document.getElementById("singleMedia");
           //singleMedia += `<img src="${auctions.media}">`
@@ -141,30 +159,25 @@ async function getSingleBids (url) {
        // console.log("Auctions:", auctions);
         const answer = bids.bids
         console.log("listBids:", answer);
-        listBids(answer, secondElement)
-
-         
+        listBids(answer, secondElement)   
     } catch(error) {
         console.warn(error);
     }
-
-    
 }   
 
 getSingleBids(getSingleAuctionURL);
 
 const secondElement = document.getElementById("bid-container")
 
-
-
 function listBids(list, second) {
     second.innerHTML = "";
     let newDivs = "";
-
+   //Sort the list highest to lowest bids
     list.sort(function(a, b){
         return b.amount - a.amount
     })
     //console.log("Sortert:", list); 
+ 
 
     for (let bid of list) {
         newDivs += `
@@ -183,3 +196,66 @@ function listBids(list, second) {
     } 
     second.innerHTML = newDivs;
 }
+
+
+//MAKE A BID 
+async function createBid(url, data) {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      //console.log(accessToken);
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(data),
+      };
+      //console.log(url, data, options);
+      const response = await fetch(url, options);
+      console.log(response);
+      const answer = await response.json();
+      if (response.status === 200) {
+        //window.location = "../index.html";
+      }
+      console.log(answer);
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+
+  // Prosesses and validates bid input
+function validateAndProcess(event) {
+    event.preventDefault();
+    const bidInput = document.getElementById("create-bid-input").value.trim();
+    const bidInputMsg = document.getElementById("create-bid-msg");
+    console.log("Bid elements:", bidInput, bidInputMsg);
+    const bidToSend = parseInt(bidInput);
+    console.log("bidToSend:", bidToSend);
+  
+    let bidData = {
+      amount: bidToSend,
+    };
+  
+    if (!isNaN(bidToSend)) {
+      console.log("value is a number");
+    } else {
+      bidInputMsg.innerHTML = "Bid has to be a number.";
+    }
+
+      // Checking if user is logged in
+      function isLoggedin() {
+        const accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) {
+            
+           alert("You have to sign in to place a bid!");
+           window.location.href = "../index.html";
+        }
+      }
+      
+        isLoggedin();
+  
+    createBid(makeBidUrl, bidData);
+  }
+
+  

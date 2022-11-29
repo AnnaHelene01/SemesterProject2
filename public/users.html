@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/js/users.js" defer></script>
-    <script src="/js/logout.js" defer></script>
+    <script src="/js/users.js" type="module" defer></script>
+    <script src="/js/logout.js" type="module" defer></script>
       <!-- CSS only -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" 
@@ -27,22 +27,22 @@
 <body>
        <!--Header-->
        <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg bg-primary pt-4 pb-4 box-shadow-pink">
+        <nav class="navbar navbar-expand-lg bg-primary pt-4 pb-4">
             <div class="container-fluid col-11 col-sm-10 p-0">
-                <a href="../index.html" class="navbar-brand text-white">World Wide Shop</a>
+                <a href="../index.html" class="navbar-brand text-white mb-5">
+                    <img src="../Img/White-s-logo.png" width="110" height="70">
+                </a>
                 <button type="button" class="navbar-toggler border-0 p-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
                     <i class="fas fa-bars" style="color:#fff; font-size:2rem;"></i>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                     <div class="navbar-nav font-weight-semibold">
-                        <a href="../index.html" class="nav-item nav-link text-white mt-4 mt-lg-0">HOME</a>
-                        <a href="./profile.html" class="nav-item nav-link text-white">PROFILE</a>
-                        <a href="./users.html" class="nav-item nav-link text-white active">USERS</a>
-                        <a href="./about.html" class="nav-item nav-link text-white">ABOUT US</a>
-                        <a href="./login.html" class="nav-item nav-link text-white">SIGN IN</a>
-                        <a href="./index.html" class="nav-item nav-link text-white" id="log-out">LOG OUT</a>
-                    </div>
+                        <a href="../index.html" class="nav-item nav-link text-white mt-4 mt-lg-0 active">HOME</a>
+                        <a href="profile.html" class="nav-item nav-link text-white">PROFILE</a>
+                        <a href="users.html" class="nav-item nav-link text-white">USERS</a>
+                        <a href="login.html" class="nav-item nav-link text-white" id="login-nav">SIGN IN</a>
+                        <a href="../index.html" class="nav-item nav-link text-white" id="logout-nav">LOG OUT</a>                    </div>
                 </div>
             </div>
         </nav>

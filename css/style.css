@@ -6,6 +6,10 @@
   border-radius: 0;
 }
 
+.msg-element {
+  color: red;
+}
+
 /*!
  * Bootstrap  v5.2.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

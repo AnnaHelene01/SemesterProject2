@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/js/specific-auction.js" defer></script>
-    <script src="/js/logout.js" defer></script>
+    <script src="/js/specific-auction.js" type="modoule" defer></script>
+    <script src="/js/logout.js" type="modoule" defer></script>
       <!-- CSS only -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" 
@@ -28,39 +28,74 @@
 <body>
        <!--Header-->
        <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg bg-primary pt-4 pb-4 box-shadow-pink">
+        <nav class="navbar navbar-expand-lg bg-primary pt-4 pb-4">
             <div class="container-fluid col-11 col-sm-10 p-0">
-                <a href="../index.html" class="navbar-brand text-white">World Wide Shop</a>
+                <a href="../index.html" class="navbar-brand text-white mb-5">
+                    <img src="../Img/White-s-logo.png" width="110" height="70">
+                </a>
                 <button type="button" class="navbar-toggler border-0 p-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
                     <i class="fas fa-bars" style="color:#fff; font-size:2rem;"></i>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                     <div class="navbar-nav font-weight-semibold">
-                        <a href="../index.html" class="nav-item nav-link text-white mt-4 mt-lg-0">HOME</a>
-                        <a href="./profile.html" class="nav-item nav-link text-white">PROFILE</a>
-                        <a href="./users.html" class="nav-item nav-link text-white">USERS</a>
-                        <a href="./about.html" class="nav-item nav-link text-white">ABOUT US</a>
-                        <a href="./login.html" class="nav-item nav-link text-white">SIGN IN</a>
-                        <a href="../index.html" class="nav-item nav-link text-white" id="log-out">LOG OUT</a>
+                        <a href="../index.html" class="nav-item nav-link text-white mt-4 mt-lg-0 active">HOME</a>
+                        <a href="profile.html" class="nav-item nav-link text-white">PROFILE</a>
+                        <a href="users.html" class="nav-item nav-link text-white">USERS</a>
+                        <a href="login.html" class="nav-item nav-link text-white" id="login-nav">SIGN IN</a>
+                        <a href="../index.html" class="nav-item nav-link text-white" id="logout-nav">LOG OUT</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
     <main>
-
+        <div class="site-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 order-lg-2">
+                        <div class="box-side mb-4">
+                            <p class="display-6" id="number-of-bids"></p>
+                            <form action="#">
+                                <div class="mb-4">
+                                    <input type="text" id="create-bid-input" class="form-control mb-2" placeholder="0 Credits">
+                                    <a href="register.html"><input type="submit" id="create-bid-btn" value="SUBMIT A BID" class="btn btn-secondary btn-lg px-5"></a>
+                                    <p class="display-6 msg-element" id="create-bid-msg"></p>
+                                </div>
+                                <p class="display-6 mb-0">
+                                    <a href="/public/login.html">Sign in</a>
+                                    /
+                                    <a href="/public/register.html">Register</a>
+                                </p>
+                            </form>
+                        </div>
+                        <div class="box-side text-center mb-4">
+                            <img src="" id="auction-avatar" alt="user" class="img-fluid w-50 rounded-circle mb-4">
+                            <h3 id="auction-seller"></h3>
     
-       <div id="post-container"></div>
-       <div class="col-12 text-center" id="post-container">
-        <img class="" src="../Img/loader.gif" alt="Loading content" style="width:100px;">
-     </div>
+                        </div>
+                    </div>
+                      <div id="post-container" class="col-lg-8 pr-lg-5">
+                        <div class="col-12 text-center" id="post-container">
+                           <img class="" src="../Img/loader.gif" alt="Loading content" style="width:100px;">
+                        </div>       
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+     
+      
         
 
        <div class="container">
         <div class="row">
             <div class="col-lg-8 pr-lg-5">
-                <div id="bid-container"></div>
+                <div id="bid-container">
+                    <div class="col-12 text-center" id="post-container">
+                        <img class="" src="../Img/loader.gif" alt="Loading content" style="width:100px;">
+                     </div>   
+                </div>
             </div>
         </div>
        </div>

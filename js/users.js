@@ -1,3 +1,19 @@
+const loginNav = document.getElementById("login-nav");
+const logoutNav = document.getElementById("logout-nav") 
+// Checking if user is logged in
+   function isLoggedin() {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+        logoutNav.style.display="none";
+    }
+    else {
+        loginNav.style.display="none";
+    }
+  }
+  
+    isLoggedin();
+
+
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/profiles"; // POST

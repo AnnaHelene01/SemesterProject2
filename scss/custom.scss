@@ -38,4 +38,8 @@ $display-font-sizes: (
     border-radius: 0;
 }
 
+.msg-element {
+    color: red;
+}
+
 @import "../node_modules/bootstrap/scss/bootstrap";

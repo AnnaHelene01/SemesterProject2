@@ -73,8 +73,12 @@ function validateAndProcess(event) {
     }
     //console.log(loginData);
 
+
     loginUser(loginUrl, loginData);
 };
+
+
+
 
 async function loginUser(url, data) {
     try {
@@ -107,5 +111,7 @@ async function loginUser(url, data) {
 
 //loginUser(loginUrl, loginData);
 //const errorMsg = document.querySelector("#errorMsg");
+
+
 
 

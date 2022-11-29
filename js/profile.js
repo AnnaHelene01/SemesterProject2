@@ -28,7 +28,7 @@ async function getMyProfileInfo (url) {
         //console.log(response);
         const profile = await response.json()
         collection = profile
-        //console.log("Profil: ", profile)
+        console.log("Profil: ", profile)
         //console.log("Profil > navn: ", profile.name)
         //console.log("Profil > epost: ", profile.email)
         //console.log("Collection:", collection);
@@ -139,7 +139,7 @@ function listListings(list, second) {
                             </div>
                           </div>
              </a>
-           </div>`
+        </div>`
     } 
     second.innerHTML = newDivs;
 }
@@ -192,3 +192,21 @@ function newAvatar(event) {
 
   updateAvatar(updateAvatarUrl, avatarData);
 }
+
+
+const profileDiv = document.getElementById("loggedin-profile");
+const profileSecondDiv = document.getElementById("loggedout-profile")
+
+// Checking if user is logged in
+   function isLoggedin() {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+        profileDiv.style.display="none";
+    }
+    else {
+        profileSecondDiv.style.display="none";
+    }
+  }
+  
+    isLoggedin();
+

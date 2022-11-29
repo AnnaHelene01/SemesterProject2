@@ -6,6 +6,8 @@ const extraFlag = "?_seller=true&_bids=true&sort=created&sortOrder=desc"
 const auctionUrl = `${APIurl}${auctionEndpoint}${extraFlag}`;
 
 
+
+
 //let AUCTION = [];
 let collection = [];
 
@@ -23,7 +25,7 @@ async function getAllAuctions (url) {
         const response = await fetch(url, options); 
         //console.log(response);
         const auction = await response.json();
-        //console.log("Posts:", auction);
+        console.log("Posts:", auction);
         collection = auction;
         //console.log("Collection:", collection);
         listData(auction, outElement)
@@ -232,6 +234,20 @@ function validateFormAndProcess(event) {
     let media = [`${postMedia.value.trim()}`]
     const endsAt = `${endsBid.value.trim()}:00.000Z`;
 
+    // Checking if user is logged in
+    function isLoggedin() {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+        
+       alert("You have to sign in to place a selling!");
+       window.location.href = "../index.html";
+    }
+  }
+  
+    isLoggedin();
+
+
+
     //var dateParts = listingDate.value.trim().split("-");
     //var deadline = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
     //var endsAt = deadline.toISOString();
@@ -299,7 +315,7 @@ postContent.addEventListener("keyup", preview)
 async function preview() {
   previewContainer.innerHTML = "";
   previewContainer.innerHTML = `
-                <div class="col-md-6 col-sm-12">
+                <div class="col-sm-12">
                   <div class="card mt-5">
                     <img src="${
                         postMedia.value !== ""
@@ -313,7 +329,7 @@ async function preview() {
                       </div>
                       <div class="d-flex">
                           <img src="/Img/60111.jpg" class="rounded-circle p-2"
-                          height="30" alt="Avatar" loading="lazy" />
+                          height="40" alt="Avatar" loading="lazy" />
                           <h4 class="p-2"> Seller</h4>
                       </div>
                     </div>
