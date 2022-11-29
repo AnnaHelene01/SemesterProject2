@@ -4,6 +4,10 @@ const auctionEndpoint = "/auction/listings"; // POST
 const extraFlag = "?_seller=true&_bids=true&sort=created&sortOrder=desc"
 
 const auctionUrl = `${APIurl}${auctionEndpoint}${extraFlag}`;
+const username = localStorage.getItem('username');
+
+const deleteEndPoint = '/auction/listings/'; 
+const deleteURL = `${APIurl}${deleteEndPoint}`;
 
 
 
@@ -25,7 +29,7 @@ async function getAllAuctions (url) {
         const response = await fetch(url, options); 
         //console.log(response);
         const auction = await response.json();
-        console.log("Posts:", auction);
+        //console.log("Posts:", auction);
         collection = auction;
         //console.log("Collection:", collection);
         listData(auction, outElement)
@@ -72,6 +76,7 @@ function listData(list, out){
       });
 
       const delBtn = `<button class="btnDelete btn btn-outline-primary" data-delete="${auction.id}">DELETE</button>`;
+      const updateBtn = `<button class="btnUpdate btn btn-primary text-white " data-update="${auction.id}">UPDATE</button>`;
 
         newDivs += `
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -96,27 +101,40 @@ function listData(list, out){
                           <p class="display-5 text-success">${ourDate}</p>
                          </div>
                     </div>
-                    <!-- ${localStorage.getItem('username') === auction.seller.name ? delBtn : ""} -->
+                    </a> 
+                    <div>
+                       ${localStorage.getItem('username') === auction.seller.name ? delBtn : ""} 
+                       ${localStorage.getItem('username') === auction.seller.name ? updateBtn : ""}
+                    </div>
                  </div>
                </div>
-             </a> 
           </div>`;
           //console.log("Auction media:", auction.media[0]);
           //console.log(auction.seller.avatar);
     }
     out.innerHTML = newDivs;
 
-        //Delete posts
+        //Delete listing
         const btns = document.querySelectorAll("button.btnDelete");
         //console.log(btns);
         for (let btnDelete of btns){
              btnDelete.addEventListener("click", () => {
-                //console.log(btnDelete.getAttribute('data-delete'));
+                //console.log("btn attribute:", btnDelete.getAttribute('data-delete'));
                 if ( confirm('Are you totally sure?')){
                     deletePost(btnDelete.getAttribute('data-delete'));
                 }
           }) 
         }
+         //Update listing
+         const updatebtns = document.querySelectorAll("button.btnUpdate");
+         //console.log(updatebtns);
+         for (let btnUpdate of updatebtns) {
+              btnUpdate.addEventListener("click", () => {
+               //console.log(btnUpdate.getAttribute('data-update'));
+                const updateId = btnUpdate.getAttribute('data-update');
+                window.location =`./public/listing-edit.html?id=${updateId}`;
+          })
+         }
        
 }
 
@@ -150,9 +168,6 @@ function listData(list, out){
 
 
 // DELETE POST
-const deleteEndPoint = ' /auction/listings/'; 
-const deleteURL = `${APIurl}${deleteEndPoint}`;
-
 async function deletePost (id) {
     //console.log(id);
     const url = `${deleteURL}${id}`;
@@ -168,11 +183,12 @@ async function deletePost (id) {
         //console.log("Delete url options:", url, options);
 
         const response = await fetch(url, options); 
-        //console.log(response);
+        //console.log("Delete response:", response);
         const answer = await response.json();
-        //console.log(answer);
-        if (answer.id) window.location.href = '../index.html';    
-    } catch(error) {
+        //console.log("Delete answer:", answer);
+        if (response.status === 201) {
+            window.location = "../index.html";
+          }    } catch(error) {
          console.warn(error);
     }
 }
@@ -209,7 +225,9 @@ async function createNewAuction (url, data) {
         console.log(response);
         const answer = await response.json();
         console.log("Answer", answer);
-    if (answer.id) window.location.href = '../index.html';
+        if (response.status === 200) {
+            window.location = "../index.html";
+          }
     } catch(error) {
         console.warn(error);
     }
