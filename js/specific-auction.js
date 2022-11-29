@@ -4,11 +4,9 @@ const logoutNav = document.getElementById("logout-nav")
    function isLoggedin() {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
-        profileDiv.style.display="none";
         logoutNav.style.display="none";
     }
     else {
-        profileSecondDiv.style.display="none";
         loginNav.style.display="none";
 
     }
@@ -49,7 +47,7 @@ async function getSingleAuction (url) {
         const response = await fetch(url, options); 
         //console.log(response);
         const auctions = await response.json();
-       // console.log("Auctions:", auctions);
+        //console.log("Auctions:", auctions);
         collection = auctions;
         //console.log("Collection:", collection);
         listData(auctions, outElement)
@@ -158,7 +156,7 @@ async function getSingleBids (url) {
         const bids = await response.json();
        // console.log("Auctions:", auctions);
         const answer = bids.bids
-        console.log("listBids:", answer);
+        //console.log("listBids:", answer);
         listBids(answer, secondElement)   
     } catch(error) {
         console.warn(error);
