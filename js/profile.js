@@ -9,7 +9,7 @@ const APIurl = " https://api.noroff.dev/api/v1";
 const profileEndpoint = `/auction/profiles/${username}?_listings=true`; // POST
 
 const profileUrl = `${APIurl}${profileEndpoint}`;
-const avatarUrl = `${APIurl}/auction/profiles/${username}/media`;
+const updateAvatarUrl = `${APIurl}/auction/profiles/${username}/media`;
 
 let collection = [];
 
@@ -148,7 +148,7 @@ function listListings(list, second) {
 const updateAvatarMsg = document.getElementById("updateAvatarMsg");
 const updateAvatarInput = document.getElementById("updateAvatarInput");
 const updateAvatarBtn = document.getElementById("updateAvatarBtn");
-console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
+//console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
 
 async function updateAvatar(url, data) {
     try {
@@ -162,12 +162,12 @@ async function updateAvatar(url, data) {
         },
         body: JSON.stringify(data),
       };
-     console.log("avatar url, data, options:", url, data, options);
+     //console.log("avatar url, data, options:", url, data, options);
       // opp i api
       const response = await fetch(url, options);
-      console.log("avatar response:", response);
+      //console.log("avatar response:", response);
       const answer = await response.json();
-      console.log("avatar: answer", answer);
+      //console.log("avatar: answer", answer);
       if (answer.statusCode) {
         updateAvatarMsg.innerHTML =
           "Invalid image URL, make sure is fully formatted!";
@@ -190,5 +190,5 @@ function newAvatar(event) {
     avatar: avatarUrl,
   };
 
-  updateAvatar(avatarUrl, avatarData);
+  updateAvatar(updateAvatarUrl, avatarData);
 }
