@@ -52,6 +52,15 @@ Added bootstrap with:
 ```
 npm i bootstrap
 ```
+Installed sass
+```
+npm install -g sass
+```
+Compile my custom.scss file
+```
+sass --watch scss/custom.scss:css/style.css
+```
+
 
 
 ## Sources 

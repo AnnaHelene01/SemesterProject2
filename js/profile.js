@@ -49,23 +49,10 @@ function listData(list, out){
     //console.log("List: ", list)
     //console.log("Out: ", out)
     out.innerHTML = "";
-    let newDivs = "";
-        newDivs += `
-        <div class="container border p-5">
-        <div class="row">
-            <div class="col-lg-6 text-center">
-                <img src="${list.avatar}" class="img-fluid rounded-circle w-50">
-                <div class="col-md-12 form-group display-6 text-start">
-                    <p id="avatarMsg"></p>
-                    <label for="avatar">Avatar URL</label>
-                    <textarea class="form-control form-control-lg" id="updateAvatarInput" placeholder="Place a avatar URL"></textarea>
-                    <p class="display-6" id="updateAvatarMsg"></p>
-                    <div class="text-center">
-                        <a href="#"><input type="submit" id="updateAvatarBtn" value="CHANGE AVATAR" class="btn btn-secondary btn-lg px-4 mt-3"></a>
-                    </div>
-                </div>   
-            </div>
-            <div class="col-lg-6">
+    const avatarImg = document.getElementById("avatarImg");
+    avatarImg.src = `${list.avatar}`
+    let profileDivs = "";
+        profileDivs += `
                 <h2 class="p-3" id="user-name">${list.name}</h2>
                 <div class="d-flex mt-5">
                     <p class="p-3 display-3 text-success">CREDIT:</p>
@@ -83,12 +70,9 @@ function listData(list, out){
                     <p class="p-3 display-3 text-success">PHONE:</p>
                     <p class="p-3 display-3">+123 45 678</p>
                 </div>
-            </div>
-        </div>
-    </div>
+  
         `;
-
-        out.innerHTML = newDivs;
+        out.innerHTML = profileDivs;
     }
        // if(list.length == 0) {
             //console.log("You have no posts yet!");
@@ -164,12 +148,12 @@ function listListings(list, second) {
 const updateAvatarMsg = document.getElementById("updateAvatarMsg");
 const updateAvatarInput = document.getElementById("updateAvatarInput");
 const updateAvatarBtn = document.getElementById("updateAvatarBtn");
-console.log(updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
+console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
 
 async function updateAvatar(url, data) {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      //console.log(accessToken);
+      console.log(accessToken);
       const options = {
         method: "PUT",
         headers: {
@@ -178,12 +162,12 @@ async function updateAvatar(url, data) {
         },
         body: JSON.stringify(data),
       };
-      //console.log(url, data, options);
+     console.log("avatar url, data, options:", url, data, options);
       // opp i api
       const response = await fetch(url, options);
-      //console.log(response);
+      console.log("avatar response:", response);
       const answer = await response.json();
-      console.log(answer);
+      console.log("avatar: answer", answer);
       if (answer.statusCode) {
         updateAvatarMsg.innerHTML =
           "Invalid image URL, make sure is fully formatted!";
@@ -195,7 +179,7 @@ async function updateAvatar(url, data) {
     } catch (error) {
       console.warn(error);
     }
-  }
+  } 
   
 updateAvatarBtn.addEventListener("click", newAvatar);
 function newAvatar(event) {
@@ -206,5 +190,5 @@ function newAvatar(event) {
     avatar: avatarUrl,
   };
 
-  updateAvatar(avatarUrl, listData);
+  updateAvatar(avatarUrl, avatarData);
 }
