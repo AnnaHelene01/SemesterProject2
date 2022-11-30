@@ -51,25 +51,20 @@ function listData(list, out){
     out.innerHTML = "";
     const avatarImg = document.getElementById("avatarImg");
     avatarImg.src = `${list.avatar}`
+
+    const listCredits = document.getElementById("list-credits");
+    listCredits.innerHTML = `${list.credits}`
+    const listEmail = document.getElementById("list-email");
+    listEmail.innerHTML = `Email: ${list.email}`
+
     let profileDivs = "";
         profileDivs += `
-                <h2 class="p-3" id="user-name">${list.name}</h2>
-                <div class="d-flex mt-5">
-                    <p class="p-3 display-3 text-success">CREDIT:</p>
-                    <p class="p-3 display-3" id="profile-credits">${list.credits}</p>
-                </div>
-                <div class="d-flex">
-                    <p class="p-3 display-3 text-success">EMAIL:</p>
-                    <p class="p-3 display-3" id="profile-email">${list.email}</p>
-                </div>
-                <div class="d-flex">
-                    <p class="p-3 display-3 text-success">WEBSITE:</p>
-                    <p class="p-3 display-3">www.example.no</p>
-                </div>
-                <div class="d-flex">
-                    <p class="p-3 display-3 text-success">PHONE:</p>
-                    <p class="p-3 display-3">+123 45 678</p>
-                </div>
+        <div class="mb-5 text-white"> 
+        <h3 class="mt-0 mb-0">${list.name}</h3> 
+        <p class="small mb-4"> 
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            New York</p>
+    </div> 
   
         `;
         out.innerHTML = profileDivs;
@@ -126,29 +121,30 @@ function listListings(list, second) {
         });
 
         newDivs += `
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
+        <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
              <a href="shop-specific.html?id=${post.id}" class="text-decoration-none">
-                          <div class="card ">
-                            <img src="${post.media}" class="card-img-top card-img" alt="...">
-                            <div class="card-body">
-                              <h4 class="card-title">${post.title}</h4>
-                              <p class="card-text display-6">${post.description}</p>
-                            </div>
-                            <div class="card-body">
-                                <p class="display-6 text-success">${ourDate}</p>
-                            </div>
-                          </div>
-             </a>
+                    <div class="card ">
+                        <img src="${post.media}" class="card-img-top card-img" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">${post.title}</h4>
+                            <p class="card-text display-6">${post.description}</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="display-6 text-success">${ourDate}</p>
+                        </div>
+                    </div>
+              </a>
         </div>`
     } 
     second.innerHTML = newDivs;
 }
 
+
 // Oppdatere avatar
 const updateAvatarMsg = document.getElementById("updateAvatarMsg");
 const updateAvatarInput = document.getElementById("updateAvatarInput");
 const updateAvatarBtn = document.getElementById("updateAvatarBtn");
-//console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
+console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
 
 async function updateAvatar(url, data) {
     try {

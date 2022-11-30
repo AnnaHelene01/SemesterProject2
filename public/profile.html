@@ -4,37 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/js/profile.js" defer></script>
-    <script src="/js/logout.js" defer></script>
-      <!-- CSS only -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" 
-      crossorigin="anonymous">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Profile page for WWS</title>
+    <script src="/js/profile.js" defer type="module"></script>
+    <script src="/js/logout.js" defer type="module"></script>
+      <!-- CSS bootstrap link -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+    <!--Style css links-->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/custom-css/index.css">
+
     <!--Link to my fonts:-->
        <link rel="preconnect" href="https://fonts.googleapis.com">
        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <title>Profile page for WWS</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" 
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" 
+    crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" 
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" 
+    crossorigin="anonymous">
+    </script>
 </head>
 <body>
        <!--Header-->
        <header class="sticky-top">
         <nav class="navbar navbar-expand-lg bg-primary pt-4 pb-4">
             <div class="container-fluid col-11 col-sm-10 p-0">
-                <a href="../index.html" class="navbar-brand text-white mb-5">
+                <a href="../index.html" class="navbar-brand text-white">
                     <img src="../Img/White-s-logo.png" width="110" height="70">
                 </a>
                 <button type="button" class="navbar-toggler border-0 p-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
-                    <i class="fas fa-bars" style="color:#fff; font-size:2rem;"></i>
+                    <i class="fas fa-bars" style="color:#fff; font-size:1.2rem;"></i>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                     <div class="navbar-nav font-weight-semibold">
@@ -49,9 +54,117 @@
         </nav>
     </header>
     <main>
-    <h1 class="text-center">PROFILE</h1>
-       <!-- Avatar and profile info - section-->
-       <!--LOGGED IN SECTION-->
+    <h1 class="text-center mt-3">PROFILE</h1>
+
+
+    <div id="loggedin-profile">
+    <div class="row py-5 px-4"> 
+        <div class="col-md-6 mx-auto shadow"> 
+            <!-- Profile box --> 
+            <div class="bg-white rounded"> 
+                <div class="px-4 pt-0 pb-4 cover"> 
+                    <div class="align-items-end bg-primary"> 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="" id="avatarImg" alt="..." width="150" class="rounded mb-2 img-thumbnail">
+                             
+                            </div>
+                            <div id="post-container" class="col-md-6 col-sm-12 form-group display-6 text-start">
+                               
+                            </div>  
+                        </div>
+                        </div> 
+                    </div> 
+                </div> 
+                <div class="bg-light px-4 py-3 d-flex text-center"> 
+                    <div class="text-center">
+                        <button type="button" class="btn btn-secondary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            EDIT AVATAR
+                          </button>
+                    </div>
+                    <div class="d-flex text-center p-4 justify-content-end">
+                        <ul class="list-inline mb-0 justify-content-end"> 
+                            <li class="list-inline-item"> 
+                                <p id="list-credits" class="font-weight-bold display-5 mb-0 d-block">215</p>
+                                <p class="text-muted display-6">Credits</p> 
+                            </li> 
+                        </ul> 
+                    </div>
+                </div> 
+
+                <div class="px-4 py-3"> 
+                    <h3 class="mb-0">About me</h3> 
+                    <div class="p-4 rounded shadow-sm bg-light"> 
+                        <p id="list-email" class="mb-0 display-6"></p> 
+                        <p class="mb-0 display-6">Lives in New York</p> 
+                        <p class="mb-0 display-6">+123 45 678</p> 
+                    </div> 
+                </div> 
+
+                <div class="py-4 px-4"> 
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                         <h3 class="mb-0">My listings</h3>
+                    </div> 
+                    <div class="row"> 
+                        <div id="listing-container" class="row">
+                            <img src="../Img/loader.gif" alt="Loading content" style="width:100px;">
+                        </div>
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+    </div>
+
+       <!-- NOT LOGGED IN SECTION -->
+       <div id="loggedout-profile">
+          <p class="display-2 text-center">Sign up or login to review your profile page!</p>
+          <div class="text-center">
+             <a href="register.html"><button class="btn btn-secondary px-5 mt-5">SIGN UP</button></a>
+          </div>
+       </div>
+    </main>
+
+      <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center mt-5">
+                <label for="avatar">Avatar URL</label>
+                <textarea class="form-control form-control-lg m-auto" id="updateAvatarInput"  placeholder="Place a avatar URL"></textarea>
+                <p class="display-6" id="updateAvatarMsg"></p>
+                <div class="text-center">
+                </div>
+            </div>        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="updateAvatarBtn" class="btn btn-secondary" data-bs-dismiss="modal">CHANGE AVATAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+       
+
+    <footer class="text-center mt-5 mb-5">
+        <img src="/Img/Logo.png">
+        <div class="text-center text-info p-3 display-5 mt-3">
+            © 2022 Copyright:
+            <a class="text-info" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+       </div>
+    </footer>
+</body>
+</html>
+
+
+<!---   Avatar and profile info - section
+       LOGGED IN SECTION
        <div id="loggedin-profile">
         <div class="container border p-5">
             <div class="row">
@@ -72,7 +185,7 @@
              </div>
             </div>
            <div id="post-container"></div>
-           <!-- My listings - section  -->
+           My listings - section  
            <div class="container border p-5">
             <div class="row">
                 <h2 class="text-center">MY SELLINGS</h2>
@@ -81,25 +194,4 @@
                     </div>
             </div>
            </div>
-       </div>
-       
-
-       <!-- NOT LOGGED IN SECTION -->
-       <div id="loggedout-profile">
-          <p class="display-2 text-center">Sign up or login to review your profile page!</p>
-          <div class="text-center">
-             <a href="register.html"><button class="btn btn-secondary px-5 mt-5">SIGN UP</button></a>
-          </div>
-       </div>
-    </main>
-
-
-    <footer class="text-center mt-5 mb-5">
-        <img src="/Img/Logo.png">
-        <div class="text-center text-info p-3 display-5 mt-3">
-            © 2022 Copyright:
-            <a class="text-info" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-       </div>
-    </footer>
-</body>
-</html>
+       </div> -->

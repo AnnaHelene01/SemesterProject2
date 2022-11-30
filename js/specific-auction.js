@@ -247,7 +247,7 @@ function validateAndProcess(event) {
         if (!accessToken) {
             
            alert("You have to sign in to place a bid!");
-           window.location.href = "../index.html";
+           window.location.href = "./login.html";
         }
       }
       
