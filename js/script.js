@@ -67,16 +67,22 @@ function listData(list, out){
     ]
     :auction.seller.avatar;
 
-      let date = new Date(auction.endsAt);
-      let ourDate = date.toLocaleString("default", {
-          day: "numeric", 
-          month: "long", 
-          hour: "2-digit", 
-          minute: "2-digit"
-      });
+//FIX DATE LAYOUT
+    let date = new Date(auction.endsAt);
+    let now = new Date().getTime();
+    let distance = date - now;
 
-      const delBtn = `<button class="btnDelete btn btn-outline-primary" data-delete="${auction.id}">DELETE</button>`;
-      const updateBtn = `<button class="btnUpdate btn btn-primary text-white " data-update="${auction.id}">UPDATE</button>`;
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    let bidTime = "";
+    bidTime = days + "d " + hours + "h " + minutes + "m ";
+    
+    if (distance < 0) {
+      bidTime = "EXPIRED";
+    }
+
 
         newDivs += `
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -91,21 +97,17 @@ function listData(list, out){
                     height="40" alt="Avatar" loading="lazy" />
                     <h4 class="p-2"> ${auction.seller.name}</h4>
                  </div>
-                   <div class="d-flex mt-5 pt-2 justify-content-between">
+                   <div class="d-flex mt-1 pt-2 justify-content-between">
                        <div>
-                          <p class="display-5">Bids:</p>
-                          <p class="display-5">${auction._count.bids}</p>
+                          <p>Bids:</p>
+                          <p>${auction._count.bids}</p>
                         </div>
                         <div>
-                          <p class="display-5">Auction ends: </p>
-                          <p class="display-5 text-success">${ourDate}</p>
+                          <p>Auction ends: </p>
+                          <p class="timer">${bidTime}</p>
                          </div>
                     </div>
                     </a> 
-                    <div>
-                       ${localStorage.getItem('username') === auction.seller.name ? delBtn : ""} 
-                       ${localStorage.getItem('username') === auction.seller.name ? updateBtn : ""}
-                    </div>
                  </div>
                </div>
           </div>`;
@@ -114,28 +116,18 @@ function listData(list, out){
     }
     out.innerHTML = newDivs;
 
-        //Delete listing
-        const btns = document.querySelectorAll("button.btnDelete");
-        //console.log(btns);
-        for (let btnDelete of btns){
-             btnDelete.addEventListener("click", () => {
-                //console.log("btn attribute:", btnDelete.getAttribute('data-delete'));
-                if ( confirm('Are you totally sure?')){
-                    deletePost(btnDelete.getAttribute('data-delete'));
-                }
-          }) 
-        }
-         //Update listing
-         const updatebtns = document.querySelectorAll("button.btnUpdate");
-         //console.log(updatebtns);
-         for (let btnUpdate of updatebtns) {
-              btnUpdate.addEventListener("click", () => {
-               //console.log(btnUpdate.getAttribute('data-update'));
-                const updateId = btnUpdate.getAttribute('data-update');
-                window.location =`./public/listing-edit.html?id=${updateId}`;
-          })
-         }
-       
+           //TIMER
+           const timer = document.getElementsByClassName("timer");
+        for(let i = 0; i < timer.length; i++) {
+
+        let bidEnding = timer[i].innerHTML;
+        
+        if (bidEnding !== "EXPIRED") {
+        timer[i].classList.add("not-expired");
+        } else {
+             timer[i].classList.add("expired");
+        }    
+    }
 }
 
 
@@ -167,31 +159,6 @@ function listData(list, out){
   
 
 
-// DELETE POST
-async function deletePost (id) {
-    //console.log(id);
-    const url = `${deleteURL}${id}`;
-     try {
-        const accessToken = localStorage.getItem('accessToken'); 
-        const options = {
-            method: 'DELETE', 
-            headers : {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${accessToken}`,
-            },
-        };
-        //console.log("Delete url options:", url, options);
-
-        const response = await fetch(url, options); 
-        //console.log("Delete response:", response);
-        const answer = await response.json();
-        //console.log("Delete answer:", answer);
-        if (response.status === 201) {
-            window.location = "../index.html";
-          }    } catch(error) {
-         console.warn(error);
-    }
-}
 
 
 //-----------------------------------------------------  
@@ -225,8 +192,8 @@ async function createNewAuction (url, data) {
         console.log(response);
         const answer = await response.json();
         console.log("Answer", answer);
-        if (response.status === 200) {
-            window.location = "../index.html";
+        if (answer.id) {
+            window.location = "./index.html";
           }
     } catch(error) {
         console.warn(error);
@@ -250,6 +217,13 @@ function validateFormAndProcess(event) {
     const title = postTitle.value.trim();
     const description = postContent.value.trim();
     let media = [`${postMedia.value.trim()}`]
+
+    if (media[0] === "") {
+        media = [
+            "https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true"
+        ]
+    }
+
     const endsAt = `${endsBid.value.trim()}:00.000Z`;
 
     // Checking if user is logged in
@@ -258,7 +232,7 @@ function validateFormAndProcess(event) {
     if (!accessToken) {
         
        alert("You have to sign in to place a selling!");
-       window.location.href = "../index.html";
+       window.location.href = "./public/login.html";
     }
   }
   
@@ -343,7 +317,7 @@ async function preview() {
            
                       <div class="card-body">
                           <h4 class="card-title">${postTitle.value}</h4>
-                          <p id="preview-description" class="display-6">${postContent.value}</p>
+                          <p id="preview-description">${postContent.value}</p>
                       </div>
                       <div class="d-flex">
                           <img src="/Img/60111.jpg" class="rounded-circle p-2"

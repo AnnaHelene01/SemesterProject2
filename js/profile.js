@@ -127,10 +127,10 @@ function listListings(list, second) {
                         <img src="${post.media}" class="card-img-top card-img" alt="...">
                         <div class="card-body">
                             <h4 class="card-title">${post.title}</h4>
-                            <p class="card-text display-6">${post.description}</p>
+                            <p class="card-text">${post.description}</p>
                         </div>
                         <div class="card-body">
-                            <p class="display-6 text-success">${ourDate}</p>
+                            <p class="text-success">${ourDate}</p>
                         </div>
                     </div>
               </a>

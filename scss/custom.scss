@@ -3,7 +3,7 @@ $primary: #2C5F2D;
 $secondary: #97BC62;
 $success: #E3B448;
 $info: #D9D9D9;
-//$warning: red;
+$warning: red;
 //$danger: #FFF854;
 //$warning: #D22679;
 //$danger: #FFF854;
@@ -11,7 +11,7 @@ $info: #D9D9D9;
 //Changing the font-family!
 $heading-font-family: 'Playfair Display', sans-serif;
 $body-font-family: 'Roboto', sans-serif;
-
+/*
 //Setting heading font sizes
 $h1-font-size: 2rem;              
 $h2-font-size: 1.7rem;                
@@ -26,7 +26,16 @@ $display-font-sizes: (
   4: 1.3rem,
   5: 1.2rem,
   6: 1rem
-);
+);*/
+
+.expired {
+    color: red;
+}
+
+.not-expired {
+    color: #E3B448;
+}
+
 
 
 h1, h2, h3, h4 {
@@ -105,12 +114,12 @@ nav {
 input , textarea {
     color: white;
     text-decoration: none;
-    font-size: 1.7rem;
+    /*font-size: 1.7rem;*/
 }
 
 input::placeholder {
     opacity: .5;
-    font-size: 1.3rem;
+    /*font-size: 1.3rem;*/
 }
   
 
@@ -147,6 +156,11 @@ input::placeholder {
     border-bottom: 1px solid #D9D9D9;
     margin-bottom: 10px;
     padding-bottom: 10px;
+}
+
+/* PROFILE*/
+.profile-image {
+    margin-bottom: -50px;
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap";

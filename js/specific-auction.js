@@ -22,6 +22,10 @@ const auctionUrl = `${APIurl}${auctionEndpoint}`;
 
 const extraFlag = "?_seller=true&_bids=true"
 
+const deleteEndPoint = '/auction/listings/'; 
+const deleteURL = `${APIurl}${deleteEndPoint}`;
+
+
 let params = new URLSearchParams(document.location.search);
 let id = params.get("id"); 
 
@@ -67,7 +71,6 @@ function listData(auctions, out){
     //console.log("Logger autcion", auctions);
 
     let date = new Date(auctions.endsAt);
-    let auctionEnd = setInterval(function () {
 
     let now = new Date().getTime();
 
@@ -76,17 +79,16 @@ function listData(auctions, out){
     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const timer = document.querySelector(".timer");
-    timer.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-    timer.classList.add("not-expired");
+    
+
+    let bidTime = "";
+    bidTime = days + "d " + hours + "h " + minutes + "m ";
     
     if (distance < 0) {
-      clearInterval(auctionEnd);
-      timer.innerHTML = "EXPIRED";
+    
+      bidTime = "EXPIRED";
     }
-  }, 1000);
 
 
    //Ternyary / placeholder for listing media
@@ -119,10 +121,10 @@ function listData(auctions, out){
                           <img src="${productImg}" alt="product img" class="img-fluid"> 
                       </div>
                       <h2 class="my-4">${auctions.title}</h2>
-                      <p class="display-6">${auctions.description}</p>
+                      <p>${auctions.description}</p>
                       <div class="card-body d-flex">
-                      <p class="display-4">Auction ends: </p>
-                      <p class="display-4 text-succrss timer expired"></p>
+                      <p>Auction ends: </p>
+                      <p class=" timer">${bidTime}</p>
                    </div>
                    <h2 class="mt-4">Bidders: (${auctions._count.bids})</h2>
             `;
@@ -135,7 +137,99 @@ function listData(auctions, out){
           //singleMedia.innerHTML = singleMedia
     
     out.innerHTML = newDivs;
+
+    //TIMER
+    const timer = document.querySelector(".timer");
+
+    let bidEnding = timer.innerHTML;
+
+    if (bidEnding !== "EXPIRED") {
+        timer.classList.add("not-expired");
+    } else {
+        timer.classList.add("expired");
+    }
+
+    // DISPLAY ELEMENTS BASED ON LOGGED IN OR NOT
+  //YOUR OWN BID OR NOT
+  //EXPIRED OR NOT
+  const makeBid = document.getElementById("bid-make-a-bid");
+  const myOwnBid = document.getElementById("bid-my-own");
+  const bidNotLoggedIn = document.getElementById("bid-not-loggedin");
+  const bidExpired = document.getElementById("bid-expired");
+  console.log(makeBid, myOwnBid, bidNotLoggedIn, bidExpired);
+
+  function displayBid() {
+    const accessToken = localStorage.getItem("accessToken");
+    const userName = localStorage.getItem("username");
+    if (accessToken && userName !== auctions.seller.name) {
+        myOwnBid.style.display="none";
+        bidNotLoggedIn.style.display="none";
+        bidExpired.style.display="none";        
+    } 
+    else if (accessToken && userName === auctions.seller.name) {
+        makeBid.style.display="none";
+        bidNotLoggedIn.style.display="none";
+        bidExpired.style.display="none"; 
+    }
+    else if (!accessToken) {
+        makeBid.style.display="none";
+        myOwnBid.style.display="none";
+        bidExpired.style.display="none";
+    }
+    else if (timer.innerHTML="EXPIRED") {
+        makeBid.style.display="none";
+        myOwnBid.style.display="none";
+        bidNotLoggedIn.style.display="none";
+    }
+       
+    }
+
+    displayBid()
+
+          //Delete listing
+          const sellDelete = document.getElementById("sell-delete-btn");
+            sellDelete.addEventListener("click", () => {
+               //console.log("btn attribute:", btnDelete.getAttribute('data-delete'));
+               if ( confirm('Are you totally sure?')){
+                   deletePost(auctions.id);
+               }
+         }) 
+           //Update listing
+           const sellUpdate = document.getElementById("sell-update-btn");
+                sellUpdate.addEventListener("click", () => {
+                 //console.log(btnUpdate.getAttribute('data-update'));
+                  window.location =`./listing-edit.html?id=${auctions.id}`;
+            })
+        
 }
+
+
+// DELETE POST
+async function deletePost (id) {
+    //console.log(id);
+    const url = `${deleteURL}${id}`;
+     try {
+        const accessToken = localStorage.getItem('accessToken'); 
+        const options = {
+            method: 'DELETE', 
+            headers : {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+            },
+        };
+        //console.log("Delete url options:", url, options);
+
+        const response = await fetch(url, options); 
+        //console.log("Delete response:", response);
+        //const answer = await response.json();
+        //console.log("Delete answer:", answer);
+        if (response.status === 204) {
+            window.location = "../index.html";
+          }    } catch(error) {
+         console.warn(error);
+    }
+}
+
 
 
 
@@ -182,13 +276,13 @@ function listBids(list, second) {
         <ul class="list-unstyled bidder mt-3">
                           <li class="d-flex justify-content-between align-items-center">
                               <div class="d-flex align-items-center">
-                                  <span class="display-6">-</span>
+                                  <span>-</span>
                                   <div class="d-flex align-items-center">
                                       <img src="">
-                                      <span class="display-6">${bid.bidderName}</span>
+                                      <span>${bid.bidderName}</span>
                                   </div>
                               </div>
-                              <span class="price display-6">${bid.amount}</span>
+                              <span class="price">${bid.amount}</span>
                           </li>
                       </ul>`
     } 
@@ -256,4 +350,7 @@ function validateAndProcess(event) {
     createBid(makeBidUrl, bidData);
   }
 
+  
+
+  
   

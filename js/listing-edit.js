@@ -43,7 +43,7 @@ async function getSingleListing (url) {
         const response = await fetch(url, options); 
         //console.log("Edit reponse:", response);
         const bids = await response.json();
-        //console.log("Edit bids:", bids);
+        console.log("Edit bids:", bids);
         listBids(bids, outElement)   
     } catch(error) {
         console.warn(error);
@@ -57,9 +57,8 @@ const welcome = localStorage.getItem('username');
 const editTitle = document.getElementById("editTitle");
 const editContent = document.getElementById("editContent");
 const editMedia = document.getElementById("editMedia");
-const editEndBid = document.getElementById("edit-endBid");
 const editBtn = document.getElementById("submitEdit");
-//console.log("elementer:", welcome, user, editTitle, editContent, editMedia, editEndBid, editBtn);
+console.log("elementer:", welcome, editTitle, editContent, editMedia, editBtn);
 
 //LISTE UT
 function listBids(bids, out) {
@@ -67,7 +66,18 @@ function listBids(bids, out) {
     editTitle.innerHTML = `${bids.title}`;
     editContent.innerHTML = `${bids.description}`;
     editMedia.innerHTML = `${bids.media}`;
-    editEndBid.innerHTML = `${bids.endsAt}`
+
+    let date = new Date(bids.endsAt);
+    let ourDate = date.toLocaleString("default", {
+        day: "numeric", 
+        month: "long", 
+        hour: "2-digit", 
+        minute: "2-digit"
+    });
+
+    const endBidTime = document.getElementById("endBidTime");
+    endBidTime.innerHTML = `${ourDate}`
+  
 }
 
 
@@ -76,7 +86,7 @@ async function updatePost (id) {
     const title = editTitle.value.trim();
     const body = editContent.value.trim();
     let media = editMedia.value.trim();
-    if (media === "") media = "https://www.pngkey.com/maxpic/u2w7r5y3a9o0w7t4/";
+    if (media === "") media = "https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true";
 
     const data = {
         title: title,
@@ -84,6 +94,7 @@ async function updatePost (id) {
         media: media,
        };
 
+       
     const url = `${APIurl}${id}`;
      try {
         const accessToken = localStorage.getItem('accessToken'); 
@@ -112,6 +123,7 @@ editBtn.addEventListener("click", () => {
     //console.log(id);
     updatePost(id);
     //window.location = `./main.html`;
+    //console.log(title.value(), body.value(), media.value());
 })
 
 
@@ -140,7 +152,7 @@ async function preview() {
            
                       <div class="card-body">
                           <h4 class="card-title">${editTitle.value}</h4>
-                          <p id="preview-description" class="display-6">${editContent.value}</p>
+                          <p id="preview-description">${editContent.value}</p>
                       </div>
                       <div class="d-flex">
                           <img src="/Img/60111.jpg" class="rounded-circle p-2"

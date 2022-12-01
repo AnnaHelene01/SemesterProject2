@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/profile.js" defer></script>
+    <script src="./js/logout.js" defer></script>
+      <!-- CSS only -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" 
+      crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./custom-css/index.css">
+    <!--Link to my fonts:-->
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>Profile page for WWS</title>
+</head>
+<body>
+       <!--Header-->
+       <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-primary pt-4 pb-4 box-shadow-pink">
+            <div class="container-fluid col-11 col-sm-10 p-0">
+                <a href="./index.html" class="navbar-brand text-white">World Wide Shop</a>
+                <button type="button" class="navbar-toggler border-0 p-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <i class="fas fa-bars" style="color:#fff; font-size:2rem;"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                    <div class="navbar-nav font-weight-semibold">
+                        <a href="index.html" class="nav-item nav-link text-white mt-4 mt-lg-0">HOME</a>
+                        <a href="profile.html" class="nav-item nav-link text-white active">PROFILE</a>
+                        <a href="users.html" class="nav-item nav-link text-white">USERS</a>
+                        <a href="about.html" class="nav-item nav-link text-white">ABOUT US</a>
+                        <a href="login.html" class="nav-item nav-link text-white">SIGN IN</a>
+                        <a href="index.html" class="nav-item nav-link text-white" id="log-out">LOG OUT</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+    <h1 class="text-center">PROFILE</h1>
+    <!-- Avatar and profile info - section-->
+    <div class="container border p-5">
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                <img src="./Img/60111.jpg" class="img-fluid rounded-circle w-50">
+                <div class="col-md-12 form-group text-start">
+                    <p id="avatarMsg"></p>
+                    <label for="avatar">Avatar URL</label>
+                    <textarea class="form-control form-control-lg" id="updateAvatar" placeholder="Place a avatar URL"></textarea>
+                    <div class="text-center">
+                        <a href="#"><input type="submit" value="CHANGE AVATAR" class="btn btn-secondary btn-lg px-4 mt-3"></a>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-lg-6">
+                <h2 class="p-3" id="user-name">@Username</h2>
+                <div class="d-flex mt-5">
+                    <p class="p-3 display-3 text-success">CREDIT:</p>
+                    <p class="p-3 display-3">1000</p>
+                </div>
+                <div class="d-flex">
+                    <p class="p-3 display-3 text-success">EXPREIENCE:</p>
+                    <p class="p-3 display-3">2 Years</p>
+                </div>
+                <div class="d-flex">
+                    <p class="p-3 display-3 text-success">EMAIL:</p>
+                    <p class="p-3 display-3">example@email.no</p>
+                </div>
+                <div class="d-flex">
+                    <p class="p-3 display-3 text-success">WEBSITE:</p>
+                    <p class="p-3 display-3">www.example.no</p>
+                </div>
+                <div class="d-flex">
+                    <p class="p-3 display-3 text-success">PHONE:</p>
+                    <p class="p-3 display-3">+123 45 678</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--My sellings & my bids section-->
+    <div class="container border p-5">
+        <div class="row">
+            <div class="col-lg-6 mt-3">
+                <h2>MY SELLINGS</h2>
+                          <!--Example of how i want the cards to look like after fetching info from api:-->
+                          <div class="card w-75">
+                            <img src="./Img/frontpage.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h4 class="card-title">POST title</h4>
+                              <div class="d-flex">
+                                <h4>Credit:</h4>
+                                <h4>1000</h4>
+                              </div>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                           <div class="card-body">
+                            <p>@USERNAME</p>
+                           </div>
+                            <div class="card-body">
+                                <p>AUCTION TIME HERE</p>
+                            </div>
+                          </div>
+            </div>
+            <div class="col-lg-6 mt-3">
+                <h2>MY BIDS</h2>
+                          <!--Example of how i want the cards to look like after fetching info from api:-->
+                          <div class="card w-75">
+                            <img src="./Img/frontpage.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h4 class="card-title">POST title</h4>
+                              <div class="d-flex">
+                                <h4>Credit:</h4>
+                                <h4>1000</h4>
+                              </div>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                           <div class="card-body">
+                            <p class="">@USERNAME</p>
+                           </div>
+                            <div class="card-body">
+                                <p>AUCTION TIME HERE</p>
+                            </div>
+                          </div>
+            </div>
+        </div>
+    </div>
+    </main>
+    <footer class="text-center mt-5 mb-5">
+        <img src="./Img/Logo.png">
+        <div class="text-center text-info p-3 display-5 mt-3">
+            © 2022 Copyright:
+            <a class="text-info" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+       </div>
+    </footer>
+</body>
+</html>

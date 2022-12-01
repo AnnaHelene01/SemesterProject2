@@ -7,10 +7,7 @@
     <title>Profile page for WWS</title>
     <script src="/js/profile.js" defer type="module"></script>
     <script src="/js/logout.js" defer type="module"></script>
-      <!-- CSS bootstrap link -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/79f4911f4f.js" crossorigin="anonymous"></script>
 
     <!--Style css links-->
     <link rel="stylesheet" href="/css/style.css">
@@ -58,21 +55,18 @@
 
 
     <div id="loggedin-profile">
-    <div class="row py-5 px-4"> 
+    <div class=" "> 
         <div class="col-md-6 mx-auto shadow"> 
             <!-- Profile box --> 
             <div class="bg-white rounded"> 
-                <div class="px-4 pt-0 pb-4 cover"> 
-                    <div class="align-items-end bg-primary"> 
-                        <div class="row">
-                            <div class="col-md-6">
+                <div class=" pt-0" width="100"> 
+                    <div class="align-items-end bg-primary d-flex flex-row p-4"> 
+                            <div class="col-md-6 profile-image">
                                 <img src="" id="avatarImg" alt="..." width="150" class="rounded mb-2 img-thumbnail">
-                             
                             </div>
-                            <div id="post-container" class="col-md-6 col-sm-12 form-group display-6 text-start">
+                            <div id="post-container" class="col-md-6 col-sm-12 form-group text-start">
                                
                             </div>  
-                        </div>
                         </div> 
                     </div> 
                 </div> 
@@ -85,8 +79,8 @@
                     <div class="d-flex text-center p-4 justify-content-end">
                         <ul class="list-inline mb-0 justify-content-end"> 
                             <li class="list-inline-item"> 
-                                <p id="list-credits" class="font-weight-bold display-5 mb-0 d-block">215</p>
-                                <p class="text-muted display-6">Credits</p> 
+                                <p id="list-credits" class="font-weight-bold mb-0 d-block">215</p>
+                                <p class="text-muted">Credits</p> 
                             </li> 
                         </ul> 
                     </div>
@@ -95,9 +89,9 @@
                 <div class="px-4 py-3"> 
                     <h3 class="mb-0">About me</h3> 
                     <div class="p-4 rounded shadow-sm bg-light"> 
-                        <p id="list-email" class="mb-0 display-6"></p> 
-                        <p class="mb-0 display-6">Lives in New York</p> 
-                        <p class="mb-0 display-6">+123 45 678</p> 
+                        <p id="list-email" class="mb-0"></p> 
+                        <p class="mb-0">Lives in New York</p> 
+                        <p class="mb-0">+123 45 678</p> 
                     </div> 
                 </div> 
 
@@ -117,7 +111,7 @@
 
        <!-- NOT LOGGED IN SECTION -->
        <div id="loggedout-profile">
-          <p class="display-2 text-center">Sign up or login to review your profile page!</p>
+          <p class=" text-center">Sign up or login to review your profile page!</p>
           <div class="text-center">
              <a href="register.html"><button class="btn btn-secondary px-5 mt-5">SIGN UP</button></a>
           </div>
@@ -136,7 +130,7 @@
             <div class="text-center mt-5">
                 <label for="avatar">Avatar URL</label>
                 <textarea class="form-control form-control-lg m-auto" id="updateAvatarInput"  placeholder="Place a avatar URL"></textarea>
-                <p class="display-6" id="updateAvatarMsg"></p>
+                <p class="" id="updateAvatarMsg"></p>
                 <div class="text-center">
                 </div>
             </div>        </div>
@@ -154,7 +148,7 @@
 
     <footer class="text-center mt-5 mb-5">
         <img src="/Img/Logo.png">
-        <div class="text-center text-info p-3 display-5 mt-3">
+        <div class="text-center text-info p-3 mt-3">
             © 2022 Copyright:
             <a class="text-info" href="https://mdbootstrap.com/">MDBootstrap.com</a>
        </div>

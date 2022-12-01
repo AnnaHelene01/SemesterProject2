@@ -73,8 +73,8 @@ function listData(list, out){
             <img src="${profileImg}" alt="Portrait" class="img-fluid">
             <div class="feature-1-content">
                 <h2>${user.name}</h2>
-                <span class="position mb-3 d-block display-6">Credits: ${user.credits}</span>
-                <p class="display-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                <span class="position mb-3 d-block">Credits: ${user.credits}</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit
                     morbi henderit elit
                 </p>
             </div>

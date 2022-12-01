@@ -1,4 +1,28 @@
 @charset "UTF-8";
+/*
+//Setting heading font sizes
+$h1-font-size: 2rem;              
+$h2-font-size: 1.7rem;                
+$h3-font-size: 1.5rem;  
+$h4-font-size: 1.2rem;  
+
+//Body font size
+$display-font-sizes: (
+  1: 1.6rem,
+  2: 1.5rem,
+  3: 1.4rem,
+  4: 1.3rem,
+  5: 1.2rem,
+  6: 1rem
+);*/
+.expired {
+  color: red;
+}
+
+.not-expired {
+  color: #E3B448;
+}
+
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
   font-family: "Playfair Display", serif;
 }
@@ -72,12 +96,12 @@ nav {
 input, textarea {
   color: white;
   text-decoration: none;
-  font-size: 1.7rem;
+  /*font-size: 1.7rem;*/
 }
 
 input::placeholder {
   opacity: 0.5;
-  font-size: 1.3rem;
+  /*font-size: 1.3rem;*/
 }
 
 @media (min-width: 1041px) {
@@ -108,6 +132,11 @@ input::placeholder {
   border-bottom: 1px solid #D9D9D9;
   margin-bottom: 10px;
   padding-bottom: 10px;
+}
+
+/* PROFILE*/
+.profile-image {
+  margin-bottom: -50px;
 }
 
 /*!
@@ -144,7 +173,7 @@ input::placeholder {
   --bs-secondary: #97BC62;
   --bs-success: #E3B448;
   --bs-info: #D9D9D9;
-  --bs-warning: #E3B448;
+  --bs-warning: red;
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
@@ -152,7 +181,7 @@ input::placeholder {
   --bs-secondary-rgb: 151, 188, 98;
   --bs-success-rgb: 227, 180, 72;
   --bs-info-rgb: 217, 217, 217;
-  --bs-warning-rgb: 227, 180, 72;
+  --bs-warning-rgb: 255, 0, 0;
   --bs-danger-rgb: 220, 53, 69;
   --bs-light-rgb: 248, 249, 250;
   --bs-dark-rgb: 33, 37, 41;
@@ -226,34 +255,39 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 h1, .h1 {
-  font-size: calc(1.325rem + 0.9vw);
+  font-size: calc(1.375rem + 1.5vw);
 }
 @media (min-width: 1200px) {
   h1, .h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 }
 
 h2, .h2 {
-  font-size: calc(1.295rem + 0.54vw);
+  font-size: calc(1.325rem + 0.9vw);
 }
 @media (min-width: 1200px) {
   h2, .h2 {
-    font-size: 1.7rem;
+    font-size: 2rem;
   }
 }
 
 h3, .h3 {
-  font-size: calc(1.275rem + 0.3vw);
+  font-size: calc(1.3rem + 0.6vw);
 }
 @media (min-width: 1200px) {
   h3, .h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 }
 
 h4, .h4 {
-  font-size: 1.2rem;
+  font-size: calc(1.275rem + 0.3vw);
+}
+@media (min-width: 1200px) {
+  h4, .h4 {
+    font-size: 1.5rem;
+  }
 }
 
 h5, .h5 {
@@ -591,59 +625,69 @@ progress {
 }
 
 .display-1 {
-  font-size: calc(1.285rem + 0.42vw);
+  font-size: calc(1.625rem + 4.5vw);
   font-weight: 300;
   line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-1 {
-    font-size: 1.6rem;
+    font-size: 5rem;
   }
 }
 
 .display-2 {
-  font-size: calc(1.275rem + 0.3vw);
+  font-size: calc(1.575rem + 3.9vw);
   font-weight: 300;
   line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-2 {
-    font-size: 1.5rem;
+    font-size: 4.5rem;
   }
 }
 
 .display-3 {
-  font-size: calc(1.265rem + 0.18vw);
+  font-size: calc(1.525rem + 3.3vw);
   font-weight: 300;
   line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-3 {
-    font-size: 1.4rem;
+    font-size: 4rem;
   }
 }
 
 .display-4 {
-  font-size: calc(1.255rem + 0.06vw);
+  font-size: calc(1.475rem + 2.7vw);
   font-weight: 300;
   line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-4 {
-    font-size: 1.3rem;
+    font-size: 3.5rem;
   }
 }
 
 .display-5 {
-  font-size: 1.2rem;
+  font-size: calc(1.425rem + 2.1vw);
   font-weight: 300;
   line-height: 1.2;
 }
+@media (min-width: 1200px) {
+  .display-5 {
+    font-size: 3rem;
+  }
+}
 
 .display-6 {
-  font-size: 1rem;
+  font-size: calc(1.375rem + 1.5vw);
   font-weight: 300;
   line-height: 1.2;
+}
+@media (min-width: 1200px) {
+  .display-6 {
+    font-size: 2.5rem;
+  }
 }
 
 .list-unstyled {
@@ -1960,13 +2004,13 @@ progress {
 
 .table-warning {
   --bs-table-color: #000;
-  --bs-table-bg: #f9f0da;
-  --bs-table-border-color: #e0d8c4;
-  --bs-table-striped-bg: #ede4cf;
+  --bs-table-bg: #ffcccc;
+  --bs-table-border-color: #e6b8b8;
+  --bs-table-striped-bg: #f2c2c2;
   --bs-table-striped-color: #000;
-  --bs-table-active-bg: #e0d8c4;
+  --bs-table-active-bg: #e6b8b8;
   --bs-table-active-color: #000;
-  --bs-table-hover-bg: #e6deca;
+  --bs-table-hover-bg: #ecbdbd;
   --bs-table-hover-color: #000;
   color: var(--bs-table-color);
   border-color: var(--bs-table-border-color);
@@ -2967,19 +3011,19 @@ textarea.form-control-lg {
 
 .btn-warning {
   --bs-btn-color: #000;
-  --bs-btn-bg: #E3B448;
-  --bs-btn-border-color: #E3B448;
+  --bs-btn-bg: red;
+  --bs-btn-border-color: red;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: #e7bf63;
-  --bs-btn-hover-border-color: #e6bc5a;
-  --bs-btn-focus-shadow-rgb: 193, 153, 61;
+  --bs-btn-hover-bg: #ff2626;
+  --bs-btn-hover-border-color: #ff1a1a;
+  --bs-btn-focus-shadow-rgb: 217, 0, 0;
   --bs-btn-active-color: #000;
-  --bs-btn-active-bg: #e9c36d;
-  --bs-btn-active-border-color: #e6bc5a;
+  --bs-btn-active-bg: #ff3333;
+  --bs-btn-active-border-color: #ff1a1a;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #000;
-  --bs-btn-disabled-bg: #E3B448;
-  --bs-btn-disabled-border-color: #E3B448;
+  --bs-btn-disabled-bg: red;
+  --bs-btn-disabled-border-color: red;
 }
 
 .btn-danger {
@@ -3102,19 +3146,19 @@ textarea.form-control-lg {
 }
 
 .btn-outline-warning {
-  --bs-btn-color: #E3B448;
-  --bs-btn-border-color: #E3B448;
+  --bs-btn-color: red;
+  --bs-btn-border-color: red;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: #E3B448;
-  --bs-btn-hover-border-color: #E3B448;
-  --bs-btn-focus-shadow-rgb: 227, 180, 72;
+  --bs-btn-hover-bg: red;
+  --bs-btn-hover-border-color: red;
+  --bs-btn-focus-shadow-rgb: 255, 0, 0;
   --bs-btn-active-color: #000;
-  --bs-btn-active-bg: #E3B448;
-  --bs-btn-active-border-color: #E3B448;
+  --bs-btn-active-bg: red;
+  --bs-btn-active-border-color: red;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #E3B448;
+  --bs-btn-disabled-color: red;
   --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: #E3B448;
+  --bs-btn-disabled-border-color: red;
   --bs-gradient: none;
 }
 
@@ -4746,12 +4790,12 @@ textarea.form-control-lg {
 }
 
 .alert-warning {
-  --bs-alert-color: #5b481d;
-  --bs-alert-bg: #f9f0da;
-  --bs-alert-border-color: #f7e9c8;
+  --bs-alert-color: #990000;
+  --bs-alert-bg: #ffcccc;
+  --bs-alert-border-color: #ffb3b3;
 }
 .alert-warning .alert-link {
-  color: #493a17;
+  color: #7a0000;
 }
 
 .alert-danger {
@@ -5130,17 +5174,17 @@ textarea.form-control-lg {
 }
 
 .list-group-item-warning {
-  color: #5b481d;
-  background-color: #f9f0da;
+  color: #990000;
+  background-color: #ffcccc;
 }
 .list-group-item-warning.list-group-item-action:hover, .list-group-item-warning.list-group-item-action:focus {
-  color: #5b481d;
-  background-color: #e0d8c4;
+  color: #990000;
+  background-color: #e6b8b8;
 }
 .list-group-item-warning.list-group-item-action.active {
   color: #fff;
-  background-color: #5b481d;
-  border-color: #5b481d;
+  background-color: #990000;
+  border-color: #990000;
 }
 
 .list-group-item-danger {
@@ -6725,7 +6769,7 @@ textarea.form-control-lg {
 
 .text-bg-warning {
   color: #000 !important;
-  background-color: RGBA(227, 180, 72, var(--bs-bg-opacity, 1)) !important;
+  background-color: RGBA(255, 0, 0, var(--bs-bg-opacity, 1)) !important;
 }
 
 .text-bg-danger {
@@ -6772,10 +6816,10 @@ textarea.form-control-lg {
 }
 
 .link-warning {
-  color: #E3B448 !important;
+  color: red !important;
 }
 .link-warning:hover, .link-warning:focus {
-  color: #e9c36d !important;
+  color: #ff3333 !important;
 }
 
 .link-danger {
@@ -7960,19 +8004,19 @@ textarea.form-control-lg {
 }
 
 .fs-1 {
-  font-size: calc(1.325rem + 0.9vw) !important;
+  font-size: calc(1.375rem + 1.5vw) !important;
 }
 
 .fs-2 {
-  font-size: calc(1.295rem + 0.54vw) !important;
+  font-size: calc(1.325rem + 0.9vw) !important;
 }
 
 .fs-3 {
-  font-size: calc(1.275rem + 0.3vw) !important;
+  font-size: calc(1.3rem + 0.6vw) !important;
 }
 
 .fs-4 {
-  font-size: 1.2rem !important;
+  font-size: calc(1.275rem + 0.3vw) !important;
 }
 
 .fs-5 {
@@ -10823,12 +10867,15 @@ textarea.form-control-lg {
 }
 @media (min-width: 1200px) {
   .fs-1 {
-    font-size: 2rem !important;
+    font-size: 2.5rem !important;
   }
   .fs-2 {
-    font-size: 1.7rem !important;
+    font-size: 2rem !important;
   }
   .fs-3 {
+    font-size: 1.75rem !important;
+  }
+  .fs-4 {
     font-size: 1.5rem !important;
   }
 }
