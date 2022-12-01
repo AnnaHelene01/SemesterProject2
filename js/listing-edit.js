@@ -61,7 +61,7 @@ const editTitle = document.getElementById("editTitle");
 const editContent = document.getElementById("editContent");
 const editMedia = document.getElementById("editMedia");
 const editBtn = document.getElementById("submitEdit");
-console.log("elementer:", welcome, editTitle, editContent, editMedia, editBtn);
+//console.log("elementer:", welcome, editTitle, editContent, editMedia, editBtn);
 
 //LISTE UT
 function listBids(bids, out) {

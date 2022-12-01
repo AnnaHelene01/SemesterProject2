@@ -1,3 +1,14 @@
+const createListing = document.getElementById("createListing");
+// Checking if user is logged in
+function isLoggedin() {
+const accessToken = localStorage.getItem("accessToken");
+if (!accessToken) {
+    createListing.style.display="none";
+}
+}
+
+isLoggedin();
+
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings"; // POST
@@ -225,19 +236,6 @@ function validateFormAndProcess(event) {
     }
 
     const endsAt = `${endsBid.value.trim()}:00.000Z`;
-
-    // Checking if user is logged in
-    function isLoggedin() {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-        
-       alert("You have to sign in to place a selling!");
-       window.location.href = "./public/login.html";
-    }
-  }
-  
-    isLoggedin();
-
 
 
     //var dateParts = listingDate.value.trim().split("-");
