@@ -203,7 +203,6 @@ function listData(auctions, out){
         
 }
 
-
 // DELETE POST
 async function deletePost (id) {
     //console.log(id);
@@ -308,7 +307,7 @@ async function createBid(url, data) {
       console.log(response);
       const answer = await response.json();
       if (response.status === 200) {
-        //window.location = "../index.html";
+        window.location.reload();
       }
       console.log(answer);
     } catch (error) {
