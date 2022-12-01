@@ -1,18 +1,21 @@
 const loginNav = document.getElementById("login-nav");
-const logoutNav = document.getElementById("logout-nav") 
+const logoutNav = document.getElementById("logout-nav")
+const profileNav = document.getElementById("profile-nav");
+const usersNav = document.getElementById("users-nav");
 // Checking if user is logged in
-   function isLoggedin() {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-        logoutNav.style.display="none";
-    }
-    else {
-        loginNav.style.display="none";
-
-    }
-  }
-  
-    isLoggedin();
+function isLoggedin() {
+   const accessToken = localStorage.getItem("accessToken");
+   if (!accessToken) {
+       logoutNav.style.display="none";
+       profileNav.style.display="none";
+       usersNav.style.display="none";
+   }
+   else {
+       loginNav.style.display="none";
+   }
+   }
+   
+   isLoggedin();
 
 
 // Endpoints
@@ -65,7 +68,7 @@ function listBids(bids, out) {
     //console.log("List:", bids);
     editTitle.innerHTML = `${bids.title}`;
     editContent.innerHTML = `${bids.description}`;
-    editMedia.innerHTML = `${bids.media}`;
+    editMedia.innerHTML = `${bids.media}`;  
 
     let date = new Date(bids.endsAt);
     let ourDate = date.toLocaleString("default", {
@@ -88,7 +91,7 @@ async function updatePost (id) {
     if (media === "") {
     media = ["https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true"];
     }
-    console.log(media)
+    //console.log(media)
 
     const data = {
         title: title,
@@ -108,12 +111,12 @@ async function updatePost (id) {
             },
             body: JSON.stringify(data),
         };
-        console.log("Update url, options:", url, options);
+        //console.log("Update url, options:", url, options);
 
         const response = await fetch(url, options); 
-        console.log("Update response:", response);
+        //console.log("Update response:", response);
         const answer = await response.json();
-        console.log("Update answer:", answer);
+        //console.log("Update answer:", answer);
         if (response.status === 200) {
             window.location = "../index.html";
           }     } catch(error) {

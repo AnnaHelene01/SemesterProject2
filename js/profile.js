@@ -1,3 +1,22 @@
+const loginNav = document.getElementById("login-nav");
+const logoutNav = document.getElementById("logout-nav")
+const profileNav = document.getElementById("profile-nav");
+const usersNav = document.getElementById("users-nav");
+// Checking if user is logged in
+function isLoggedin() {
+   const accessToken = localStorage.getItem("accessToken");
+   if (!accessToken) {
+       logoutNav.style.display="none";
+       profileNav.style.display="none";
+       usersNav.style.display="none";
+   }
+   else {
+       loginNav.style.display="none";
+   }
+   }
+   
+   isLoggedin();
+
 //Legge til brukerens navn
 const username = localStorage.getItem('username');
 //console.log("User logged in:", welcome);
@@ -189,20 +208,4 @@ function newAvatar(event) {
   updateAvatar(updateAvatarUrl, avatarData);
 }
 
-
-const profileDiv = document.getElementById("loggedin-profile");
-const profileSecondDiv = document.getElementById("loggedout-profile")
-
-// Checking if user is logged in
-   function isLoggedin() {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-        profileDiv.style.display="none";
-    }
-    else {
-        profileSecondDiv.style.display="none";
-    }
-  }
-  
-    isLoggedin();
 
