@@ -81,12 +81,14 @@ function listBids(bids, out) {
 }
 
 
-
 async function updatePost (id) {
     const title = editTitle.value.trim();
     const body = editContent.value.trim();
-    let media = editMedia.value.trim();
-    if (media === "") media = "https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true";
+    let media = [`${editMedia.value.trim()}`];
+    if (media === "") {
+    media = ["https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true"];
+    }
+    console.log(media)
 
     const data = {
         title: title,
@@ -112,7 +114,7 @@ async function updatePost (id) {
         console.log("Update response:", response);
         const answer = await response.json();
         console.log("Update answer:", answer);
-        if (response.status === 201) {
+        if (response.status === 200) {
             window.location = "../index.html";
           }     } catch(error) {
          console.warn(error);
