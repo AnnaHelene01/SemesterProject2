@@ -64,6 +64,7 @@ function validateAndProcess(event) {
 
 
 async function registerNewUser(url, data) {
+    const errorMsg = document.getElementById("errorMsg");
     try {
         const options = {
             method: 'POST',
@@ -76,11 +77,11 @@ async function registerNewUser(url, data) {
         const response = await fetch (url, options);
         console.log(response);
         const answer = await response.json();
-        console.log(answer);
+        console.log("Answer:", answer.errors);
         if (response.status === 201) {
             window.location = "/public/login.html";
-        } else if (answer.message === "Profile already exists, try to login!") {
-            errorMsg.innerHTML = answer.message;
+        } else if (answer.errors[0].message === "Profile already exists") {
+            errorMsg.innerHTML = `This profile already exist! Try to login instead`;
         }
     } catch(error) {
         console.warn(error);
@@ -119,7 +120,7 @@ function validateForm() {
      //console.log('Email: ' + submittedEmail);
      let emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
      if (!emailPattern.test(submittedEmail)) {
-     emailMsg.innerHTML += "Please enter a valid email with only characters, number, dot and underscore ";
+     emailMsg.innerHTML += "Please enter a valid email with only characters, numbers, dot and underscore ";
      }
      //validere sjekk etter @noroff.no & @stud.noroff.no
      if (
@@ -140,16 +141,17 @@ function validateForm() {
     const submittedAvatar = avatar;
     avatarMsg.innerHTML = "";
     let avatarPattern = /\.(jpeg|jpg|gif|png|svg)$/;
-    if (!avatarPattern.test(submittedAvatar)) {
-      avatarMsg.innerHTML =
-        "Invalid image URL";
-    }
     if (submittedAvatar === "") {
-      avatarInput.innerHTML =
-        "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg";
+        avatarInput.innerHTML =
+          "https://upload.wikimedia.org/wikipedia/commons/4/48/No_image_%28male%29.svg";
+      }  else if 
+      ( !submittedAvatar.value == "" &&
+      !avatarPattern.test(submittedAvatar)
+    ) {
+      avatarMsg.innerHTML = "Please enter a valid avatar url.";
     }
 
-    if (usernameMsg.innerHTML === "" && emailMsg.innerHTML === "" && passwordMsg.innerHTML === "") {
+    if (usernameMsg.innerHTML === "" && emailMsg.innerHTML === "" && passwordMsg.innerHTML === "" && avatarMsg === "") {
         //console.log("Form is submitted!");
         //form.submit(); ///for å submitte skjema 
      }

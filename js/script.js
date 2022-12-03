@@ -59,6 +59,22 @@ function listData(list, out){
     out.innerHTML = "";
     let newDivs = "";
 
+//Sort listing by newst to oldest:
+//const sortByNewst = document.getElementById("sortByNewest");
+//const sortByOldest = document.getElementById("sortByOldest");
+
+//sortByNewest.addEventListener("click", () => {
+  //  list.sort(function(a, b) {
+    //    return new Date(b.date) - new Date(a.date)
+    //});
+//});
+
+//sortByOldest.addEventListener("click", () => {
+  //  list.sort(function(a, b) {
+    //    return new Date(a.date) - new Date(b.date)
+    //});
+//});
+
     for (let auction of list) {
     //console.log ("Auction Media: ", auction.media[0], auction.media.length);
 
@@ -89,10 +105,17 @@ function listData(list, out){
 
     let bidTime = "";
     bidTime = days + "d " + hours + "h " + minutes + "m ";
-    
+
+   
     if (distance < 0) {
       bidTime = "EXPIRED";
     }
+
+//DATE WITH MONTH AND TIME
+let dateWrite = new Date(auction.endsAt);
+let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+
+
 
 
         newDivs += `
@@ -116,6 +139,7 @@ function listData(list, out){
                         <div>
                           <p>Auction ends: </p>
                           <p class="timer">${bidTime}</p>
+                          <p class="timer">${deadline}</p>
                          </div>
                     </div>
                     </a> 
@@ -263,7 +287,7 @@ function validateFormAndProcess(event) {
      titleMsg.innerHTML = 'Your title has to be at least 1 or more characters.';
      }
      
-     bodyMsg.innerHTML = "";
+    bodyMsg.innerHTML = "";
     const submittedBody = description;
     if (submittedBody.length < 1) {
         bodyMsg.innerHTML = 'Your description has to be at least 1 or more characters.';
@@ -306,7 +330,7 @@ async function preview() {
   previewContainer.innerHTML = "";
   previewContainer.innerHTML = `
                 <div class="col-sm-12">
-                  <div class="card mt-5">
+                  <div class="card mt-5 border border-dark">
                     <img src="${
                         postMedia.value !== ""
                           ? postMedia.value

@@ -82,7 +82,7 @@ function listData(list, out){
         <h3 class="mt-0 mb-0">${list.name}</h3> 
         <p class="small mb-4"> 
             <i class="fas fa-map-marker-alt mr-2"></i>
-            New York</p>
+            Bergen</p>
     </div> 
   
         `;
