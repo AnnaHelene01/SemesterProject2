@@ -86,7 +86,7 @@ function listBids(bids, out) {
 
 async function updatePost (id) {
     const title = editTitle.value.trim();
-    const body = editContent.value.trim();
+    const description = editContent.value.trim();
     let media = [`${editMedia.value.trim()}`];
     if (media === "") {
     media = ["https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true"];
@@ -95,7 +95,7 @@ async function updatePost (id) {
 
     const data = {
         title: title,
-        body: body,
+        description: description,
         media: media,
        };
 

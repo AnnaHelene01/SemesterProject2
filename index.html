@@ -59,7 +59,12 @@
                     <h1 class="mt-5">The best place to buy and sell!</h1>
                     <!--THIS DIV MUST BE DISPLAY:NONE FOR UNREGISTERED USERS-->
                       <!--------->
-                        <a href="./public/register.html"><button class="btn btn-secondary px-5 mt-5">SIGN UP</button></a>
+                        <a href="./public/register.html" class="text-decoration-none" id="view-signup">
+                            <h2 class="text-success mt-5">Click here to sign up!</h2>
+                        </a>
+                        <a href="./public/profile.html" class="text-decoration-none" id="view-profile">
+                            <h2 class="text-success mt-5">Click here to view your profile!</h2>
+                        </a>
                     </div>
                 <div class="col-lg-6">
                     <img src="/Img/frontpage.jpg" alt="Frontpage image" class="img-fluid p-5">
@@ -186,15 +191,26 @@
         
        <!--Drop down element for sorting auction listing-->
          <!--MAKING A EXAMPLE CONTAINER FOR THE LISTING-->
-         <h2 class="text-center mt-1">AUCTION</h2>
-         <div class="text-center">
-            <button class="btn btn-secondary" type="button" id="sortByNewest">
-                Newest listing
-              </button>
-              <button class="btn btn-secondary" type="button" id="sortByOldest">
-                Oldest listing
-              </button>
-         </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-8 d-flex">
+                <h2 class="text-center mt-1">AUCTION</h2>
+                <div class="m-auto text-center">
+                   <div class="dropdown">
+                       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         SORT BY
+                       </button>
+                       <ul class="dropdown-menu">
+                         <li><button class="dropdown-item" type="button" id="sortByNewest">Almost ending</button></li>
+                         <li><button class="dropdown-item" type="button" id="sortByOldest">Oldest end-time</button></li>
+                         <li><button class="dropdown-item" type="button">Expired posts</button></li>
+                       </ul>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     
 
          <div class="container">
                 <div id="post-container" class="row">

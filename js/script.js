@@ -1,9 +1,14 @@
 const createListing = document.getElementById("createListing");
+const viewProfile = document.getElementById("view-profile");
+const viewSignup = document.getElementById("view-signup");
 // Checking if user is logged in
 function isLoggedin() {
 const accessToken = localStorage.getItem("accessToken");
 if (!accessToken) {
     createListing.style.display="none";
+    viewProfile.style.display="none";
+} else {
+    viewSignup.style.display="none";
 }
 }
 
@@ -13,9 +18,15 @@ isLoggedin();
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings"; // POST
 const extraFlag = "?_seller=true&_bids=true&sort=created&sortOrder=desc"
-
+//?sort=title&sortOrder=asc
 const auctionUrl = `${APIurl}${auctionEndpoint}${extraFlag}`;
 const username = localStorage.getItem('username');
+
+const sortEndsAsc = "?_seller=true&_bids=true&sort=endsAt&sortOrder=asc&_active=true";
+const sortEndsDesc = "?_seller=true&_bids=true&sort=endsAt&sortOrder=desc&_active=true";
+const sortAllBidsAsc = `${APIurl}${auctionEndpoint}${sortEndsAsc}`;
+const sortAllBidsDesc = `${APIurl}${auctionEndpoint}${sortEndsDesc}`;
+
 
 const deleteEndPoint = '/auction/listings/'; 
 const deleteURL = `${APIurl}${deleteEndPoint}`;
@@ -58,22 +69,6 @@ function listData(list, out){
    // console.log ("List:", list);
     out.innerHTML = "";
     let newDivs = "";
-
-//Sort listing by newst to oldest:
-//const sortByNewst = document.getElementById("sortByNewest");
-//const sortByOldest = document.getElementById("sortByOldest");
-
-//sortByNewest.addEventListener("click", () => {
-  //  list.sort(function(a, b) {
-    //    return new Date(b.date) - new Date(a.date)
-    //});
-//});
-
-//sortByOldest.addEventListener("click", () => {
-  //  list.sort(function(a, b) {
-    //    return new Date(a.date) - new Date(b.date)
-    //});
-//});
 
     for (let auction of list) {
     //console.log ("Auction Media: ", auction.media[0], auction.media.length);
@@ -192,6 +187,16 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
           listData(filtered, outElement);
       }
   
+    const sortByNewst = document.getElementById("sortByNewest");
+    const sortByOldest = document.getElementById("sortByOldest");
+    sortByNewst.addEventListener("click", sortNewest);
+    function sortNewest() {
+        getAllAuctions(sortAllBidsAsc);
+    };
+    sortByOldest.addEventListener("click", sortOldest);
+    function sortOldest() {
+        getAllAuctions(sortAllBidsDesc);
+    };
 
 
 
