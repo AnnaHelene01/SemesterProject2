@@ -64,9 +64,9 @@ sass --watch scss/custom.scss:css/style.css
 
 
 ## Sources 
-Card inspiration for design: https://getbootstrap.com/docs/5.2/components/card/
-Countdown for auction bid time: https://www.w3schools.com/howto/howto_js_countdown.asp
-Modal for avatar update: https://getbootstrap.com/docs/4.0/components/modal/
-Inspiration for profile design https://bbbootstrap.com/snippets/individual-user-profile-social-network-94176986 (changed from my original profile design!)
-
+-Card inspiration for design: https://getbootstrap.com/docs/5.2/components/card/
+-Countdown for auction bid time: https://www.w3schools.com/howto/howto_js_countdown.asp
+-Modal for avatar update: https://getbootstrap.com/docs/4.0/components/modal/
+-Inspiration for profile design: https://bbbootstrap.com/snippets/individual-user-profile-social-network-94176986 (changed from my original profile design!)
+-Dropdown element: https://getbootstrap.com/docs/5.2/components/dropdowns/
 
