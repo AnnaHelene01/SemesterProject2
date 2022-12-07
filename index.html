@@ -46,6 +46,9 @@
                         <a href="./public/users.html" class="nav-item nav-link text-white text-center" id="users-nav">USERS</a>
                         <a href="./public/login.html" class="nav-item nav-link text-white text-center" id="login-nav">SIGN IN</a>
                         <a href="./index.html" class="nav-item nav-link text-white text-center" id="logout-nav">LOG OUT</a>
+                        <p class="px-1 mt-2 text-success text-center" id="credits"></p>   
+                        <p class="mt-2 text-success text-center" id="p-credits">CREDITS</p>
+            
                     </div>
                 </div>
             </div>
@@ -154,9 +157,9 @@
                                   <div class="row">
                                     <div class="col-md-12">
                                         <p id="endbidMsg" class="msg-element"></p>
-                                        <label for="auction">Select time and date:</label>
+                                        <label for="auction">Select time and date</label>
                                         <form action="/action_page.php">
-                                            <input type="datetime-local" class="form-control" id="endBid" name="birthdaytime">
+                                            <input type="datetime-local" class="form-control text-info" id="endBid" name="birthdaytime">
                                           </form>
                                     </div>
                                 </div>
@@ -203,7 +206,7 @@
                        <ul class="dropdown-menu">
                          <li><button class="dropdown-item" type="button" id="sortByNewest">Almost ending</button></li>
                          <li><button class="dropdown-item" type="button" id="sortByOldest">Oldest end-time</button></li>
-                         <li><button class="dropdown-item" type="button">Expired posts</button></li>
+                         <li><button class="dropdown-item" type="button" id="sortByExpired">Expired posts</button></li>
                        </ul>
                      </div>
                 </div>
@@ -222,7 +225,7 @@
     </main>
     <footer class="text-center mt-5 mb-5">
         <img src="/Img/Logo.png">
-        <div class="text-center text-info p-3 display-5 mt-3">
+        <div class="text-center text-info p-3 mt-3">
             © 2022 Copyright:
             <a class="text-info" href="https://mdbootstrap.com/">MDBootstrap.com</a>
        </div>

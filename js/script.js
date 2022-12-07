@@ -1,12 +1,16 @@
 const createListing = document.getElementById("createListing");
 const viewProfile = document.getElementById("view-profile");
 const viewSignup = document.getElementById("view-signup");
+const showCredit = document.getElementById("credits");
+const pCredit = document.getElementById("p-credits");
 // Checking if user is logged in
 function isLoggedin() {
 const accessToken = localStorage.getItem("accessToken");
 if (!accessToken) {
     createListing.style.display="none";
     viewProfile.style.display="none";
+    showCredit.style.display="none";
+    pCredit.style.display="none";
 } else {
     viewSignup.style.display="none";
 }
@@ -31,7 +35,42 @@ const sortAllBidsDesc = `${APIurl}${auctionEndpoint}${sortEndsDesc}`;
 const deleteEndPoint = '/auction/listings/'; 
 const deleteURL = `${APIurl}${deleteEndPoint}`;
 
+const userName = localStorage.getItem("username");
 
+const profileEndpoint = `/auction/profiles/${userName}`;
+const profileUrl = `${APIurl}${profileEndpoint}`;
+
+
+async function getProfile(url) {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    //console.log(url, options);
+
+    const response = await fetch(url, options);
+    //console.log(response);
+    const profile = await response.json();
+    const myCredits = profile.credits;
+    const loggedIn = localStorage.getItem("accessToken");
+    if (loggedIn) {
+      document.getElementById("credits").innerHTML = `
+       ${myCredits} 
+       `;
+    }
+    //console.log(profile);
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+// Henter all profilinfo
+getProfile(profileUrl);
 
 
 //let AUCTION = [];
@@ -66,7 +105,7 @@ const outElement = document.getElementById("post-container");
 
 //Liste ut alle poster på html siden
 function listData(list, out){
-   // console.log ("List:", list);
+    //console.log ("List:", list);
     out.innerHTML = "";
     let newDivs = "";
 
@@ -189,6 +228,7 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
   
     const sortByNewst = document.getElementById("sortByNewest");
     const sortByOldest = document.getElementById("sortByOldest");
+    const sortByExpired = document.getElementById("sortByExpired");
     sortByNewst.addEventListener("click", sortNewest);
     function sortNewest() {
         getAllAuctions(sortAllBidsAsc);
@@ -197,6 +237,10 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
     function sortOldest() {
         getAllAuctions(sortAllBidsDesc);
     };
+    sortByExpired.addEventListener("click", sortExpired);
+    function sortExpired() {
+       //getAllAuctions(auctionUrl).contains("EXPIRED");
+    }
 
 
 
