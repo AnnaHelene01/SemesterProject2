@@ -162,7 +162,7 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
                  <h4 class="card-title">${auction.title}</h4>
                  <div class="d-flex">
                     <img src="${profileImg}" class="rounded-circle p-2"
-                    height="40" alt="Avatar" loading="lazy" />
+                    height="50" alt="Avatar" loading="lazy" />
                     <h4 class="p-2"> ${auction.seller.name}</h4>
                  </div>
                    <div class="d-flex mt-1 pt-2 justify-content-between">
