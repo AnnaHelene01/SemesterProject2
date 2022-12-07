@@ -70,4 +70,5 @@ sass --watch scss/custom.scss:css/style.css
  - [Inspiration for profile design:](https://bbbootstrap.com/snippets/individual-user-profile-social-network-94176986) 
  - Changed from my original profile design since i got extra time and wasnt quite happy with what i had from the beginning.
  - [Dropdown element:](https://getbootstrap.com/docs/5.2/components/dropdowns/)
+ -[Create new media input:](https://codepen.io/xiaolasse/pen/LYrqgWy?editors=1011)
 
