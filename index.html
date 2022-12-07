@@ -145,6 +145,13 @@
                         <div class="container w-75">
                           <div class="row justify-content-center">
                               <div class="col-lg-10">
+                                <!--<div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-secondary" id="addInput">Add more images</button>   
+                                        <div id="inputFields"></div>
+                                        <button class="btn btn-secondary" id="submitMedia">Submit media url</button>   
+                                    </div>
+                                </div> -->
                                   <div class="row">
                                       <div class="col-md-12">
                                           <p id="titleMsg" class="msg-element"></p>
@@ -163,21 +170,15 @@
                                       <div class="col-md-12">
                                           <p id="mediaMsg" class="msg-element"></p>
                                           <label for="media">Media URL</label>
-                                          <textarea class="form-control" id="postMedia" placeholder="Place a image URL"></textarea>
+                                          <textarea class="form-control media-input" id="postMedia" placeholder="Place a image URL"></textarea>
                                       </div>
                                   </div>
-                                  <!-- <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="button" class="btn btn-secondary mt-4" data-bs-toggle="modal" data-bs-target="#imageModal">
-                                            ADD MORE IMAGES
-                                          </button>
-                                    </div>
-                                  </div> -->
                                   <!--FORSØK-->
                                   <div class="row mt-4">
                                       <div class="col-md-12">
                                             <button class="btn btn-secondary add">Add more images</button>   
-                                       <div class="inp-group"></div>                               
+                                       <div class="inp-group"></div>      
+                                       <button class="btn btn-secondary" id="submitMedia">Submit media url</button>                            
                                      </div>
                                     </div>
                                   <div class="row">
@@ -247,39 +248,6 @@
                 </div>
          </div>
 
- <!-- Modal for adding more images -->
-  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Add more images</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="mt-3">
-                <label for="avatar">Second Media URL</label>
-                <textarea class="form-control form-control-lg m-auto" id="mediaInput"  placeholder="Place a media URL"></textarea>
-                <p class="" id="imageUrlMsg"></p>
-                <div class="text-center">
-                </div>
-            </div>  
-            <div class="mt-5">
-                <label for="avatar">Third Media URL</label>
-                <textarea class="form-control form-control-lg m-auto" id="mediaInput"  placeholder="Place a media URL"></textarea>
-                <p class="" id="imageUrlMsg"></p>
-                <div class="text-center">
-                </div>
-            </div>        
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" id="updateAvatarBtn" class="btn btn-secondary" data-bs-dismiss="modal">ADD IMAGES</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
     </main>
     <footer class="text-center mt-5 mb-5">
         <img src="/Img/Logo.png">
@@ -290,77 +258,3 @@
     </footer>
 </body>
 </html>
-
-
-<!--STATIC CODE FOR THE AUCTION LISTING-->
-  <!--
-         <div class="container mt-5">
-           <div class="row">
-               <div class="col-lg-4 col-md-6">
-                            Example of how i want the cards to look like after fetching info from api:
-                    <a href="shop-specific.html" class="text-decoration-none">
-                     <div class="card">
-                           <img src="./Img/frontpage.jpg" class="card-img-top" alt="...">
-                           <div class="card-body">
-                               <h4 class="card-title">POST title</h4>
-                               <div class="d-flex">
-                                  <h4>Credit:</h4>
-                                  <h4>1000</h4>
-                               </div>
-                               <p class="card-text display-6">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                           </div>
-                           <div class="card-body">
-                                <p class="display-6">@USERNAME</p>
-                           </div>
-                           <div class="card-body">
-                              <p class="display-6">AUCTION TIME HERE</p>
-                           </div>
-                     </div>
-                    </a>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                <a href="shop-specific.html" class="text-decoration-none">
-                    <div class="card">
-                          <img src="./Img/frontpage.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                              <h4 class="card-title">POST title</h4>
-                              <div class="d-flex">
-                                 <h4>Credit:</h4>
-                                 <h4>1000</h4>
-                              </div>
-                              <p class="card-text display-6">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
-                          <div class="card-body">
-                               <p class="display-6">@USERNAME</p>
-                          </div>
-                          <div class="card-body">
-                             <p class="display-6">AUCTION TIME HERE</p>
-                          </div>
-                    </div>
-                   </a>
-               </div>
-
-               <div class="col-lg-4 col-md-6">
-                <a href="shop-specific.html" class="text-decoration-none">
-                    <div class="card">
-                          <img src="./Img/frontpage.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                              <h4 class="card-title">POST title</h4>
-                              <div class="d-flex">
-                                 <h4>Credit:</h4>
-                                 <h4>1000</h4>
-                              </div>
-                              <p class="card-text display-6">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
-                          <div class="card-body">
-                               <p class="display-6">@USERNAME</p>
-                          </div>
-                          <div class="card-body">
-                             <p class="display-6">AUCTION TIME HERE</p>
-                          </div>
-                    </div>
-                   </a>
-               </div>
-               
-           </div>
-         </div> --->

@@ -21,14 +21,19 @@ isLoggedin();
 //TRYING TO ADD MORE IMG INPUTS
 const addBtn = document.querySelector(".add");
 const input = document.querySelector(".inp-group");
+const submitMedia = document.querySelector("#submitMedia");
+let numberOfInputs = 0;
 
 function removeInput() {
     this.parentElement.remove();
 }
 
 function addInput() {
+    numberOfInputs += 1;  
+
     const name = document.createElement("textarea");
-    name.className="form-control";
+    name.className="form-control" + " media-input";
+    name.id=`media-id${numberOfInputs}`;
     name.placeholder="Add new media url";
 
     const btn=document.createElement("a");
@@ -43,9 +48,56 @@ function addInput() {
     input.appendChild(flex);
     flex.appendChild(name);
     flex.appendChild(btn);
+
 }
 
 addBtn.addEventListener("click", addInput);
+
+submitMedia.addEventListener("click", (e)=> {
+    e.preventDefault(); //avoid form to submit
+    const mediaInputs = document.querySelectorAll(".media-input");
+    console.log(mediaInputs);
+    const newMedia = [];
+    for(input of mediaInputs) {
+        newMedia.push(input.value)
+    }
+    console.log(mediaInputs, newMedia);
+});
+
+
+
+//TRY 2 IN ADDING IMG INPUTS
+//let numberOfInputs = 0;
+//const addInputBtn = document.querySelector("#addInput");
+//const inputDiv = document.querySelector("#inputFields");
+
+//addInputBtn.addEventListener("click", (e) => {
+  //  e.preventDefault(); //avoid form to submit
+    //numberOfInputs += 1;  
+    //const input = `
+    //<div class="flex">
+    //<textarea class="form-control newMedia" 
+    //id="newMedia${numberOfInputs}" placeholder="Place a image URL">
+    //</textarea>
+    //<button onclick="removeInput()"class="delete">&times</button>
+    //</div>
+    //`
+    //inputDiv.innerHTML += input;
+//});
+
+//submitMedia.addEventListener("click", (e)=> {
+    //e.preventDefault(); //avoid form to submit
+    //const mediaInputs = document.querySelectorAll(".newMedia");
+    //console.log(mediaInputs);
+    //const newMedia = [];
+    //for(input of mediaInputs) {
+     //   newMedia.push(input.value)
+   // }
+  //  console.log(mediaInputs, newMedia);
+//});
+
+
+
 
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
