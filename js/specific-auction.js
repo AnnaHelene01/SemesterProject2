@@ -3,6 +3,7 @@ const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
 const usersNav = document.getElementById("users-nav");
 const pCredit = document.getElementById("p-credits");
+const signOrReg = document.getElementById("sign-register-links");
 
 // Checking if user is logged in
 function isLoggedin() {
@@ -16,6 +17,7 @@ function isLoggedin() {
    }
    else {
        loginNav.style.display="none";
+       signOrReg.style.display="none";
    }
    }
    
@@ -112,22 +114,17 @@ function listData(auctions, out){
     //console.log("Logger autcion", auctions);
 
     let date = new Date(auctions.endsAt);
-
     let now = new Date().getTime();
-
     let distance = date - now;
-
     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-    
 
     let bidTime = "";
     bidTime = days + "d " + hours + "h " + minutes + "m ";
     
     if (distance < 0) {
-    
       bidTime = "EXPIRED";
     }
 
@@ -147,9 +144,24 @@ function listData(auctions, out){
     ]
   :auctions.seller.avatar;
 
+  // Gets and displayes the highest bid
+    const allBids = auctions.bids;
+    let highestBid = 0;
+  
+    function getHighestBid(allBids) {
+      if (allBids.length !== 0) {
+        highestBid = allBids
+          .map((o) => o.amount)
+          .reduce(function (a, b) {
+            return Math.max(a, b);
+          });
+      }
+    }
+    getHighestBid(allBids);
+
   //Putting some stuff in elements
     const numberOfBids = document.getElementById("number-of-bids")
-    numberOfBids.innerHTML = `Number of bids: ${auctions._count.bids}`;
+    numberOfBids.innerHTML = `Highest bid: ${highestBid}`;
     const auctionAvatar = document.getElementById("auction-avatar");
     auctionAvatar.src = `${profileImg}`
     const auctionSeller = document.getElementById("auction-seller");
@@ -351,7 +363,7 @@ async function createBid(url, data) {
       if (response.status === 200) {
         window.location.reload();
       } else {
-        bidErrorMsg.innerHTML = answer.errors[0].message;
+        bidError.innerHTML = answer.errors[0].message;
       }
       console.log(answer);
     } catch (error) {

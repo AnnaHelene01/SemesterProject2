@@ -33,8 +33,7 @@ let id = params.get("id");
 const getSingleAuctionURL = `${APIurl}${id}`;
 
 const username = localStorage.getItem("username");
-const profileEndpoint = `/auction/profiles/${username}`;
-const profileUrl = `${APIurl}${profileEndpoint}`;
+const profileUrl = `https://api.noroff.dev/api/v1/auction/profiles/${username}`;
 
 async function getProfile(url) {
   try {
@@ -49,8 +48,9 @@ async function getProfile(url) {
     //console.log(url, options);
 
     const response = await fetch(url, options);
-    //console.log(response);
+    console.log("Response:", response);
     const profile = await response.json();
+    console.log("Profile:", profile);
     const myCredits = profile.credits;
     const loggedIn = localStorage.getItem("accessToken");
     if (loggedIn) {
