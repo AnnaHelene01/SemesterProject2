@@ -13,9 +13,17 @@ $heading-font-family: 'Playfair Display', sans-serif;
 $body-font-family: 'Roboto', sans-serif;
 
 
+.add {
+    text-decoration: none;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #8bc34a;
+    font-size: 2rem;
+    color: #fff;
+}
+
 //Putting color on expired and not expired date/ endbid:
-
-
 .expired {
     color: red;
 }

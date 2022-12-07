@@ -18,6 +18,35 @@ if (!accessToken) {
 
 isLoggedin();
 
+//TRYING TO ADD MORE IMG INPUTS
+const addBtn = document.querySelector(".add");
+const input = document.querySelector(".inp-group");
+
+function removeInput() {
+    this.parentElement.remove();
+}
+
+function addInput() {
+    const name = document.createElement("textarea");
+    name.className="form-control";
+    name.placeholder="Add new media url";
+
+    const btn=document.createElement("a");
+    btn.className = "delete";
+    btn.innerHTML = "&times";
+
+    btn.addEventListener("click", removeInput);
+
+    const flex=document.createElement("div");
+    flex.className = "flex";
+
+    input.appendChild(flex);
+    flex.appendChild(name);
+    flex.appendChild(btn);
+}
+
+addBtn.addEventListener("click", addInput);
+
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings"; // POST
@@ -39,7 +68,6 @@ const userName = localStorage.getItem("username");
 
 const profileEndpoint = `/auction/profiles/${userName}`;
 const profileUrl = `${APIurl}${profileEndpoint}`;
-
 
 async function getProfile(url) {
   try {
@@ -68,7 +96,6 @@ async function getProfile(url) {
     console.warn(error);
   }
 }
-
 // Henter all profilinfo
 getProfile(profileUrl);
 

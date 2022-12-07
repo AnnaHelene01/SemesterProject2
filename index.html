@@ -12,6 +12,8 @@
 
     <!--Style css links-->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="media.css">
+
 
     <!--Link to my fonts:-->
        <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +70,7 @@
                             <h2 class="text-success mt-4">Click here to view your profile!</h2>
                         </a>
                     <div class="row">
-                        <div class="m-auto mt-4 w-75">
+                        <div class="m-auto mt-4 mb-5 w-75">
                             <p>World Wide Shop is an auction and bidding site where you can list your products
                               and bid on others listings!
                             </p>
@@ -164,6 +166,20 @@
                                           <textarea class="form-control" id="postMedia" placeholder="Place a image URL"></textarea>
                                       </div>
                                   </div>
+                                  <!-- <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-secondary mt-4" data-bs-toggle="modal" data-bs-target="#imageModal">
+                                            ADD MORE IMAGES
+                                          </button>
+                                    </div>
+                                  </div> -->
+                                  <!--FORSØK-->
+                                  <div class="row mt-4">
+                                      <div class="col-md-12">
+                                            <button class="btn btn-secondary add">Add more images</button>   
+                                       <div class="inp-group"></div>                               
+                                     </div>
+                                    </div>
                                   <div class="row">
                                     <div class="col-md-12">
                                         <p id="endbidMsg" class="msg-element"></p>
@@ -230,6 +246,38 @@
                     <img src="./Img/loader.gif" alt="Loading content" style="width:100px;">
                 </div>
          </div>
+
+ <!-- Modal for adding more images -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add more images</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mt-3">
+                <label for="avatar">Second Media URL</label>
+                <textarea class="form-control form-control-lg m-auto" id="mediaInput"  placeholder="Place a media URL"></textarea>
+                <p class="" id="imageUrlMsg"></p>
+                <div class="text-center">
+                </div>
+            </div>  
+            <div class="mt-5">
+                <label for="avatar">Third Media URL</label>
+                <textarea class="form-control form-control-lg m-auto" id="mediaInput"  placeholder="Place a media URL"></textarea>
+                <p class="" id="imageUrlMsg"></p>
+                <div class="text-center">
+                </div>
+            </div>        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="updateAvatarBtn" class="btn btn-secondary" data-bs-dismiss="modal">ADD IMAGES</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
     </main>

@@ -308,7 +308,7 @@ function listBids(list, second) {
     list.sort(function(a, b){
         return b.amount - a.amount
     })
-    //console.log("Sortert:", list); 
+    console.log("Sortert:", list); 
  
 
     for (let bid of list) {
@@ -316,7 +316,7 @@ function listBids(list, second) {
         <ul class="list-unstyled bidder mt-3">
                           <li class="d-flex justify-content-between align-items-center">
                               <div class="d-flex align-items-center">
-                                  <span>-</span>
+                                  <span>@</span>
                                   <div class="d-flex align-items-center">
                                       <img src="">
                                       <span>${bid.bidderName}</span>
