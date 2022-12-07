@@ -44,14 +44,17 @@ function validateForm() {
      //console.log('Email: ' + submittedEmail);
      let emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
      if (!emailPattern.test(submittedEmail)) {
-     emailMsg.innerHTML += "Please enter a valid email";
+     emailMsg.innerHTML += "Please enter a valid email with only characters, numbers, dot and underscore";
      } 
+     if (submittedEmail.length < 11) {
+        email.Msg.innerHTML = "Your email must be a valid email!"
+     }
 
     
      passwordMsg.innerHTML = "";
     const submittedPassword = password;
     if (submittedPassword.length < 8) {
-        passwordMsg.innerHTML += 'The password must be at least 8 characters long!';
+        passwordMsg.innerHTML += 'Your password must be at least 8 characters long!';
     }
 
       if (emailMsg.innerHTML === "" && passwordMsg.innerHTML === "") {

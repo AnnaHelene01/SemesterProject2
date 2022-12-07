@@ -347,8 +347,11 @@ async function createBid(url, data) {
       const response = await fetch(url, options);
       console.log(response);
       const answer = await response.json();
+      const bidErrorMsg = document.getElementById("bid-error-msg");
       if (response.status === 200) {
         window.location.reload();
+      } else {
+        bidErrorMsg.innerHTML = answer.errors[0].message;
       }
       console.log(answer);
     } catch (error) {
