@@ -2,8 +2,8 @@ const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
 const usersNav = document.getElementById("users-nav");
-const showCredit = document.getElementById("credits");
 const pCredit = document.getElementById("p-credits");
+
 // Checking if user is logged in
 function isLoggedin() {
    const accessToken = localStorage.getItem("accessToken");
@@ -11,8 +11,8 @@ function isLoggedin() {
        logoutNav.style.display="none";
        profileNav.style.display="none";
        usersNav.style.display="none";
-       showCredit.style.display="none";
        pCredit.style.display="none";
+
    }
    else {
        loginNav.style.display="none";
@@ -54,6 +54,13 @@ async function getMyProfileInfo (url) {
         const response = await fetch(url, options); 
         //console.log(response);
         const profile = await response.json()
+        const myCredits = profile.credits;
+        const loggedIn = localStorage.getItem("accessToken");
+        if (loggedIn) {
+          document.getElementById("credits").innerHTML = `
+           ${myCredits} 
+           `;
+        }
         collection = profile
         console.log("Profil: ", profile)
         //console.log("Profil > navn: ", profile.name)

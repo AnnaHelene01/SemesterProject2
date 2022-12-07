@@ -2,8 +2,8 @@ const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
 const usersNav = document.getElementById("users-nav");
-const showCredit = document.getElementById("credits");
 const pCredit = document.getElementById("p-credits");
+
 // Checking if user is logged in
 function isLoggedin() {
    const accessToken = localStorage.getItem("accessToken");
@@ -11,8 +11,8 @@ function isLoggedin() {
        logoutNav.style.display="none";
        profileNav.style.display="none";
        usersNav.style.display="none";
-       showCredit.style.display="none";
        pCredit.style.display="none";
+
    }
    else {
        loginNav.style.display="none";
@@ -31,6 +31,40 @@ let params = new URLSearchParams(document.location.search);
 let id = params.get("id"); 
 
 const getSingleAuctionURL = `${APIurl}${id}`;
+
+const username = localStorage.getItem("username");
+const profileEndpoint = `/auction/profiles/${username}`;
+const profileUrl = `${APIurl}${profileEndpoint}`;
+
+async function getProfile(url) {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    //console.log(url, options);
+
+    const response = await fetch(url, options);
+    //console.log(response);
+    const profile = await response.json();
+    const myCredits = profile.credits;
+    const loggedIn = localStorage.getItem("accessToken");
+    if (loggedIn) {
+      document.getElementById("credits").innerHTML = `
+       ${myCredits} 
+       `;
+    }
+    //console.log(profile);
+  } catch (error) {
+    console.warn(error);
+  }
+}
+// Henter all profilinfo
+getProfile(profileUrl);
 
 //Henter div-en fra html hvor innholdet skal
 const outElement = document.getElementById("container");

@@ -1,7 +1,7 @@
 const createListing = document.getElementById("createListing");
 const viewProfile = document.getElementById("view-profile");
 const viewSignup = document.getElementById("view-signup");
-const showCredit = document.getElementById("credits");
+//const showCredit = document.getElementById("credits");
 const pCredit = document.getElementById("p-credits");
 // Checking if user is logged in
 function isLoggedin() {
@@ -9,7 +9,7 @@ const accessToken = localStorage.getItem("accessToken");
 if (!accessToken) {
     createListing.style.display="none";
     viewProfile.style.display="none";
-    showCredit.style.display="none";
+    //showCredit.style.display="none";
     pCredit.style.display="none";
 } else {
     viewSignup.style.display="none";
