@@ -13,15 +13,29 @@ $heading-font-family: 'Playfair Display', sans-serif;
 $body-font-family: 'Roboto', sans-serif;
 
 
-.add {
+// Classes to media gallery
+.flex {
+    display: flex;
+    gap: 1.5em;
+    margin-bottom: 15px;
+}
+
+.delete {
     text-decoration: none;
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    background: #8bc34a;
-    font-size: 2rem;
+    background: #E3B448;
     color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 40px;
+    height: 35px;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
+
 
 //Putting color on expired and not expired date/ endbid:
 .expired {
