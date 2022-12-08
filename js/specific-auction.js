@@ -128,14 +128,6 @@ function listData(auctions, out){
       bidTime = "EXPIRED";
     }
 
-
-   //Ternyary / placeholder for listing media
-   const productImg =
-   auctions.media.length === 0 || auctions.media == "undefined"
-   ? 
-    "../placeholder.png"
-    : `${auctions.media[0]}`;
-
    //Ternyary / placeholder for avatar
    const profileImg =
    auctions.seller.avatar === "" || auctions.seller.avatar === null
@@ -167,19 +159,79 @@ function listData(auctions, out){
     const auctionSeller = document.getElementById("auction-seller");
     auctionSeller.innerHTML = `@${auctions.seller.name}`;
 
+    //---------------------------------------------------------------------------------------------------------------
+    let placeholder =
+    "../placeholder.png";
+    let mediaList;
+    let pointers;
+    let sliderBtns;
+
+  // MEDIA GALLERY IF MORE IMAGES THAN 0! Placeholder if 0 url. - carousel linked in readme.md
+  if (auctions.media.length <= 0) {
+    sliderBtns = "";
+    pointers = "";
+    mediaList = `<img class="w-100 h-100 img-fluid" src="${placeholder}" alt="Placeholder image" style="object-fit: cover;">`;
+  } else if (auctions.media.length === 1) {
+    sliderBtns = "";
+    pointers = "";
+    mediaList = `
+                <img class="img img-fluid" src="${auctions.media[0]}" alt="Placeholder image">
+        `;
+  } else if (auctions.media.length > 1) {
+    sliderBtns = `
+                <button class="carousel-control-prev" type="button" data-bs-target="#mediaCont" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#mediaCont" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+    `;
+    mediaList = `
+            <div class="carousel-item active h-100">
+                <img class="h-100 w-100 img-fluid" src="${auctions.media[0]}" alt="Product image 0" style="object-fit: cover;">
+            </div>
+        `;
+    pointers = `
+            <button type="button" data-bs-target="#mediaCont" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+    `;
+
+    for (let i = 1; i < auctions.media.length; i++) {
+      console.log(i, auctions.media.length);
+      mediaList += `
+            <div class="carousel-item h-100">
+                <img class="h-100 w-100 img-fluid" src="${auctions.media[i]}" alt="Product image ${i}" style="object-fit: cover;">
+            </div>
+        `;
+      pointers += `
+                <button type="button" data-bs-target="#mediaCont" data-bs-slide-to="${i}" aria-label="Slide ${i}"></button>
+    `;
+    }
+  }
+
+  console.log(mediaList, auctions.media.length);
 
         let newDivs = "";
         newDivs += `
                       <div class="mb-5" id="singleMedia">
-                          <img src="${productImg}" alt="product img" class="img-fluid"> 
+                          <div id="mediaCont" class="carousel slide" data-ride="carousel">
+                           <div class="carousel-indicators">
+                              ${pointers}
+                           </div>
+                           <div class="carousel-inner h-100">
+                              ${mediaList}
+                           </div> 
+                            ${sliderBtns}
+                          </div>
                       </div>
                       <h2 class="my-4">${auctions.title}</h2>
                       <p>${auctions.description}</p>
                       <div class="card-body d-flex">
-                      <p>Auction ends: </p>
-                      <p class=" timer">${bidTime}</p>
-                   </div>
-                   <h2 class="mt-4">Bidders: (${auctions._count.bids})</h2>
+                        <p>Auction ends: </p>
+                        <p class=" timer">${bidTime}</p>
+                     </div>
+                     <h2 class="mt-4">Bidders: (${auctions._count.bids})</h2>
             `;
       const sendBidBtn = document.getElementById("create-bid-btn");
       sendBidBtn.addEventListener("click", validateAndProcess);
@@ -363,7 +415,7 @@ async function createBid(url, data) {
       if (response.status === 200) {
         window.location.reload();
       } else {
-        bidError.innerHTML = answer.errors[0].message;
+        bidErrorMsg.innerHTML = answer.errors[0].message;
       }
       console.log(answer);
     } catch (error) {

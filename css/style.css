@@ -5975,7 +5975,7 @@ textarea.form-control-lg {
   text-align: center;
   background: none;
   border: 0;
-  opacity: 0.5;
+  opacity: 0.9;
   transition: opacity 0.15s ease;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -5990,7 +5990,7 @@ textarea.form-control-lg {
   color: #fff;
   text-decoration: none;
   outline: 0;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .carousel-control-prev {
