@@ -165,7 +165,7 @@ function listData(auctions, out){
     const auctionAvatar = document.getElementById("auction-avatar");
     auctionAvatar.src = `${profileImg}`
     const auctionSeller = document.getElementById("auction-seller");
-    auctionSeller.innerHTML = `${auctions.seller.name}`;
+    auctionSeller.innerHTML = `@${auctions.seller.name}`;
 
 
         let newDivs = "";
