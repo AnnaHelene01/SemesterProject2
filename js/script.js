@@ -18,53 +18,6 @@ if (!accessToken) {
 
 isLoggedin();
 
-//TRYING TO ADD MORE IMG INPUTS
-const addBtn = document.querySelector(".add");
-const input = document.querySelector(".inp-group");
-const submitMedia = document.querySelector("#submitMedia");
-let numberOfInputs = 0;
-
-function removeInput() {
-    this.parentElement.remove();
-}
-
-function addInput() {
-    numberOfInputs += 1;  
-
-    const name = document.createElement("textarea");
-    name.className="form-control" + " media-input";
-    name.id=`media-id${numberOfInputs}`;
-    name.placeholder="Add new media url";
-
-    const btn=document.createElement("a");
-    btn.className = "delete";
-    btn.innerHTML = "&times";
-
-    btn.addEventListener("click", removeInput);
-
-    const flex=document.createElement("div");
-    flex.className = "flex";
-
-    input.appendChild(flex);
-    flex.appendChild(name);
-    flex.appendChild(btn);
-
-}
-
-addBtn.addEventListener("click", addInput);
-
-submitMedia.addEventListener("click", (e)=> {
-    e.preventDefault(); //avoid form to submit
-    const mediaInputs = document.querySelectorAll(".media-input");
-    console.log(mediaInputs);
-    const newMedia = [];
-    for(input of mediaInputs) {
-        newMedia.push(input.value)
-    }
-    console.log(mediaInputs, newMedia);
-});
-
-
 
 //TRY 2 IN ADDING IMG INPUTS
 //let numberOfInputs = 0;
@@ -349,12 +302,12 @@ async function createNewAuction (url, data) {
             },
             body: JSON.stringify(data),
         };
-        console.log("Url:", url,"Data:", data,"Options:", options);
+       // console.log("Url:", url,"Data:", data,"Options:", options);
 
         const response = await fetch(url, options); 
-        console.log(response);
+        //console.log(response);
         const answer = await response.json();
-        console.log("Answer", answer);
+        //console.log("Answer", answer);
         if (answer.id) {
             window.location = "./index.html";
           }
@@ -362,6 +315,41 @@ async function createNewAuction (url, data) {
         console.warn(error);
     }
 }
+
+//TRYING TO ADD MORE IMG INPUTS
+const addBtn = document.querySelector(".add");
+const input = document.querySelector(".inp-group");
+const submitMedia = document.querySelector("#submitMedia");
+let numberOfInputs = 0;
+
+function removeInput() {
+    this.parentElement.remove();
+}
+
+function addInput() {
+    numberOfInputs += 1;  
+
+    const name = document.createElement("textarea");
+    name.className="form-control" + " media-input";
+    name.id=`media-id${numberOfInputs}`;
+    name.placeholder="Add new media url";
+
+    const btn=document.createElement("a");
+    btn.className = "delete";
+    btn.innerHTML = "&times";
+
+    btn.addEventListener("click", removeInput);
+
+    const flex=document.createElement("div");
+    flex.className = "flex";
+
+    input.appendChild(flex);
+    flex.appendChild(name);
+    flex.appendChild(btn);
+
+}
+
+addBtn.addEventListener("click", addInput);
 
 
 //Hente p taggene for å skrive ut beskjed ved validering
@@ -377,23 +365,26 @@ const endbidMsg = document.getElementById("endbidMsg");
 submitPost.addEventListener('click', validateFormAndProcess);
 function validateFormAndProcess(event) {
     event.preventDefault();
+
+    const mediaInputs = document.querySelectorAll(".media-input");
+   // console.log("MediaInputs:", mediaInputs);
+
     const title = postTitle.value.trim();
     const description = postContent.value.trim();
-    let media = [`${postMedia.value.trim()}`]
 
-    if (media[0] === "") {
-        media = [
-            "https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true"
-        ]
+   let media = [];
+   for(inputMedia of mediaInputs) {
+    if (inputMedia.value) media.push(inputMedia.value);
     }
+  // console.log("Mediainputs, value:", mediaInputs, media);
+  
+
+  if (media.length === 0) {
+    media.push("https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true");
+  }
+
 
     const endsAt = `${endsBid.value.trim()}:00.000Z`;
-
-
-    //var dateParts = listingDate.value.trim().split("-");
-    //var deadline = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    //var endsAt = deadline.toISOString();
-    //console.log(endsAt);
 
     if (media.value === []) 
     media = 
