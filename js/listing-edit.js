@@ -125,11 +125,20 @@ function listBids(bids, out) {
 async function updatePost (id) {
     const title = editTitle.value.trim();
     const description = editContent.value.trim();
-    let media = [`${editMedia.value.trim()}`];
-    if (media === "") {
-    media = ["https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true"];
-    }
+    //let media = [`${editMedia.value.trim()}`];
+   // if (media === "") {
+   // media = ["https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true"];
+   // }
     //console.log(media)
+
+    let media = [];
+    for(inputMedia of mediaInputs) {
+      if (inputMedia.value) media.push(inputMedia.value);
+     }
+  // console.log("Mediainputs, value:", mediaInputs, media);
+  if (media.length === 0) {
+    media.push("https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true");
+  }
 
     const data = {
         title: title,

@@ -42,6 +42,10 @@ $carousel-control-hover-opacity: 1;
     cursor: pointer;
 }
 
+//#singleMedia {
+//    max-height: 500px;
+//}
+
 
 //Putting color on expired and not expired date/ endbid:
 .expired {
@@ -177,6 +181,11 @@ input::placeholder {
 /* PROFILE*/
 .profile-image {
     margin-bottom: -50px;
+}
+
+/* USER PAGE*/
+.user-listing {
+    margin-top: 80px;
 }
 
 @import "../node_modules/bootstrap/scss/bootstrap";

@@ -19,39 +19,6 @@ if (!accessToken) {
 isLoggedin();
 
 
-//TRY 2 IN ADDING IMG INPUTS
-//let numberOfInputs = 0;
-//const addInputBtn = document.querySelector("#addInput");
-//const inputDiv = document.querySelector("#inputFields");
-
-//addInputBtn.addEventListener("click", (e) => {
-  //  e.preventDefault(); //avoid form to submit
-    //numberOfInputs += 1;  
-    //const input = `
-    //<div class="flex">
-    //<textarea class="form-control newMedia" 
-    //id="newMedia${numberOfInputs}" placeholder="Place a image URL">
-    //</textarea>
-    //<button onclick="removeInput()"class="delete">&times</button>
-    //</div>
-    //`
-    //inputDiv.innerHTML += input;
-//});
-
-//submitMedia.addEventListener("click", (e)=> {
-    //e.preventDefault(); //avoid form to submit
-    //const mediaInputs = document.querySelectorAll(".newMedia");
-    //console.log(mediaInputs);
-    //const newMedia = [];
-    //for(input of mediaInputs) {
-     //   newMedia.push(input.value)
-   // }
-  //  console.log(mediaInputs, newMedia);
-//});
-
-
-
-
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings"; // POST
@@ -377,7 +344,7 @@ function validateFormAndProcess(event) {
     if (inputMedia.value) media.push(inputMedia.value);
     }
   // console.log("Mediainputs, value:", mediaInputs, media);
-  
+   
 
   if (media.length === 0) {
     media.push("https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true");

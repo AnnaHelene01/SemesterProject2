@@ -80,7 +80,7 @@ async function getAllUsers (url) {
         const users = await response.json();
         //console.log("Users:", users);
         collection = users;
-        console.log("Collection:", collection);
+        //console.log("Collection:", collection);
         listData(users, outElement)
     } catch(error) {
         console.warn(error);

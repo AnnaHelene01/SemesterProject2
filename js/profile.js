@@ -62,7 +62,7 @@ async function getMyProfileInfo (url) {
            `;
         }
         collection = profile
-        console.log("Profil: ", profile)
+        //console.log("Profil: ", profile)
         //console.log("Profil > navn: ", profile.name)
         //console.log("Profil > epost: ", profile.email)
         //console.log("Collection:", collection);
@@ -158,7 +158,7 @@ function listListings(list, second) {
         <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
              <a href="shop-specific.html?id=${post.id}" class="text-decoration-none">
                     <div class="card ">
-                        <img src="${post.media}" class="card-img-top card-img" alt="...">
+                        <img src="${post.media[0]}" class="card-img-top card-img" alt="...">
                         <div class="card-body">
                             <h4 class="card-title">${post.title}</h4>
                             <p class="card-text">${post.description}</p>
@@ -199,7 +199,7 @@ async function getMyBids(url) {
       const response = await fetch(url, options);
       //console.log(response);
       const listings = await response.json();
-      console.log(listings);
+      //console.log(listings);
       listBids(listings, bidElement);
     } catch (error) {
       console.warn(error);
@@ -219,7 +219,7 @@ async function getMyBids(url) {
           : [
               "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg",
             ];
-      console.log(listing);
+      //console.log(listing);
   
       // sets time
       const date = new Date(listing.listing.endsAt).getTime();
@@ -271,12 +271,12 @@ async function getMyBids(url) {
 const updateAvatarMsg = document.getElementById("updateAvatarMsg");
 const updateAvatarInput = document.getElementById("updateAvatarInput");
 const updateAvatarBtn = document.getElementById("updateAvatarBtn");
-console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
+//console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
 
 async function updateAvatar(url, data) {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      console.log(accessToken);
+      //console.log(accessToken);
       const options = {
         method: "PUT",
         headers: {

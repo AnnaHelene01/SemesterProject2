@@ -170,7 +170,7 @@ function listData(auctions, out){
   if (auctions.media.length <= 0) {
     sliderBtns = "";
     pointers = "";
-    mediaList = `<img class="w-100 h-100 img-fluid" src="${placeholder}" alt="Placeholder image" style="object-fit: cover;">`;
+    mediaList = `<img class="img-fluid" src="${placeholder}" alt="Placeholder image" style="object-fit: cover;">`;
   } else if (auctions.media.length === 1) {
     sliderBtns = "";
     pointers = "";
@@ -189,8 +189,8 @@ function listData(auctions, out){
                 </button>
     `;
     mediaList = `
-            <div class="carousel-item active h-100">
-                <img class="h-100 w-100 img-fluid" src="${auctions.media[0]}" alt="Product image 0" style="object-fit: cover;">
+            <div class="carousel-item active">
+                <img class="img-fluid" src="${auctions.media[0]}" alt="Product image 0" style="object-fit: cover;">
             </div>
         `;
     pointers = `
@@ -198,10 +198,10 @@ function listData(auctions, out){
     `;
 
     for (let i = 1; i < auctions.media.length; i++) {
-      console.log(i, auctions.media.length);
+      //console.log(i, auctions.media.length);
       mediaList += `
-            <div class="carousel-item h-100">
-                <img class="h-100 w-100 img-fluid" src="${auctions.media[i]}" alt="Product image ${i}" style="object-fit: cover;">
+            <div class="carousel-item">
+                <img class="img-fluid" src="${auctions.media[i]}" alt="Product image ${i}" style="object-fit: cover;">
             </div>
         `;
       pointers += `
@@ -210,16 +210,16 @@ function listData(auctions, out){
     }
   }
 
-  console.log(mediaList, auctions.media.length);
+  //console.log(mediaList, auctions.media.length);
 
         let newDivs = "";
         newDivs += `
-                      <div class="mb-5" id="singleMedia">
-                          <div id="mediaCont" class="carousel slide" data-ride="carousel">
+                      <div class="mb-5 col-lg-6 col-md-8" id="singleMedia">
+                          <div id="mediaCont" class="carousel slide" data-ride="carousel" >
                            <div class="carousel-indicators">
                               ${pointers}
                            </div>
-                           <div class="carousel-inner h-100">
+                           <div class="carousel-inner h-100 w-100">
                               ${mediaList}
                            </div> 
                             ${sliderBtns}
@@ -235,13 +235,9 @@ function listData(auctions, out){
             `;
       const sendBidBtn = document.getElementById("create-bid-btn");
       sendBidBtn.addEventListener("click", validateAndProcess);
-
-
-          //const singleMedia = document.getElementById("singleMedia");
-          //singleMedia += `<img src="${auctions.media}">`
-          //singleMedia.innerHTML = singleMedia
     
     out.innerHTML = newDivs;
+
 
     //TIMER
     const timer = document.querySelector(".timer");
@@ -261,7 +257,7 @@ function listData(auctions, out){
   const myOwnBid = document.getElementById("bid-my-own");
   const bidNotLoggedIn = document.getElementById("bid-not-loggedin");
   const bidExpired = document.getElementById("bid-expired");
-  console.log(makeBid, myOwnBid, bidNotLoggedIn, bidExpired);
+  //console.log(makeBid, myOwnBid, bidNotLoggedIn, bidExpired);
 
   function displayBid() {
     const accessToken = localStorage.getItem("accessToken");
@@ -372,7 +368,7 @@ function listBids(list, second) {
     list.sort(function(a, b){
         return b.amount - a.amount
     })
-    console.log("Sortert:", list); 
+    //console.log("Sortert:", list); 
  
 
     for (let bid of list) {
@@ -409,7 +405,7 @@ async function createBid(url, data) {
       };
       //console.log(url, data, options);
       const response = await fetch(url, options);
-      console.log(response);
+      //console.log(response);
       const answer = await response.json();
       const bidErrorMsg = document.getElementById("bid-error-msg");
       if (response.status === 200) {
@@ -428,16 +424,16 @@ function validateAndProcess(event) {
     event.preventDefault();
     const bidInput = document.getElementById("create-bid-input").value.trim();
     const bidInputMsg = document.getElementById("create-bid-msg");
-    console.log("Bid elements:", bidInput, bidInputMsg);
+    //console.log("Bid elements:", bidInput, bidInputMsg);
     const bidToSend = parseInt(bidInput);
-    console.log("bidToSend:", bidToSend);
+    //console.log("bidToSend:", bidToSend);
   
     let bidData = {
       amount: bidToSend,
     };
   
     if (!isNaN(bidToSend)) {
-      console.log("value is a number");
+      //console.log("value is a number");
     } else {
       bidInputMsg.innerHTML = "Bid has to be a number.";
     }
