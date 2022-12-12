@@ -73,23 +73,23 @@ in vscode terminal.
 
 I will be using bootstrap as CSS-framework for this project. In order to clone this code and make it work you should run npm install bootstrap@latest vscode terminal.
 
-User can scroll / watch products without being logged in.
-User can search for products and sort by latest first or ending soon.
-User can register a new user, with given 1000 credits.
-User can log in to site, which gives the user more accessibility on the site.
-User gets feedback if something isnt working as it should, like errorMessages.
-Logged in user can see its profile, listings and listings they have bid on.
-Logged in user can change its avatar image.
-Logged in user can see its total credit amount.
-Logged in user can create a new listing with title, description, one or more images and a deadline.
-Logged in user can prewatch the listing in a preview container before actually posting it.
-Logged in user can update and delete its own listing.
-Logged in user can bid on another users listing.
-Logged in user can see other biddings on a listing, sorted with highest bid first.
-User can scroll through a media slider if there are more than 1 picture of the product.
-When a user bids on a listing, it affects the credit-amount.
-Logged in user can see list of other users, and also search for one. 
-Logged in user can log out.
+ - User can scroll / watch products without being logged in.
+ - User can search for products and sort by latest first or ending soon.
+ - User can register a new user, with given 1000 credits.
+ - User can log in to site, which gives the user more accessibility on the site.
+ - User gets feedback if something isnt working as it should, like errorMessages.
+ - Logged in user can see its profile, listings and listings they have bid on.
+ - Logged in user can change its avatar image.
+ - Logged in user can see its total credit amount.
+ - Logged in user can create a new listing with title, description, one or more images and a deadline.
+ - Logged in user can prewatch the listing in a preview container before actually posting it.
+ - Logged in user can update and delete its own listing.
+ - Logged in user can bid on another users listing.
+ - Logged in user can see other biddings on a listing, sorted with highest bid first.
+ - User can scroll through a media slider if there are more than 1 picture of the product.
+ - When a user bids on a listing, it affects the credit-amount.
+ - Logged in user can see list of other users, and also search for one. 
+ - Logged in user can log out.
 
 
 
