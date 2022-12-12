@@ -214,7 +214,7 @@ function listData(auctions, out){
 
         let newDivs = "";
         newDivs += `
-                      <div class="mb-5 col-lg-6 col-md-8" id="singleMedia">
+                      <div class="mb-5 col-lg-6 col-md-8 w-100" id="singleMedia">
                           <div id="mediaCont" class="carousel slide" data-ride="carousel" >
                            <div class="carousel-indicators">
                               ${pointers}
