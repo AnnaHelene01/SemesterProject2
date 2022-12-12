@@ -48,9 +48,9 @@ async function getProfile(url) {
     //console.log(url, options);
 
     const response = await fetch(url, options);
-    console.log("Response:", response);
+   // console.log("Response:", response);
     const profile = await response.json();
-    console.log("Profile:", profile);
+    //console.log("Profile:", profile);
     const myCredits = profile.credits;
     const loggedIn = localStorage.getItem("accessToken");
     if (loggedIn) {
@@ -99,6 +99,7 @@ const editTitle = document.getElementById("editTitle");
 const editContent = document.getElementById("editContent");
 const editMedia = document.getElementById("editMedia");
 const editBtn = document.getElementById("submitEdit");
+const divEditMedia = document.getElementById("divEditMedia");
 //console.log("elementer:", welcome, editTitle, editContent, editMedia, editBtn);
 
 //LISTE UT
@@ -106,7 +107,12 @@ function listBids(bids, out) {
     //console.log("List:", bids);
     editTitle.innerHTML = `${bids.title}`;
     editContent.innerHTML = `${bids.description}`;
-    editMedia.innerHTML = `${bids.media}`;  
+    //editMedia.innerHTML = `${bids.media}`;  
+    for (let i = 0; i < bids.media.length; i++) {
+      divEditMedia.innerHTML += `
+    <textarea class="form-control text-info update-media-url">${bids.media[i]}</textarea><br>
+    `;
+    }
 
     let date = new Date(bids.endsAt);
     let ourDate = date.toLocaleString("default", {
@@ -125,25 +131,25 @@ function listBids(bids, out) {
 async function updatePost (id) {
     const title = editTitle.value.trim();
     const description = editContent.value.trim();
-    //let media = [`${editMedia.value.trim()}`];
-   // if (media === "") {
-   // media = ["https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true"];
-   // }
-    //console.log(media)
 
-    let media = [];
-    for(inputMedia of mediaInputs) {
-      if (inputMedia.value) media.push(inputMedia.value);
+    let updateMedia = [];
+
+    const updateImgInputs =
+    document.getElementsByClassName("update-media-url");
+
+    for(let inputMedia of updateImgInputs) {
+      updateMedia.push(inputMedia.value.trim())
      }
-  // console.log("Mediainputs, value:", mediaInputs, media);
-  if (media.length === 0) {
-    media.push("https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true");
+console.log("updateMedia:", updateMedia);
+
+  if (updateMedia.length === 0) {
+    updateMedia.push("https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true");
   }
 
     const data = {
         title: title,
         description: description,
-        media: media,
+        media: updateMedia,
        };
 
        
@@ -164,18 +170,19 @@ async function updatePost (id) {
         //console.log("Update response:", response);
         const answer = await response.json();
         //console.log("Update answer:", answer);
+        const updateErrorMsg = document.getElementById("updateErrorMsg");
         if (response.status === 200) {
-            window.location = "../index.html";
-          }     } catch(error) {
+            window.location.reload();
+          }   else {
+            updateErrorMsg.innerHTML = answer.errors[0].message;  
+          }  
+        } catch(error) {
          console.warn(error);
     }
 }
 
 editBtn.addEventListener("click", () => {
-    //console.log(id);
     updatePost(id);
-    //window.location = `./main.html`;
-    //console.log(title.value(), body.value(), media.value());
 })
 
 
@@ -197,8 +204,8 @@ async function preview() {
                 <div class="col-sm-12">
                   <div class="card mt-5">
                     <img src="${
-                        editMedia.value !== ""
-                          ? editMedia.value
+                        editMedia[0].value !== ""
+                          ? editMedia[0].value
                           : "../placeholder.png"
                       }" class="card-img-top card-img" alt="..">
            
