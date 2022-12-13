@@ -62,8 +62,8 @@
             <div class="bg-white rounded"> 
                 <div class=" pt-0" width="100"> 
                     <div class="align-items-end bg-primary d-flex flex-row p-4"> 
-                            <div class="col-md-6 profile-image">
-                                <img src="" id="avatarImg" alt="..." width="150" class="rounded mb-2 img-thumbnail">
+                            <div class="col-md-6 px-2 profile-image">
+                                <img src="" id="avatarImg" alt="..." width="120" class="rounded mb-2 img">
                             </div>
                             <div id="post-container" class="col-md-6 col-sm-12 form-group text-start">
                                
@@ -72,7 +72,7 @@
                     </div> 
                 </div> 
                 <div class="bg-light px-4 py-3 d-flex text-center"> 
-                    <div class="text-center">
+                    <div class="text-center px-2">
                         <button type="button" class="btn btn-secondary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             EDIT AVATAR
                           </button>
@@ -100,6 +100,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-3">
                          <h3 class="mb-0">My listings</h3>
                     </div> 
+                    <p id="noPostMsg" class="text-success"></p>
                     <div class="row"> 
                         <div id="listing-container" class="row">
                             <img src="../Img/loader.gif" alt="Loading content" style="width:100px;">
@@ -155,37 +156,3 @@
     </footer>
 </body>
 </html>
-
-
-<!---   Avatar and profile info - section
-       LOGGED IN SECTION
-       <div id="loggedin-profile">
-        <div class="container border p-5">
-            <div class="row">
-                <div class="col-lg-6 text-center">
-                    <img src="" id="avatarImg" class="img-fluid rounded-circle w-50">
-                    <div class="col-md-12 form-group display-6 text-start">
-                        <div class="text-center mt-5">
-                            <label for="avatar">Avatar URL</label>
-                            <textarea class="form-control form-control-lg m-auto" id="updateAvatarInput" style="max-width:164px" placeholder="Place a avatar URL"></textarea>
-                            <p class="display-6" id="updateAvatarMsg"></p>
-                            <div class="text-center">
-                                <input type="submit" id="updateAvatarBtn" style="max-width:200px" value="CHANGE AVATAR" class="btn btn-secondary btn-lg px-4 mt-3">
-                            </div>
-                        </div>
-                    </div>   
-                </div>
-                <div id="post-container" class="col-lg-6"></div>
-             </div>
-            </div>
-           <div id="post-container"></div>
-           My listings - section  
-           <div class="container border p-5">
-            <div class="row">
-                <h2 class="text-center">MY SELLINGS</h2>
-                    <div id="listing-container" class="col-12 mx-auto">
-                        <img src="../Img/loader.gif" alt="Loading content" style="width:100px;">
-                    </div>
-            </div>
-           </div>
-       </div> -->

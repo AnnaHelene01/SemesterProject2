@@ -24,14 +24,12 @@ function isLoggedin() {
 
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1/auction/listings/";
-
 const extraFlag = "?_seller=true&_bids=true"
 
 let params = new URLSearchParams(document.location.search);
 let id = params.get("id"); 
 
 const getSingleAuctionURL = `${APIurl}${id}`;
-
 const username = localStorage.getItem("username");
 const profileUrl = `https://api.noroff.dev/api/v1/auction/profiles/${username}`;
 
@@ -65,6 +63,8 @@ async function getProfile(url) {
 }
 // Henter all profilinfo
 getProfile(profileUrl);
+
+
 
 //Henter div-en fra html hvor innholdet skal
 const outElement = document.getElementById("container");
@@ -104,10 +104,9 @@ const divEditMedia = document.getElementById("divEditMedia");
 
 //LISTE UT
 function listBids(bids, out) {
-    //console.log("List:", bids);
     editTitle.innerHTML = `${bids.title}`;
     editContent.innerHTML = `${bids.description}`;
-    //editMedia.innerHTML = `${bids.media}`;  
+    //Get media inputs (based on how many where created!)
     for (let i = 0; i < bids.media.length; i++) {
       divEditMedia.innerHTML += `
     <textarea class="form-control text-info update-media-url">${bids.media[i]}</textarea><br>
@@ -133,7 +132,7 @@ function listBids(bids, out) {
     let pointers;
     let sliderBtns;
   
-  // MEDIA GALLERY IF MORE IMAGES THAN 0! Placeholder if 0 url. - carousel linked in readme.md
+  // MEDIA GALLERY IF MORE IMAGES THAN 0! Placeholder if 0 url - carousel linked in readme.md
   if (bids.media.length <= 0) {
     sliderBtns = "";
     pointers = "";
@@ -183,7 +182,7 @@ const previewTitle = document.getElementById("preview-title");
 const previewImg = document.getElementById("preview-img");
 const previewDescription = document.getElementById("preview-description");
 
-// Preview of creating auction:
+// Preview of updating auction:
 editTitle.addEventListener("keyup", preview);
 divEditMedia.addEventListener("keyup", preview);
 editContent.addEventListener("keyup", preview)
@@ -281,13 +280,4 @@ console.log("updateMedia:", updateMedia);
 editBtn.addEventListener("click", () => {
     updatePost(id);
 })
-
-
-
-
-
-  //---------------------------------------------------------------------------------------------------------------
-
-
-//console.log(mediaList, auctions.media.length);
 

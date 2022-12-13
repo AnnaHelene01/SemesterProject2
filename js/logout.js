@@ -25,6 +25,5 @@ const logOut = document.getElementById("logout-nav");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("username");
     window.location='../index.html';
-
    })
 

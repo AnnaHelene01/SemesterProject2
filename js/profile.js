@@ -39,6 +39,7 @@ const profileBidsUrl = `${APIurl}/auction/profiles/${username}/bids?_listings=tr
 
 let collection = [];
 
+const noPostMsg = document.getElementById("noPostMsg");
 //-------------------------------------------------------------------------------------------------------
 async function getMyProfileInfo (url) {
     try {
@@ -80,11 +81,18 @@ const outElement = document.getElementById("post-container");
 
 //Liste ut mine poster på html siden
 function listData(list, out){
-    //console.log("List: ", list)
-    //console.log("Out: ", out)
+   console.log("List: ", list)
+   //console.log("Out: ", out)
     out.innerHTML = "";
+    
+    const profileImage = 
+    list.avatar != ""
+    ? `${list.avatar}`
+    :"https://github.com/AnnaHelene01/SemesterProject2/blob/main/Img/60111.jpg?raw=true";
+
     const avatarImg = document.getElementById("avatarImg");
-    avatarImg.src = `${list.avatar}`
+    avatarImg.src = `${profileImage}`;
+    console.log(profileImage);
 
     const listCredits = document.getElementById("list-credits");
     listCredits.innerHTML = `${list.credits}`
@@ -102,16 +110,18 @@ function listData(list, out){
   
         `;
         out.innerHTML = profileDivs;
+
+
+        if(list.listings.length === 0) {
+          //console.log("You have no posts yet!");
+          noPostMsg.innerHTML = "You have no posts yet!";
+      }
     }
-       // if(list.length == 0) {
-            //console.log("You have no posts yet!");
-         //   const noPostMsg = document.getElementById("noPostMsg");
-           // noPostMsg.innerHTML = "You have no posts yet!";
-        //}
+        
 
 
 //-------------------------------------------------------------------------------------------------------
-//HENTE MINE POSTER
+//HENTE MINE POSTER -list out my own posts
 async function getMyListings (url) {
     try {
         const accessToken = localStorage.getItem('accessToken'); 
@@ -178,7 +188,6 @@ function listListings(list, second) {
 //-------------------------------------------------------------------------------------------------------
 // List out all the posts the user has bid on
 const bidElement = document.getElementById("listing-bids");
-
 
 async function getMyBids(url) {
     try {
