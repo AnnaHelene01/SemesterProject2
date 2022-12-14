@@ -1,3 +1,5 @@
+// ------- UPDATE LISTING PAGE --------
+
 const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
@@ -33,6 +35,7 @@ const getSingleAuctionURL = `${APIurl}${id}`;
 const username = localStorage.getItem("username");
 const profileUrl = `https://api.noroff.dev/api/v1/auction/profiles/${username}`;
 
+//Get Profile info - to get users Credits!
 async function getProfile(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -66,7 +69,7 @@ getProfile(profileUrl);
 
 
 
-//Henter div-en fra html hvor innholdet skal
+//Div for listing out 
 const outElement = document.getElementById("container");
 
 //GET BIDS AND LIST OUT
@@ -93,7 +96,7 @@ async function getSingleListing (url) {
 
 getSingleListing(getSingleAuctionURL);
 
-//Hente edit elementer
+//Get EDIT elements
 const welcome = localStorage.getItem('username');
 const editTitle = document.getElementById("editTitle");
 const editContent = document.getElementById("editContent");
@@ -102,7 +105,7 @@ const editBtn = document.getElementById("submitEdit");
 const divEditMedia = document.getElementById("divEditMedia");
 //console.log("elementer:", welcome, editTitle, editContent, editMedia, editBtn);
 
-//LISTE UT
+//LIST OUT
 function listBids(bids, out) {
     editTitle.innerHTML = `${bids.title}`;
     editContent.innerHTML = `${bids.description}`;
@@ -176,7 +179,8 @@ function listBids(bids, out) {
     }
   } 
   
-  // Preview elements:
+
+  // Get Preview elements:
 let previewContainer = document.getElementById("preview-container");
 const previewTitle = document.getElementById("preview-title");
 const previewImg = document.getElementById("preview-img");
@@ -188,7 +192,7 @@ divEditMedia.addEventListener("keyup", preview);
 editContent.addEventListener("keyup", preview)
 
 async function preview() {
-
+//List out the preview in a carousel IF media array is more than 1
   previewContainer.innerHTML = "";
   previewContainer.innerHTML = `
                     <div class="col-sm-12" id="singleMedia">
@@ -223,7 +227,7 @@ async function preview() {
 }
 }
 
-
+//Update function ->
 async function updatePost (id) {
     const title = editTitle.value.trim();
     const description = editContent.value.trim();

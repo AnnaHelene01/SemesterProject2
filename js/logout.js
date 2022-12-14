@@ -1,3 +1,4 @@
+// ------ LOG OUT NAV BTN - script --------
 const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");

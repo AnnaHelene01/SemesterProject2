@@ -1,3 +1,4 @@
+// ---------------- USERS PAGE --------------------
 const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
@@ -23,13 +24,12 @@ function isLoggedin() {
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/profiles"; // POST
-
 const usersUrl = `${APIurl}${auctionEndpoint}`;
-
 const username = localStorage.getItem("username");
 const profileEndpoint = `/auction/profiles/${username}`;
 const profileUrl = `${APIurl}${profileEndpoint}`;
 
+//Get profile info to list out Credits
 async function getProfile(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -57,11 +57,10 @@ async function getProfile(url) {
     console.warn(error);
   }
 }
-// Henter all profilinfo
 getProfile(profileUrl);
 
-
-//let AUCTION = [];
+//----------------------------------------------------------------------------------------------------------
+//Get all users and list out
 let collection = [];
 
 async function getAllUsers (url) {
@@ -96,8 +95,6 @@ function listData(list, out){
     //console.log ("List:", list);
     out.innerHTML = "";
     let newDivs = "";
-
-  
 
     for (let user of list) {
         const profileImg =

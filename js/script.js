@@ -1,3 +1,4 @@
+// ------- Script for main page ----------
 const createListing = document.getElementById("createListing");
 const viewProfile = document.getElementById("view-profile");
 const viewSignup = document.getElementById("view-signup");
@@ -23,7 +24,6 @@ isLoggedin();
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings"; // POST
 const extraFlag = "?_seller=true&_bids=true&sort=created&sortOrder=desc"
-//?sort=title&sortOrder=asc
 const auctionUrl = `${APIurl}${auctionEndpoint}${extraFlag}`;
 const username = localStorage.getItem('username');
 
@@ -41,6 +41,7 @@ const userName = localStorage.getItem("username");
 const profileEndpoint = `/auction/profiles/${userName}`;
 const profileUrl = `${APIurl}${profileEndpoint}`;
 
+//Get profile info to list out Credits
 async function getProfile(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -72,7 +73,8 @@ async function getProfile(url) {
 getProfile(profileUrl);
 
 
-//let AUCTION = [];
+//----------------------------------------------------------------------------------
+//Get all auctions and list out
 let collection = [];
 
 async function getAllAuctions (url) {
@@ -109,8 +111,6 @@ function listData(list, out){
     let newDivs = "";
 
     for (let auction of list) {
-    //console.log ("Auction Media: ", auction.media[0], auction.media.length);
-
    //Ternyary for listing media
    const productImg =
    auction.media.length === 0 || auction.media == "undefined"
@@ -148,9 +148,6 @@ function listData(list, out){
 let dateWrite = new Date(auction.endsAt);
 let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
 
-
-
-
         newDivs += `
         <div class="col-lg-4 col-md-6 col-sm-12">
             <a href="./public/shop-specific.html?id=${auction.id}" class="text-decoration-none"> 
@@ -179,13 +176,11 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
                  </div>
                </div>
           </div>`;
-          //console.log("Auction media:", auction.media[0]);
-          //console.log(auction.seller.avatar);
     }
     out.innerHTML = newDivs;
 
-           //TIMER
-           const timer = document.getElementsByClassName("timer");
+        //TIMER
+        const timer = document.getElementsByClassName("timer");
         for(let i = 0; i < timer.length; i++) {
 
         let bidEnding = timer[i].innerHTML;
@@ -199,7 +194,7 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
 }
 
 
-      //Filtrere posts / search input
+      //Filter posts / search input
       const inputField = document.getElementById("filter-auction");
       //console.log(inputField);
       inputField.addEventListener("keyup", filterAuctions);
@@ -209,9 +204,6 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
           //console.log(filterAuctions);
   
           const filtered = collection.filter((auction)=> {
-              //console.log(post.author.name, filterPosts);
-              //console.log(post.author.name.toUpperCase().indexOf(filterPosts.toUpperCase()) > -1);
-              //console.log(collection.length);
               const author = auction.seller.name.toLowerCase();
               const title = auction.title.toLowerCase();
               const published = auction.created.toString();
@@ -224,7 +216,7 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
   
           listData(filtered, outElement);
       }
-  
+  //Sort by function for sort btn
     const sortByNewst = document.getElementById("sortByNewest");
     const sortByOldest = document.getElementById("sortByOldest");
     const sortByExpired = document.getElementById("sortByExpired");
@@ -236,16 +228,10 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
     function sortOldest() {
         getAllAuctions(sortAllBidsDesc);
     };
-    sortByExpired.addEventListener("click", sortExpired);
-    function sortExpired() {
-       //getAllAuctions(auctionUrl).contains("EXPIRED");
-    }
-
-
 
 
 //-----------------------------------------------------  
-//Hente create post verdier:
+//Get create post elements:
 const postTitle = document.getElementById("postTitle");
 const postContent = document.getElementById("postContent");
 const postMedia = document.getElementById("postMedia");
@@ -283,7 +269,7 @@ async function createNewAuction (url, data) {
     }
 }
 
-//TRYING TO ADD MORE IMG INPUTS
+//Media gallery - creating more inputs with a btn
 const addBtn = document.querySelector(".add");
 const input = document.querySelector(".inp-group");
 const submitMedia = document.querySelector("#submitMedia");
@@ -319,7 +305,7 @@ function addInput() {
 addBtn.addEventListener("click", addInput);
 
 
-//Hente p taggene for å skrive ut beskjed ved validering
+//Get validation elements
 const titleMsg = document.getElementById("titleMsg");
 const bodyMsg = document.getElementById("bodyMsg");
 const mediaMsg = document.getElementById("mediaMsg");
@@ -335,7 +321,6 @@ function validateFormAndProcess(event) {
 
     const mediaInputs = document.querySelectorAll(".media-input");
    // console.log("MediaInputs:", mediaInputs);
-
     const title = postTitle.value.trim();
     const description = postContent.value.trim();
 
@@ -344,12 +329,9 @@ function validateFormAndProcess(event) {
     if (inputMedia.value) media.push(inputMedia.value);
     }
   // console.log("Mediainputs, value:", mediaInputs, media);
-   
-
   if (media.length === 0) {
     media.push("https://github.com/AnnaHelene01/SemesterProject2/blob/main/placeholder.png?raw=true");
   }
-
 
     const endsAt = `${endsBid.value.trim()}:00.000Z`;
 
@@ -363,9 +345,7 @@ function validateFormAndProcess(event) {
         media: media,
         endsAt: endsAt,   
        };
-    console.log(auctionData);
-
-    
+    //console.log(auctionData);
 
     const submittedTitle = title;
     titleMsg.innerHTML = "";

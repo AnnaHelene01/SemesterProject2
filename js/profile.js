@@ -1,3 +1,4 @@
+//--------- SCRIPT FOR PROFILE PAGE --------
 const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
@@ -21,7 +22,7 @@ function isLoggedin() {
    
    isLoggedin();
 
-//Legge til brukerens navn
+//Get username from localStorage
 const username = localStorage.getItem('username');
 //console.log("User logged in:", welcome);
 
@@ -30,12 +31,9 @@ const username = localStorage.getItem('username');
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const profileEndpoint = `/auction/profiles/${username}?_listings=true`; // POST
-
 const profileUrl = `${APIurl}${profileEndpoint}`;
 const updateAvatarUrl = `${APIurl}/auction/profiles/${username}/media`;
-
 const profileBidsUrl = `${APIurl}/auction/profiles/${username}/bids?_listings=true`;
-
 
 let collection = [];
 
@@ -64,8 +62,6 @@ async function getMyProfileInfo (url) {
         }
         collection = profile
         //console.log("Profil: ", profile)
-        //console.log("Profil > navn: ", profile.name)
-        //console.log("Profil > epost: ", profile.email)
         //console.log("Collection:", collection);
         listData(collection , outElement)
     } catch(error) {
@@ -76,10 +72,10 @@ async function getMyProfileInfo (url) {
 getMyProfileInfo(profileUrl);
 
 
+//-------------------------------------------------------------------
 const outElement = document.getElementById("post-container");
 
-
-//Liste ut mine poster på html siden
+//Get info and list out ->
 function listData(list, out){
    console.log("List: ", list)
    //console.log("Out: ", out)
@@ -110,8 +106,7 @@ function listData(list, out){
   
         `;
         out.innerHTML = profileDivs;
-
-
+//Write to page if user dont have any posts yet ->
         if(list.listings.length === 0) {
           //console.log("You have no posts yet!");
           noPostMsg.innerHTML = "You have no posts yet!";
@@ -119,9 +114,57 @@ function listData(list, out){
     }
         
 
+// UPDATE AVATAR
+const updateAvatarMsg = document.getElementById("updateAvatarMsg");
+const updateAvatarInput = document.getElementById("updateAvatarInput");
+const updateAvatarBtn = document.getElementById("updateAvatarBtn");
+//console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
+
+async function updateAvatar(url, data) {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      //console.log(accessToken);
+      const options = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(data),
+      };
+     //console.log("avatar url, data, options:", url, data, options);
+      const response = await fetch(url, options);
+      //console.log("avatar response:", response);
+      const answer = await response.json();
+      //console.log("avatar: answer", answer);
+      if (answer.statusCode) {
+        updateAvatarMsg.innerHTML =
+          "Invalid image URL, make sure is fully formatted!";
+      }
+      if (answer.name) {
+        window.location.reload();
+      }
+      //console.log(answer);
+    } catch (error) {
+      console.warn(error);
+    }
+  } 
+  
+updateAvatarBtn.addEventListener("click", newAvatar);
+function newAvatar(event) {
+  event.preventDefault();
+  const avatarUrl = updateAvatarInput.value.trim();
+
+  let avatarData = {
+    avatar: avatarUrl,
+  };
+
+  updateAvatar(updateAvatarUrl, avatarData);
+}
+
 
 //-------------------------------------------------------------------------------------------------------
-//HENTE MINE POSTER -list out my own posts
+//-list out my own posts
 async function getMyListings (url) {
     try {
         const accessToken = localStorage.getItem('accessToken'); 
@@ -275,54 +318,6 @@ async function getMyBids(url) {
 }
   
 
-//-------------------------------------------------------------------------------------------------------
-// Oppdatere avatar - UPDATE AVATAR
-const updateAvatarMsg = document.getElementById("updateAvatarMsg");
-const updateAvatarInput = document.getElementById("updateAvatarInput");
-const updateAvatarBtn = document.getElementById("updateAvatarBtn");
-//console.log("Update avatar elements:", updateAvatarMsg, updateAvatarInput, updateAvatarBtn);
 
-async function updateAvatar(url, data) {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      //console.log(accessToken);
-      const options = {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify(data),
-      };
-     //console.log("avatar url, data, options:", url, data, options);
-      // opp i api
-      const response = await fetch(url, options);
-      //console.log("avatar response:", response);
-      const answer = await response.json();
-      //console.log("avatar: answer", answer);
-      if (answer.statusCode) {
-        updateAvatarMsg.innerHTML =
-          "Invalid image URL, make sure is fully formatted!";
-      }
-      if (answer.name) {
-        window.location.reload();
-      }
-      //console.log(answer);
-    } catch (error) {
-      console.warn(error);
-    }
-  } 
-  
-updateAvatarBtn.addEventListener("click", newAvatar);
-function newAvatar(event) {
-  event.preventDefault();
-  const avatarUrl = updateAvatarInput.value.trim();
-
-  let avatarData = {
-    avatar: avatarUrl,
-  };
-
-  updateAvatar(updateAvatarUrl, avatarData);
-}
 
 

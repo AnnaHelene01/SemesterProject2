@@ -1,3 +1,4 @@
+// ------- LOG IN PAGE ---------
 const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
@@ -22,18 +23,17 @@ function isLoggedin() {
 // Endpoints
 const API = " https://api.noroff.dev/api/v1";
 const loginEndpoint = "/auction/auth/login"; // POST
-
 const loginUrl = `${API}${loginEndpoint}`;
 
 
-//Hente ut elementer
+//Get input and btn elements ->
 const emailInput = document.querySelector("input#loginEmail");
 const passwordInput = document.querySelector("input#loginPassword");
 const submitBtn = document.querySelector("input#loginSubmit");
 //console.log(emailInput, passwordInput, submitBtn);
 
 
-//Logge inn bruker
+//Log in user ->
 submitBtn.addEventListener("click", validateAndProcess) 
 
 function validateAndProcess(event) {    
@@ -92,8 +92,8 @@ async function loginUser(url, data) {
 
 
 
-//VALIDERE FORM
-//Hente p taggene for å skrive ut beskjed ved validering
+//VALIDATE FORM
+//Get p elements for writing error messages
 const emailMsg = document.querySelector("#emailMsg");
 const passwordMsg = document.querySelector("#passwordMsg");
 

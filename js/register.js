@@ -1,3 +1,4 @@
+// -------- Script for register page -----------
 const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
@@ -19,7 +20,7 @@ function isLoggedin() {
    
    isLoggedin();
 
-//Hente ut elementer
+//Get input and btn elements
 const usernameInput = document.querySelector("input#registerUsername");
 const emailInput = document.querySelector("input#registerEmail");
 const passwordInput = document.querySelector("input#registerPassword");
@@ -28,12 +29,9 @@ const submitBtn = document.querySelector("input#registerSubmit");
 //console.log(usernameInput, emailInput, passwordInput, avatarInput, submitBtn);
 
 
-//Registrere bruker
-
 //Endpoints:
 const APIurl = " https://api.noroff.dev/api/v1";
 const registerEndpoint = "/auction/auth/register"; // POST
-
 const registerUrl = `${APIurl}${registerEndpoint}`;
 
 //Get form-data on the register btn, validate and process
@@ -91,7 +89,7 @@ async function registerNewUser(url, data) {
 }
 
 
-//Hente p taggene for å skrive ut beskjed ved validering
+//Get p elements for writing error message to inputs
 const usernameMsg = document.querySelector("#usernameMsg");
 const emailMsg = document.querySelector("#emailMsg");
 const passwordMsg = document.querySelector("#passwordMsg");

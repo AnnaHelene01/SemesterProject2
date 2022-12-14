@@ -1,3 +1,4 @@
+// ---------- Specific auction page -----------
 const loginNav = document.getElementById("login-nav");
 const logoutNav = document.getElementById("logout-nav")
 const profileNav = document.getElementById("profile-nav");
@@ -26,14 +27,10 @@ function isLoggedin() {
 // Endpoints
 const APIurl = " https://api.noroff.dev/api/v1";
 const auctionEndpoint = "/auction/listings/"; // POST
-
 const auctionUrl = `${APIurl}${auctionEndpoint}`;
-
 const extraFlag = "?_seller=true&_bids=true"
-
 const deleteEndPoint = '/auction/listings/'; 
 const deleteURL = `${APIurl}${deleteEndPoint}`;
-
 
 let params = new URLSearchParams(document.location.search);
 let id = params.get("id"); 
@@ -45,6 +42,7 @@ const username = localStorage.getItem("username");
 const profileEndpoint = `/auction/profiles/${username}`;
 const profileUrl = `${APIurl}${profileEndpoint}`;
 
+//Get profile info to list out Credits
 async function getProfile(url) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -72,14 +70,13 @@ async function getProfile(url) {
     console.warn(error);
   }
 }
-// Henter all profilinfo
 getProfile(profileUrl);
-//let posts = [];
-//console.log(id);
 
-//let AUCTION = [];
+
+//-------------------------------------------------------------------
 let collection = [];
 
+//Get single auction to page by id
 async function getSingleAuction (url) {
     try {
         const accessToken = localStorage.getItem('accessToken'); 
@@ -110,16 +107,12 @@ const outElement = document.getElementById("post-container");
 //Liste ut alle poster på html siden
 function listData(auctions, out){
     //console.log ("List:", auctions);
-
-    //console.log("Logger autcion", auctions);
-
     let date = new Date(auctions.endsAt);
     let now = new Date().getTime();
     let distance = date - now;
     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
 
     let bidTime = "";
     bidTime = days + "d " + hours + "h " + minutes + "m ";
@@ -211,7 +204,6 @@ function listData(auctions, out){
   }
 
   //console.log(mediaList, auctions.media.length);
-
         let newDivs = "";
         newDivs += `
                       <div class="mb-5 col-lg-6 col-md-8 w-100" id="singleMedia">
@@ -241,16 +233,14 @@ function listData(auctions, out){
 
     //TIMER
     const timer = document.querySelector(".timer");
-
     let bidEnding = timer.innerHTML;
-
     if (bidEnding !== "EXPIRED") {
         timer.classList.add("not-expired");
     } else {
         timer.classList.add("expired");
     }
 
-    // DISPLAY ELEMENTS BASED ON LOGGED IN OR NOT
+  // DISPLAY ELEMENTS BASED ON LOGGED IN OR NOT
   //YOUR OWN BID OR NOT
   //EXPIRED OR NOT
   const makeBid = document.getElementById("bid-make-a-bid");
@@ -330,9 +320,7 @@ async function deletePost (id) {
     }
 }
 
-
-
-
+//----------------------------------------------------------------------------------------------------------
 //GET BIDS AND LIST OUT
 async function getSingleBids (url) {
     try {
@@ -370,7 +358,6 @@ function listBids(list, second) {
     })
     //console.log("Sortert:", list); 
  
-
     for (let bid of list) {
         newDivs += `
         <ul class="list-unstyled bidder mt-3">
@@ -389,7 +376,7 @@ function listBids(list, second) {
     second.innerHTML = newDivs;
 }
 
-
+//----------------------------------------------------------------------------------------------------------
 //MAKE A BID 
 async function createBid(url, data) {
     try {

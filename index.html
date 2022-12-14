@@ -60,11 +60,11 @@
             <div class="row">
                 <div class="col-lg-6 m-auto text-center mt-5">
                     <h1 class="mt-5">The best place to buy and sell!</h1>
-                    <!--THIS DIV MUST BE DISPLAY:NONE FOR UNREGISTERED USERS-->
-                      <!--------->
+                    <!--Display a href if person is NOT logged in-->
                         <a href="./public/register.html" class="text-decoration-none" id="view-signup">
                             <h2 class="text-success mt-4">Click here to sign up!</h2>
                         </a>
+                    <!--Display a href if person IS logged in-->
                         <a href="./public/profile.html" class="text-decoration-none" id="view-profile">
                             <h2 class="text-success mt-4">Click here to view your profile!</h2>
                         </a>
@@ -144,13 +144,6 @@
                         <div class="container w-75">
                           <div class="row justify-content-center">
                               <div class="col-lg-10">
-                                <!--<div class="row">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-secondary" id="addInput">Add more images</button>   
-                                        <div id="inputFields"></div>
-                                        <button class="btn btn-secondary" id="submitMedia">Submit media url</button>   
-                                    </div>
-                                </div> -->
                                   <div class="row">
                                       <div class="col-md-12">
                                           <p id="titleMsg" class="msg-element"></p>
@@ -172,7 +165,7 @@
                                           <textarea class="form-control media-input" id="postMedia" placeholder="Place a image URL"></textarea>
                                       </div>
                                   </div>
-                                  <!--FORSØK-->
+                                  <!--Media gallery (add more media inputs!)-->
                                   <div class="row mt-4">
                                       <div class="col-md-12">
                                             <button class="btn btn-secondary add">Add more images</button>   
@@ -198,6 +191,7 @@
                         </div>
                      </div>
             </div>
+            <!-- Listing preview-->
             <div class="col-lg-6">
                 <section class="logged-in">
                     <h2 class="text-center mt-5">NEW LISTING</h2>
@@ -210,8 +204,6 @@
             </div>
         </div>
     </div>
-    
-
         <!--Search for user, product etc-->
         <div class="col-4 mb-5 mt-5 m-auto">
            <input type="search" id="filter-auction" class="form-control bg-white border-1" placeholder="Search for user, products and so!"/>
@@ -237,14 +229,12 @@
             </div>
         </div>
     </div>
-     
-
-         <div class="container">
-                <div id="post-container" class="row">
-                    <img src="./Img/loader.gif" alt="Loading content" style="width:100px;">
-                </div>
-         </div>
-
+    <!--Listing auctions-->
+    <div class="container">
+        <div id="post-container" class="row">
+            <img src="./Img/loader.gif" alt="Loading content" style="width:100px;">
+        </div>
+    </div>
     </main>
     <footer class="text-center mt-5 mb-5">
         <img src="/Img/Logo.png">
