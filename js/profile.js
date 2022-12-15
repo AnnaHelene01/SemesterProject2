@@ -318,6 +318,8 @@ async function getMyBids(url) {
 }
   
 
-
+const toTopBtn = document.getElementById('toTop');
+const scrollToTop = () => window.scrollTo({top: 0, behavior: 'smooth'});
+toTopBtn.addEventListener('click', scrollToTop);
 
 

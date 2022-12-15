@@ -441,6 +441,7 @@ function validateAndProcess(event) {
   }
 
   
-
-  
-  
+//Btn to scroll to top
+const toTopBtn = document.getElementById('toTop');
+const scrollToTop = () => window.scrollTo({top: 0, behavior: 'smooth'});
+toTopBtn.addEventListener('click', scrollToTop);  
