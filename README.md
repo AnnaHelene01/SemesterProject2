@@ -43,22 +43,9 @@ Semester Project secong year of Noroff
 
 &nbsp;
 
-### How i set up my project
-Initialized npm with
+### How to run my project locally 
 ```
-npm init -y
-```
-Added node with:
-```
-npm i
-````
-Added bootstrap with: 
-```
-npm i bootstrap
-```
-Installed sass
-```
-npm install -g sass
+npm install bootstrap@latest 
 ```
 Compile my custom.scss file (when changes in custom.scss file run:)
 ```
@@ -66,9 +53,8 @@ sass --watch scss/custom.scss:css/style.css
 ```
 run 
 ```
-npm install bootstrap@latest 
-```
-I also ended up adding some CDN links to my project so that another user that downloads my project and wants to run it shouldnt have to to more than just clone down the project!
+
+I also ended up adding some CDN links to my project so that another user that downloads my project and wants to run it shouldnt have to to more than just clone down the project! If you want to test changes or so, you have to run the comments i added over in VS Terminal!
 
 &nbsp;
 
