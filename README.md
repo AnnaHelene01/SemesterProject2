@@ -75,7 +75,7 @@ I also ended up adding some CDN links to my project so that another user that do
 
 ### Report:
 
-I will be using bootstrap as CSS-framework for this project. In order to clone this code and make it work you should run npm install bootstrap@latest vscode terminal.
+I will be using bootstrap as CSS-framework for this project. I added bootstrap CDN links so it should work without running anything in the terminal. In order to clone this code and make it work without my CDN links you have to run npm install bootstrap@latest vscode terminal.
 
  - User can scroll / watch products without being logged in.
  - User can search for products and sort by latest first or ending soon.
