@@ -36,8 +36,8 @@ Semester Project secong year of Noroff
 &nbsp;
 
 ### Delivery
-- [Github Repo]()
-- [Netlify host]()
+- [Github Repo](https://github.com/AnnaHelene01/SemesterProject2)
+- [Netlify host](https://world-wide-shop.netlify.app/)
 
 
 &nbsp;
