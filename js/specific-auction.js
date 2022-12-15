@@ -173,11 +173,11 @@ function listData(auctions, out){
   } else if (auctions.media.length > 1) {
     sliderBtns = `
                 <button class="carousel-control-prev" type="button" data-bs-target="#mediaCont" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#mediaCont" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
     `;
@@ -187,7 +187,7 @@ function listData(auctions, out){
             </div>
         `;
     pointers = `
-            <button type="button" data-bs-target="#mediaCont" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+            <button type="button" data-bs-target="#mediaCont" data-bs-slide-to="0" class="active bg-success" aria-current="true" aria-label="Slide 0"></button>
     `;
 
     for (let i = 1; i < auctions.media.length; i++) {
@@ -198,7 +198,7 @@ function listData(auctions, out){
             </div>
         `;
       pointers += `
-                <button type="button" data-bs-target="#mediaCont" data-bs-slide-to="${i}" aria-label="Slide ${i}"></button>
+                <button type="button" data-bs-target="#mediaCont" class="bg-success" data-bs-slide-to="${i}" aria-label="Slide ${i}"></button>
     `;
     }
   }

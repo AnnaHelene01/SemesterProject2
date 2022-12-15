@@ -120,21 +120,17 @@ function listData(list, out){
     }
     out.innerHTML = newDivs;
 
-      //Filtrere posts / search input
+      //Filter users / search input
       const inputField = document.getElementById("filter-users");
       //console.log(inputField);
       inputField.addEventListener("keyup", filterUsers);
   
       function filterUsers () {
           const filterUsers = inputField.value.toLowerCase();
-          //console.log(filterAuctions);
+          //console.log(filterUsers);
   
           const filtered = collection.filter((user)=> {
-              //console.log(post.author.name, filterPosts);
-              //console.log(post.author.name.toUpperCase().indexOf(filterPosts.toUpperCase()) > -1);
-              //console.log(collection.length);
               const author = user.name.toLowerCase();
-              //console.log(author, title, published);
               if (author.indexOf(filterUsers) > -1) return true;
               return false;
           })
