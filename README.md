@@ -1,9 +1,9 @@
 # SemesterProject2
-
-Semester Project secong year of Noroff
+by Anna Helene Sæthre
 =======
+- [![Netlify Status](https://api.netlify.com/api/v1/badges/c20fd2c3-21b6-41ae-9640-2e801299082d/deploy-status)](https://app.netlify.com/sites/world-wide-shop/deploys)
 ## Link to the task:
-[semester.project.2.pdf](https://github.com/AnnaHelene01/SemesterProject2/files/10057160/semester.project.2.pdf)
+- [semester.project.2.pdf](https://github.com/AnnaHelene01/SemesterProject2/files/10057160/semester.project.2.pdf)
 
 &nbsp;
 
@@ -43,32 +43,16 @@ Semester Project secong year of Noroff
 
 &nbsp;
 
-### How i set up my project
-Initialized npm with
-```
-npm init -y
-```
-Added node with:
-```
-npm i
-````
-Added bootstrap with: 
-```
-npm i bootstrap
-```
-Installed sass
-```
-npm install -g sass
-```
-Compile my custom.scss file
-```
-sass --watch scss/custom.scss:css/style.css
-```
-run 
+### How to run my project locally 
 ```
 npm install bootstrap@latest 
 ```
-I also ended up adding some CDN links to my project so that another user that downloads my project and wants to run it shouldnt have to to more than just clone down the project!
+Compile my custom.scss file (when changes in custom.scss file run:)
+```
+sass --watch scss/custom.scss:css/style.css
+```
+
+I also ended up adding some CDN links to my project so that another user that downloads my project and wants to run it shouldnt have to to more than just clone down the project! If you want to test changes or so, you have to run the comments i added over in VS Terminal!
 
 &nbsp;
 
