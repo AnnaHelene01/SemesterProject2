@@ -60,7 +60,7 @@ Installed sass
 ```
 npm install -g sass
 ```
-Compile my custom.scss file
+Compile my custom.scss file (when changes in custom.scss file run:)
 ```
 sass --watch scss/custom.scss:css/style.css
 ```
