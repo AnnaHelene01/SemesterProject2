@@ -33,7 +33,7 @@ $carousel-control-hover-opacity: 1;
     color: #fff;
     font-size: 1.5rem;
     font-weight: bold;
-    width: 40px;
+    width: 40px; 
     height: 35px;
     margin-left: auto;
     display: flex;
@@ -41,11 +41,6 @@ $carousel-control-hover-opacity: 1;
     align-items: center;
     cursor: pointer;
 }
-
-//#singleMedia {
-//    max-height: 500px;
-//}
-
 
 //Putting color on expired and not expired date/ endbid:
 .expired {
@@ -142,16 +137,6 @@ input::placeholder {
     /*font-size: 1.3rem;*/
 }
   
-
-
-@media (min-width: 1041px) {
-/* Home page - section: Subcribe to newletter*/
-    .fill {
-        min-height: 70vh;
-    }
-}
-
-
 
 //Img in the listings
 .card-img {

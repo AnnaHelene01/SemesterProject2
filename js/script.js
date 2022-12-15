@@ -293,7 +293,7 @@ function addInput() {
 
     btn.addEventListener("click", removeInput);
 
-    const flex=document.createElement("div");
+    const flex = document.createElement("div");
     flex.className = "flex";
 
     input.appendChild(flex);
