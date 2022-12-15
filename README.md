@@ -1,8 +1,8 @@
 # SemesterProject2
 by Anna Helene Sæthre
 =======
-## Link to the task:
 - [![Netlify Status](https://api.netlify.com/api/v1/badges/c20fd2c3-21b6-41ae-9640-2e801299082d/deploy-status)](https://app.netlify.com/sites/world-wide-shop/deploys)
+## Link to the task:
 - [semester.project.2.pdf](https://github.com/AnnaHelene01/SemesterProject2/files/10057160/semester.project.2.pdf)
 
 &nbsp;
