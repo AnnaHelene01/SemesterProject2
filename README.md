@@ -95,7 +95,7 @@ I will be using bootstrap as CSS-framework for this project. In order to clone t
  - Logged in user can see list of other users, and also search for one. 
  - Logged in user can log out.
  
-###KNOWN ERROR:
+### KNOWN ERROR:
 I decided to make a page to list out users, with a search bar to search for users. This runs the fetch every time you type, which CAN cause to the site crashing if it has to fetch to many times in too little time. Didnt get the time to fix this, but wanted to keep the page because of the design and user availability.
 
 
