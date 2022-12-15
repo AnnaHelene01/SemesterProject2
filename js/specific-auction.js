@@ -163,12 +163,12 @@ function listData(auctions, out){
   if (auctions.media.length <= 0) {
     sliderBtns = "";
     pointers = "";
-    mediaList = `<img class="img-fluid" src="${placeholder}" alt="Placeholder image" style="object-fit: cover;">`;
+    mediaList = `<img class="h-100 w-100" src="${placeholder}" alt="Placeholder image" style="object-fit: cover;">`;
   } else if (auctions.media.length === 1) {
     sliderBtns = "";
     pointers = "";
     mediaList = `
-                <img class="img img-fluid" src="${auctions.media[0]}" alt="Placeholder image">
+                <img class="h-100 w-100" src="${auctions.media[0]}" alt="Placeholder image" style="object-fit: cover;">
         `;
   } else if (auctions.media.length > 1) {
     sliderBtns = `
@@ -183,7 +183,7 @@ function listData(auctions, out){
     `;
     mediaList = `
             <div class="carousel-item active">
-                <img class="img-fluid" src="${auctions.media[0]}" alt="Product image 0" style="object-fit: cover;">
+                <img class="h-100 w-100" src="${auctions.media[0]}" alt="Product image 0" style="object-fit: cover;">
             </div>
         `;
     pointers = `
@@ -193,8 +193,8 @@ function listData(auctions, out){
     for (let i = 1; i < auctions.media.length; i++) {
       //console.log(i, auctions.media.length);
       mediaList += `
-            <div class="carousel-item">
-                <img class="img-fluid" src="${auctions.media[i]}" alt="Product image ${i}" style="object-fit: cover;">
+            <div class="carousel-item h-100">
+                <img class="h-100 w-100" src="${auctions.media[i]}" alt="Product image ${i}" style="object-fit: cover;">
             </div>
         `;
       pointers += `
@@ -206,19 +206,21 @@ function listData(auctions, out){
   //console.log(mediaList, auctions.media.length);
         let newDivs = "";
         newDivs += `
-                      <div class="mb-5 col-lg-6 col-md-8 w-100" id="singleMedia">
-                          <div id="mediaCont" class="carousel slide" data-ride="carousel" >
+                      <div class="mb-5 col-lg-12 col-md-8" id="singleMedia">
+                          <div id="mediaCont" class="carousel slide" data-ride="carousel">
                            <div class="carousel-indicators">
                               ${pointers}
                            </div>
-                           <div class="carousel-inner h-100 w-100">
+                           <div class="carousel-inner h-100">
                               ${mediaList}
                            </div> 
                             ${sliderBtns}
                           </div>
                       </div>
+
                       <h2 class="my-4">${auctions.title}</h2>
                       <p>${auctions.description}</p>
+
                       <div class="card-body d-flex">
                         <p>Auction ends: </p>
                         <p class=" timer">${bidTime}</p>
