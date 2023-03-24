@@ -63,7 +63,7 @@ I will be using bootstrap as CSS-framework for this project. I added bootstrap C
 
  - User can scroll / watch products without being logged in.
  - User can search for products and sort by latest first or ending soon.
- - User can register a new user, with given 1000 credits.
+ - User can register a new user, with given 1000 credits. (with @noroff.no as email)
  - User can log in to site, which gives the user more accessibility on the site.
  - User gets feedback if something isnt working as it should, like errorMessages.
  - Logged in user can see its profile, listings and listings they have bid on.
