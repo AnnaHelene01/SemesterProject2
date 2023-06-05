@@ -91,7 +91,7 @@ async function getAllAuctions (url) {
         const response = await fetch(url, options); 
         //console.log(response);
         const auction = await response.json();
-        //console.log("Posts:", auction);
+        console.log("Posts:", auction);
         collection = auction;
         //console.log("Collection:", collection);
         listData(auction, outElement)
@@ -111,6 +111,7 @@ function listData(list, out){
     let newDivs = "";
 
     for (let auction of list) {
+
    //Ternyary for listing media
    const productImg =
    auction.media.length === 0 || auction.media == "undefined"
@@ -219,7 +220,10 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
   //Sort by function for sort btn
     const sortByNewst = document.getElementById("sortByNewest");
     const sortByOldest = document.getElementById("sortByOldest");
+    const sortByNotExpired = document.getElementById("sortByNotExpired");
     const sortByExpired = document.getElementById("sortByExpired");
+    const sortByValidImg = document.getElementById("sortByValidImg");
+    
     sortByNewst.addEventListener("click", sortNewest);
     function sortNewest() {
         getAllAuctions(sortAllBidsAsc);
@@ -229,6 +233,43 @@ let deadline = dateWrite.toLocaleString("default", { day: "numeric", month: "lon
         getAllAuctions(sortAllBidsDesc);
     };
 
+    sortByNotExpired.addEventListener("click", filterNotExpired);
+    function filterNotExpired() {
+      const filteredAuctions = collection.filter(auction => {
+        const distance = new Date(auction.endsAt) - new Date().getTime();
+        return distance >= 0;
+      });
+      listData(filteredAuctions, outElement);
+    }
+
+    sortByExpired.addEventListener("click", filterExpired);
+    function filterExpired() {
+      const filteredAuctions = collection.filter(auction => {
+        const distance = new Date(auction.endsAt) - new Date().getTime();
+        return distance < 0;
+      });
+      listData(filteredAuctions, outElement);
+    }
+
+    sortByValidImg.addEventListener("click", filterValidImages);
+    function filterValidImages() {
+      const filteredAuctions = collection.filter(auction => {
+        // Check if the auction has a valid media URL
+        const hasValidMedia = auction.media && auction.media.length > 0 && auction.media[0] !== "undefined";
+
+        if (!hasValidMedia) {
+          // Skip this auction if it has a placeholder or bad URL
+          return false;
+        }
+
+        // Check if the media URL is an image
+        const isImage = /\.(jpeg|jpg|gif|png)$/i.test(auction.media[0]);
+
+        return isImage;
+      });
+
+      listData(filteredAuctions, outElement);
+    }
 
 //-----------------------------------------------------  
 //Get create post elements:
